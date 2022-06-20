@@ -1,5 +1,5 @@
-import Heading from "./components/Heading"
-import Navigation from "./components/Navigation"
+import Heading from "../components/Heading"
+import Navigation from "../components/Navigation"
 
 const Home = () => {
 
