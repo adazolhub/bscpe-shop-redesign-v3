@@ -1,5 +1,5 @@
 import Heading from "../components/Heading"
-import Navigation from "../components/Navigation"
+import Sidebar from "../components/Sidebar"
 
 const Home = () => {
 
@@ -10,7 +10,8 @@ const Home = () => {
         <h1 className="text-3xl font-thin">Hello world</h1>
 
       </main>
-      <Navigation/>
+      {/* <Navigation/> */}
+      <Sidebar/>
     </>
   )
 }
