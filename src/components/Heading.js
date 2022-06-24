@@ -7,11 +7,11 @@ const Heading = ({ setOpen }) => {
    }
 
    return (
-      <header className="sticky px-2 text-xs font-thin text-gray-500 bg-white shadow -top-0 shadow-gray-200">
+      <header className="sticky z-30 px-2 text-xs font-thin text-gray-500 bg-white sm:px-4 -top-0">
          <nav className="flex justify-between items-center container mx-auto min-h-[48px]">
             <div className="block hambuger sm:hidden">
 
-               <button className="" onClick={handleOpenMenu}>
+               <button className="p-1 rounded-sm hover:bg-gray-200 focus:bg-gray-200" onClick={handleOpenMenu}>
 
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path fillRule="evenodd" clipRule="evenodd" d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />

@@ -9,7 +9,7 @@ function Sidebar({ isOpen, setOpen }) {
       <>
          {isOpen &&
             <nav className="block sm:hidden">
-               <div className="fixed min-h-screen top-0 left-0 min-w-full bg-gray-800/50 backdrop-blur-[2px] cursor-pointer" onClick={handleOpenMenu}>
+               <div className="fixed z-50 min-h-screen top-0 left-0 min-w-full bg-gray-800/50 backdrop-blur-[2px] cursor-pointer" onClick={handleOpenMenu}>
 
                   <div className="fixed close top-4 right-4 hover:bg-slate-400">
                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@ function Sidebar({ isOpen, setOpen }) {
                      </svg>
                   </div>
                </div>
-               <div className="fixed min-h-screen top-0 flex flex-col justify-between p-4 bg-white shadow-md min-w-[65%] select-none rounded-r-lg">
+               <div className="fixed z-50 min-h-screen top-0 flex flex-col justify-between p-4 bg-white shadow-md min-w-[65%] select-none rounded-r-lg">
                   <div className="flex flex-col gap-16 text-gray-500 title">
                      <p className="font-thin">
                         <span className="mt-2">BSCPE STORE</span>

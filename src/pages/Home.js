@@ -12,12 +12,7 @@ const Home = () => {
       <Heading setOpen={setOpen} />
       <main className="box-border w-full scroll-smooth">
         <HomeSection />
-        <section className="min-h-[calc(100vh-48px)] grid place-content-center">
-          <h1 className="text-3xl font-thin">Hello world</h1>
-        </section>
-        <section className="min-h-[calc(100vh-48px)] grid place-content-center">
-          <h1 className="text-3xl font-thin">Hello world</h1>
-        </section>
+
 
       </main>
       {/* <Navigation/> */}
