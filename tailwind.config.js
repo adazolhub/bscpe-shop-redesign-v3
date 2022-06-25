@@ -14,7 +14,7 @@ module.exports = {
         'main-aside': 'minmax(0,10fr) minmax(300px,2fr)',
       },
       gridTemplateRows: {
-        'main-aside': 'minmax(160px,1fr) minmax(0,8fr)'
+        'main-aside': 'minmax(160px,260px) minmax(0,8fr)'
       }
     },
   },
