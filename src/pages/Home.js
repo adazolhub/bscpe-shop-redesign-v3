@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Footer from "../components/Footer"
 import Heading from "../components/Heading"
 import HomeSection from "../components/HomeSection"
 import Sidebar from "../components/Sidebar"
@@ -10,13 +11,14 @@ const Home = () => {
   return (
     <>
       <Heading setOpen={setOpen} />
-      <main className="box-border w-full scroll-smooth">
+      <div className="box-border w-full scroll-smooth container-snap">
         <HomeSection />
 
 
-      </main>
-      {/* <Navigation/> */}
+      </div>
       <Sidebar isOpen={isOpen} setOpen={setOpen} />
+      <Footer />
+      {/* <Navigation/> */}
     </>
   )
 }
