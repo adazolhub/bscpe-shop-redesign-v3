@@ -66,7 +66,7 @@ const ListGrid = () => {
                                     className="flex w-full min-w-full bg-gray-100 hover:bg-gray-50 hover:shadow-lg rounded-lg h-60 md:h-90 overflow-hidden transition-all border border-transparent hover:border-gray-300 group">
                                     <div className=" h-full w-full p-4 flex flex-col gap-2 justify-between">
                                         <div className="flex flex-col gap-2">
-                                            <p className="text-[0.55em] px-2 py-1 bg-blue-600 w-fit text-white rounded-md">Limited</p>
+                                            {/* <p className="text-[0.55em] px-2 py-1 bg-blue-600 w-fit text-white rounded-md">Limited</p> */}
 
                                             <h2 className="text-lg font-medium">Red Shirt for girl</h2>
                                             <p className="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.

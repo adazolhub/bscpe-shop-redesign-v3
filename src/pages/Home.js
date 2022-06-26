@@ -3,7 +3,9 @@ import Footer from "../components/Footer"
 import Heading from "../components/Heading"
 import HomeSection from "../components/HomeSection"
 import Sidebar from "../components/Sidebar"
-
+import { Routes, Route } from 'react-router-dom'
+import About from "./About"
+import LoginPage from "./LoginPage"
 const Home = () => {
   const [isOpen, setOpen] = useState(false)
 
@@ -11,11 +13,17 @@ const Home = () => {
   return (
     <>
       <Heading setOpen={setOpen} />
-      <div className="box-border w-full scroll-smooth container-snap">
-        <HomeSection />
+      <Routes>
+        <Route path="/" element={
+          <div className="box-border w-full scroll-smooth container-snap">
+            <HomeSection />
+          </div>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/*" element={<div className="grid place-content-center w-full min-h-screen"> 404 not found</div>} />
 
+      </Routes>
 
-      </div>
       <Sidebar isOpen={isOpen} setOpen={setOpen} />
       <Footer />
       {/* <Navigation/> */}

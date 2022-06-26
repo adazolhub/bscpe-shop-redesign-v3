@@ -35,7 +35,7 @@ const Trending = () => {
                         <div className="card flex-[0_0_auto] rounded-lg h-[160px] bg-gray-900 w-32 overflow-hidden group lg:w-full">
                             <img className="object-cover w-full h-full transition-all delay-100 opacity-50 group-hover:opacity-100 bg-blend-multiply hover:scale-110" src="https://images.unsplash.com/photo-1582142839970-2b9e04b60f65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="sweeter" />
                         </div>
-                        <div className="card flex-[0_0_auto] rounded-lg h-[160px] w-32 overflow-hidden  grid place-content-center bg-gray-500 opacity-50 hover:opacity-100">
+                        <div className="card flex-[0_0_auto] grid place-content-center rounded-lg h-[160px] bg-gray-900 w-32 overflow-hidden group lg:w-full text-yellow-300 text-lg">
                             <h2>
                                 See more
 

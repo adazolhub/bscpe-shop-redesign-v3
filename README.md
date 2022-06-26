@@ -6,17 +6,20 @@ This is a redesign from our previous school project during college. Selected thi
 
 ![wireframe](./public/assets/wireframe.png)
 
-
 ### Tools/Packages used on re-designing:
+
 > 🍃 React Boilerplate
 
 > 🍃 Tailwaindcss
 
+> 🍃 React-Router-Dom
+
 > 🍃 more ...
 
-
 ### Duration
+
     June 20 2022 - Date Started
 
 ### Author
+
 [Danyel Lozada](https://github.com/adazol123)
