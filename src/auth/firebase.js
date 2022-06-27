@@ -3,13 +3,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore'
 const firebaseConfig = {
-    "apiKey": "AIzaSyDK8IZ-MNspBOOJ_S7k35HbDU2Q92HFiS8",
-    "authDomain": "bscpe-store-v2.firebaseapp.com",
-    "projectId": "bscpe-store-v2",
-    "storageBucket": "bscpe-store-v2.appspot.com",
-    "messagingSenderId": "636404332362",
-    "appId": "1:636404332362:web:5deaaea62a878ff23633b3",
-    "measurementId": "G-5ZCCPZFWLC"
+    "apiKey": process.env.API_KEY,
+    "authDomain": process.env.AUTH_DOMAIN,
+    "projectId": process.env.PROJECT_ID,
+    "storageBucket": process.env.STORAGE_BUCKET,
+    "messagingSenderId": process.env.MESSAGING_SENDER_ID,
+    "appId": process.env.APP_ID,
+    "measurementId": process.env.MEASUREMENT_ID
 }
 
 // Initialize Firebase

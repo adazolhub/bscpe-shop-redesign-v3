@@ -1,5 +1,6 @@
 import { signOut } from 'firebase/auth'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { suspend } from 'suspend-react';
 import { auth } from '../auth/firebase'
 import { UserAuth } from '../lib/Auth';
@@ -66,15 +67,17 @@ const Heading = () => {
                      </li>
                      {currentUser ?
                         <li>
-                           <a className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2" href="/user">
+                           <Link className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2" to={'/user'} >
                               <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <path fillRule="evenodd" clipRule="evenodd" d="M39.68 36.3868C39.68 42.9788 30.64 43.7408 23.842 43.7408L23.3555 43.7404C19.0244 43.7299 8 43.4564 8 36.3468C8 29.8893 16.6767 29.0263 23.423 28.9938L24.3285 28.9932C28.6593 29.0037 39.68 29.2772 39.68 36.3868ZM23.842 31.9928C15.32 31.9928 11 33.4568 11 36.3468C11 39.2628 15.32 40.7408 23.842 40.7408C32.362 40.7408 36.68 39.2768 36.68 36.3868C36.68 33.4708 32.362 31.9928 23.842 31.9928ZM23.842 4C29.698 4 34.46 8.764 34.46 14.62C34.46 20.476 29.698 25.238 23.842 25.238H23.778C17.934 25.22 13.2 20.454 13.2199 14.614C13.2199 8.764 17.984 4 23.842 4ZM23.842 6.856C19.56 6.856 16.076 10.338 16.076 14.62C16.062 18.888 19.52 22.368 23.784 22.384L23.842 23.812V22.384C28.122 22.384 31.604 18.9 31.604 14.62C31.604 10.338 28.122 6.856 23.842 6.856Z" fill="currentColor" />
                               </svg>
                               <span className="text-gray-500 ">{currentUser?.displayName}</span>
-
-                           </a>
+                           </Link>
                         </li>
-                        : <a className='btn-primary' href='/login'>Login</a>
+                        :
+                        <li>
+                           <Link className="flex items-center gap-2 px-4 py-2 text-gray-800 bg-gray-100 rounded-md hover:bg-gray-900 hover:text-gray-50 lg:px-4 lg:py-2" to={'/login'} > Login </Link>
+                        </li>
                      }
 
                   </ul>
