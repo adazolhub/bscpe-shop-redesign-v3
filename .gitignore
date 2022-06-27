@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# auth
+
+/auth
+/auth/firebase.js
+/firebaseConfig.json

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+
 function Sidebar({ isOpen, setOpen }) {
 
    const handleOpenMenu = () => {
       setOpen(prev => !prev)
    }
-
+   let test;
 
    return (
       <>
@@ -109,7 +110,7 @@ function Sidebar({ isOpen, setOpen }) {
 
                   <div className="side-footer">
                      <div className="flex flex-col gap-4">
-                        <Link to="/login" onClick={handleOpenMenu}
+                        <Link to="/user" state={test} onClick={handleOpenMenu}
                            className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
                         >
                            <div className="flex items-center gap-6">
