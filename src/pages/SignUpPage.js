@@ -1,10 +1,10 @@
-const LoginPage = () => {
+const SignUpPage = () => {
     return (
         <div className="grid w-full place-content-center md:place-content-start md:grid-cols-3 lg:grid-cols-2">
             {/* IMAGE ON WIDER SCREEN */}
             <div className="h-[calc(100%-3em)] my-12 bg-blend-overlay relative  rounded-md overflow-hidden hidden md:block">
 
-                <img className="absolute top-0 left-0 hidden object-cover w-full h-full mb-5 opacity-100 md:block" src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="welcome" />
+                <img className="absolute top-0 left-0 hidden object-cover w-full h-full mb-5 opacity-100 md:block" src="https://images.unsplash.com/photo-1546241183-0ed3f8a4a824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="register" />
                 <div className="absolute top-0 left-0 hidden w-full h-full bg-gray-900 bg-blend-overlay opacity-60 md:block"></div>
             </div>
             {/* LOGIN FORM */}
@@ -12,17 +12,18 @@ const LoginPage = () => {
                 <div className="flex flex-col justify-between items-center h-[calc(100vh-3em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
                     <div />
                     <div className="flex flex-col w-full p-4 mx-auto rounded-lg">
-                        <h1 className="mb-8 text-3xl font-thin text-center text-gray-400">Welcome back</h1>
+                        <h1 className="mb-8 text-3xl font-thin text-center text-gray-400">Create a new account</h1>
                         <form action="/" method="get" className="flex flex-col gap-2">
                             <input type="text" className="text-field" name="username" placeholder="Username" />
+                            <input type="email" className="text-field" name="username" placeholder="Email" />
                             <input type="password" className="text-field" name="password" placeholder="Password" />
                             <div className="flex items-center gap-1 text-xs text-gray-400">
                                 <input type="checkbox" name="password-cache" id="password-cache" />
-                                <label htmlFor="password-cache">Remember me</label>
+                                <label htmlFor="password-cache" className="btn-link">I agree with terms and conditions</label>
                             </div>
                             <button type="submit" className="btn-primary"
                                 aria-label="login buton"
-                            >Continue to login</button>
+                            >Create an account</button>
                         </form>
                         <p className="my-4 text-xs text-center text-gray-300">Or continue with</p>
                         <button className="btn-secondary-icon"
@@ -40,7 +41,7 @@ const LoginPage = () => {
                             </svg>
 
 
-                            <span className="">Sign in with Google</span></button>
+                            <span className="">Sign up with Google</span></button>
                         <button className="btn-secondary-icon"
                             aria-label="signin with phone"
                         >
@@ -50,13 +51,13 @@ const LoginPage = () => {
                             </svg>
 
 
-                            Sign in with Phone</button>
+                            Sign up with Phone</button>
                     </div>
-                    <p className="text-center text-gray-400/70">Don't have an account yet? <a className="btn-link" href="/register">Sign Up</a></p>
+                    <p className="text-center text-gray-400/70">Already a member? <a className="btn-link" href="/login">Login</a></p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default LoginPage
+export default SignUpPage

@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar"
 import { Routes, Route } from 'react-router-dom'
 import About from "./About"
 import LoginPage from "./LoginPage"
+import SignUpPage from "./SignUpPage"
 const Home = () => {
   const [isOpen, setOpen] = useState(false)
 
@@ -19,8 +20,9 @@ const Home = () => {
             <HomeSection />
           </div>} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<SignUpPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/*" element={<div className="grid place-content-center w-full min-h-screen"> 404 not found</div>} />
+        <Route path="/*" element={<div className="grid w-full min-h-screen place-content-center"> 404 not found</div>} />
 
       </Routes>
 
