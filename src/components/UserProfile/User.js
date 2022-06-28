@@ -1,4 +1,4 @@
-import { UserAuth } from '../lib/Auth';
+import { UserAuth } from '../../lib/Auth';
 
 
 const User = () => {

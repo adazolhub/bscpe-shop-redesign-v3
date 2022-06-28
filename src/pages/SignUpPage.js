@@ -1,12 +1,12 @@
-import { db } from '../auth/firebase';
-import { updateProfile } from 'firebase/auth'
+import { auth, db } from '../auth/firebase';
+import { sendEmailVerification, updateProfile } from 'firebase/auth'
 import { collection, addDoc } from 'firebase/firestore'
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../lib/Auth';
 
-const SignUpPage = ({ user }) => {
+const SignUpPage = () => {
     // console.log(createUserWithEmailAndPassword, 'hello')
     // suspend(getInitialAuthState, ['initialAuthState'])
 
@@ -48,6 +48,7 @@ const SignUpPage = ({ user }) => {
                     uid: user?.user.uid,
                     authProvider: "local",
                     email,
+                    isSeller: false
                 });
                 navigate('/')
 

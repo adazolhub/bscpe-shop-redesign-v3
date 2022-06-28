@@ -6,8 +6,14 @@ import { UserAuth } from "../lib/Auth"
 function PrivateRoute({ children }) {
 
     const { currentUser } = UserAuth()
-    
-    if (!currentUser) return <Navigate to='/' />
+
+    if (!currentUser) return <Navigate to='/login' />
+    return children
+}
+
+export function LoggedOutUser({ children }) {
+    const { currentUser } = UserAuth()
+    if (currentUser) return <Navigate to='/' />
     return children
 }
 

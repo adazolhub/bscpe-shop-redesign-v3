@@ -1,9 +1,5 @@
 
-import { signOut } from "firebase/auth";
-import { suspend } from "suspend-react";
-import { auth } from "../auth/firebase";
 import Profile from "../components/UserProfile/Profile";
-import { getInitialAuthState } from "../lib/AuthState";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../lib/Auth";
 const UserProfile = ({ user }) => {
@@ -24,10 +20,6 @@ const UserProfile = ({ user }) => {
     return (
         <div className='w-full min-h-[calc(100vh-6rem)] mt-12'>
             <Profile />
-            <Profile />
-            <Profile />
-            <Profile />
-            <button className="btn-secondary" onClick={handleLogout}>Logout</button>
         </div>
     );
 }

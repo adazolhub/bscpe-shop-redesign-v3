@@ -26,4 +26,4 @@ yarn-error.log*
 # auth
 /src/auth
 /src/auth/firebase.js
-/firebaseConfig.json
+/src/firebaseConfig.json

@@ -1,11 +1,7 @@
-import { auth } from "../auth/firebase"
-import { signInWithEmailAndPassword, reload } from "firebase/auth"
 import { useState } from "react";
-import { suspend } from 'suspend-react'
-import { getInitialAuthState } from "../lib/AuthState";
-import { Navigate, useNavigate, } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import { UserAuth } from "../lib/Auth";
-const LoginPage = ({ user }) => {
+const LoginPage = () => {
 
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
@@ -15,7 +11,7 @@ const LoginPage = ({ user }) => {
     const { signin } = UserAuth();
 
     const navigate = useNavigate()
-    if (user) return <Navigate to='/' replace />
+
 
     const login = async (e) => {
         e.preventDefault()
