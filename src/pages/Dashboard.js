@@ -1,49 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import AddItem from "../components/ProductPanel/AddItem";
+import RemoveItem from "../components/ProductPanel/RemoveItem";
+import { ToggleState, ToggleStateProvider } from "../lib/ToggleState";
 
 const Dashboard = () => {
-  return (
-    <div className="min-h-[calc(100vh-6em)] mt-12 mx-3">
-      <section>
-        <p>Dashboard</p>
+  let { modalToggleHandler } = ToggleState();
+  let [modalToggle, setModalToggle] = useState(false);
 
-        <div className="overflow-hidden rounded-md">
-          <form className="grid gap-4 p-4 bg-gray-200 ">
-            <input
-              className="p-2 rounded-sm outline-none "
-              type="text"
-              name=""
-              id=""
-            />
-            <input
-              className="p-2 rounded-sm outline-none "
-              type="number"
-              name=""
-              id=""
-            />
-            <textarea
-              className="p-2 rounded-sm outline-none resize-none"
-              name=""
-              id=""
-              cols="20"
-              rows="10"
-            ></textarea>
-            <label
-              htmlFor="upload-image"
-              className="p-4 rounded-md cursor-pointer outline-dashed outline-1 outline-offset-2 outline-gray-400/90"
-            >
-              <div>Upload Image</div>
-            </label>
-            <input
-              className="hidden"
-              type="file"
-              name=""
-              accept="image/*"
-              id="upload-image"
-            />
-          </form>
-        </div>
-      </section>
-    </div>
+  let handleToggle = () => {
+    setModalToggle((prev) => !prev);
+  };
+  return (
+    <>
+      <div className="min-h-[calc(100vh-6em)] mt-12 mx-3">
+        <section>
+          <p>Dashboard</p>
+          <button
+            className="btn-primary"
+            onClick={() => modalToggleHandler("test")}
+          >
+            {" "}
+            Add item
+          </button>
+          <button className="btn-primary" onClick={() => handleToggle("test")}>
+            {" "}
+            Remove item
+          </button>
+        </section>
+      </div>
+      <AddItem />
+      <RemoveItem modalToggle={modalToggle} modalToggleHandler={handleToggle} />
+    </>
   );
 };
 

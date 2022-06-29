@@ -15,6 +15,7 @@ import UserProfile from "./Profile";
 import { AuthProvider } from "../lib/Auth";
 import PrivateRoute, { LoggedOutUser } from "../components/PrivateRoute";
 import Dashboard from "./Dashboard";
+import CartOverlay from "../components/Overlay/CartOverlay";
 
 const Home = () => {
   // let user = suspend(getInitialAuthState, 'initialState');
@@ -68,10 +69,24 @@ const Home = () => {
             <Route
               path="/*"
               element={
-                <div className="grid w-full min-h-screen place-content-center">
-                  {" "}
-                  404 not found
-                </div>
+                <>
+                  <div className="grid w-full min-h-[calc(100vh-10em)] place-content-center">
+                    {" "}
+                    <h2 className="font-medium text-center text-gray-600 text-8xl">
+                      404
+                    </h2>
+                    <p className="text-lg font-thin text-center text-gray-500">
+                      {" "}
+                      Page not found
+                    </p>
+                  </div>
+                  <div className="flex w-full pb-8">
+                    <a href="/" className="mx-auto btn-secondary">
+                      {" "}
+                      Go back
+                    </a>
+                  </div>
+                </>
               }
             />
           </Routes>
@@ -79,6 +94,7 @@ const Home = () => {
       </Suspense>
 
       {/* <Sidebar isOpen={isOpen} setOpen={setOpen} /> */}
+      {/* <CartOverlay /> */}
       <Footer />
       {/* <Navigation/> */}
     </>

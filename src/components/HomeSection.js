@@ -1,5 +1,6 @@
 import HomeCarousel from "./Carousel/HomeCarousel";
 import ListGrid from "./ListGrid";
+import CartOverlay from "./Overlay/CartOverlay";
 import Trending from "./Trending";
 
 const HomeSection = () => {
@@ -14,6 +15,7 @@ const HomeSection = () => {
         {/* <User /> */}
         <ListGrid />
       </div>
+      <CartOverlay />
     </div>
   );
 };

@@ -113,7 +113,9 @@ const Heading = () => {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="hidden text-gray-500 lg:block">Cart</span>
+                  <span className="text-gray-500 ">
+                    Cart <span>(6)</span>
+                  </span>
                 </a>
               </li>
               {currentUser ? (

@@ -30,10 +30,11 @@ function Sidebar({ isOpen, setOpen }) {
       {/* {isOpen && ( */}
       <AnimatePresence initial={false}>
         <motion.div
+          key={"2"}
           variants={backdrop}
           transition={{ delay: 0.3 }}
           animate={isOpen ? "open" : "closed"}
-          className="fixed top-0 left-0 z-50 w-full min-h-screen cursor-pointer sm:hidden"
+          className="fixed top-0 left-0 z-50 w-full min-h-screen overflow-hidden cursor-pointer sm:hidden"
           onClick={handleOpenMenu}
         >
           <div className="fixed close top-4 right-4 hover:bg-slate-400">
@@ -54,6 +55,7 @@ function Sidebar({ isOpen, setOpen }) {
           </div>
         </motion.div>
         <motion.nav
+          key={"1"}
           className="fixed top-0 left-0 z-50 block w-[calc(70%)] h-full sm:hidden"
           variants={variants}
           transition={{ type: "tween", duration: 0.4 }}
@@ -109,7 +111,7 @@ function Sidebar({ isOpen, setOpen }) {
                   </svg>
                 </Link>
                 <Link
-                  to="/cart"
+                  to="#list"
                   onClick={handleOpenMenu}
                   className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
                 >
