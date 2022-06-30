@@ -14,7 +14,7 @@ const Modal = ({ children, modalToggle, modalToggleHandler, ...props }) => {
               type: "tween",
               stiffness: 200,
             }}
-            className="fixed top-0 left-0 w-full h-screen overflow-hidden z-[100] grid place-content-center"
+            className="fixed top-0 left-0 w-full h-screen overflow-hidden   z-[100] grid place-content-center"
           >
             <div
               className="absolute top-0 left-0 w-full h-screen backdrop bg-gray-800/70 "
@@ -32,7 +32,7 @@ const Modal = ({ children, modalToggle, modalToggleHandler, ...props }) => {
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 0.3, type: "spring", bounce: 0.1 }}
               {...props}
-              className=" min-w-[20em] p-4  rounded-md min-h-[24em] modal bg-gray-50 z-[101]"
+              className=" min-w-[20em] max-w-[94%] max-h-[96%] m-auto p-4  rounded-md min-h-[24em] modal overflow-y-scroll bg-gray-50 z-[101]"
             >
               {" "}
               {children}

@@ -12,25 +12,41 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
       document.querySelector("html").style.overflow = null;
     };
   }, [modalToggle]);
+
+  const modal = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "100%" },
+  };
+  const backdrop = {
+    open: {
+      opacity: 1,
+      backgroundColor: "hsla(215, 28%, 17%, 0.7)",
+      backdropFilter: "blur(4px)",
+      display: "block",
+    },
+    closed: {
+      opacity: 0,
+      backgroundColor: "hsla(215, 0%, 0%, 0)",
+      backdropFilter: "blur(0px)",
+      display: "none",
+    },
+  };
   return (
     <>
-      <AnimatePresence initial="false">
-        {modalToggle && (
-          <div className="fixed bottom-0 left-0 w-full h-screen overflow-hidden z-[100] grid place-content-end">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.1,
-                type: "tween",
-                bounce: 0,
-                stiffness: 300,
-              }}
-              className="absolute top-0 left-0 w-full h-screen backdrop-blur-sm bg-gray-800/70 "
-              onClick={modalToggleHandler}
-            />
-            <motion.p
+      <AnimatePresence initial={false}>
+        {/* MODAL BACKDROP */}
+        <motion.div
+          key={"4g3"}
+          variants={backdrop}
+          transition={{
+            delay: 0.3,
+          }}
+          animate={modalToggle ? "open" : "closed"}
+          className="fixed top-0 left-0 w-full h-screen backdrop-blur-sm bg-gray-800/70 z-[100]"
+          onClick={modalToggleHandler}
+        />
+
+        {/* <motion.p
               initial={{ y: 1000, opacity: 0 }}
               animate={{ y: -700, opacity: 1 }}
               exit={{ y: 1000, opacity: 0 }}
@@ -42,23 +58,20 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
               onClick={modalToggleHandler}
             >
               close
-            </motion.p>
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={{
-                duration: 0.3,
-                type: "tween",
-              }}
-              {...props}
-              className="absolute w-full bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[24em] modal bg-gray-50 z-[101]"
-            >
-              {" "}
-              {children}
-            </motion.div>
-          </div>
-        )}
+            </motion.p> */}
+
+        {/* MODAL CONTENT */}
+        <motion.div
+          key={"5g2"}
+          variants={modal}
+          animate={modalToggle ? "open" : "closed"}
+          transition={{ type: "tween", duration: 0.4 }}
+          {...props}
+          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-gray-50 z-[101]"
+        >
+          {" "}
+          {children}
+        </motion.div>
       </AnimatePresence>
     </>
   );

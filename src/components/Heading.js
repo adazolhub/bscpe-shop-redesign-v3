@@ -97,7 +97,7 @@ const Heading = () => {
               <li>
                 <a
                   className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                  href="/#list"
+                  href="/dashboard"
                 >
                   <svg
                     width="18"

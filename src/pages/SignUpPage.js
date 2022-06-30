@@ -1,6 +1,6 @@
 import { auth, db } from "../auth/firebase";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -42,11 +42,14 @@ const SignUpPage = () => {
         updateProfile(user?.user, {
           displayName: username,
         });
-        await addDoc(collection(db, "users"), {
+
+        //change from addDoc to setDoc to manualy set root ID or UID of the document
+        await setDoc(doc(db, "users", user.user?.uid), {
           uid: user?.user.uid,
           authProvider: "local",
           email,
           isSeller: false,
+          cart: [],
         });
         navigate("/");
       } catch (error) {

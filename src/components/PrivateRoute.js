@@ -1,20 +1,18 @@
-import { Navigate } from "react-router-dom"
-import { UserAuth } from "../lib/Auth"
-
-
+import { Navigate } from "react-router-dom";
+import { UserAuth } from "../lib/Auth";
 
 function PrivateRoute({ children }) {
+  const { currentUser } = UserAuth();
+  // console.log(currentUser);
 
-    const { currentUser } = UserAuth()
-
-    if (!currentUser) return <Navigate to='/login' />
-    return children
+  if (!currentUser) return <Navigate to="/login" />;
+  return children;
 }
 
 export function LoggedOutUser({ children }) {
-    const { currentUser } = UserAuth()
-    if (currentUser) return <Navigate to='/' />
-    return children
+  const { currentUser } = UserAuth();
+  if (currentUser) return <Navigate to="/" />;
+  return children;
 }
 
-export default PrivateRoute
+export default PrivateRoute;

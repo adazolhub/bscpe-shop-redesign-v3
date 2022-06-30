@@ -19,7 +19,7 @@ function Sidebar({ isOpen, setOpen }) {
     },
     closed: {
       opacity: 0,
-      backgroundColor: "transparent",
+      backgroundColor: "hsla(215, 0%, 0%, 0)",
       backdropFilter: "blur(0px)",
       display: "none",
     },
@@ -111,7 +111,7 @@ function Sidebar({ isOpen, setOpen }) {
                   </svg>
                 </Link>
                 <Link
-                  to="#list"
+                  to="/dashboard"
                   onClick={handleOpenMenu}
                   className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
                 >

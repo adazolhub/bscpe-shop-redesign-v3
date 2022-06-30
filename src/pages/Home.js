@@ -12,7 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import Loader from "../components/Loader";
 import UserProfile from "./Profile";
-import { AuthProvider } from "../lib/Auth";
+import { AuthProvider, UserAuth } from "../lib/Auth";
 import PrivateRoute, { LoggedOutUser } from "../components/PrivateRoute";
 import Dashboard from "./Dashboard";
 import CartOverlay from "../components/Overlay/CartOverlay";
@@ -35,11 +35,11 @@ const Home = () => {
               path="/"
               element={
                 <div className="box-border w-full scroll-smooth container-snap">
-                  <HomeSection />
+                  <HomeSection user={user} />
                 </div>
               }
             />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard user={user} />} />
             <Route
               path="/user"
               element={
