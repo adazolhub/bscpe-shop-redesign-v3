@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useResolvedPath } from "react-router-dom";
 
 import { UserAuth } from "../lib/Auth";
 import { motion } from "framer-motion";
 
 import Sidebar from "./Sidebar";
 const Heading = () => {
+  //Navigation header title
+  let { pathname } = useLocation();
+
   const [open, setOpen] = useState(false);
 
   const { currentUser } = UserAuth();
@@ -40,10 +43,27 @@ const Heading = () => {
             </button>
           </div>
           <div className="logo flex leading-[0.6em] my-auto">
-            <h1 className="whitespace-nowrap ">BSCPE STORE</h1>
-            <span className="bg-gray-100 px-1 rounded-md font-light text-emerald-500 text-[0.6em] ml-1 border border-gray-300 mb-1">
-              Beta
-            </span>
+            {pathname === "/1" || pathname === "/2" || pathname === "/" ? (
+              <>
+                <h1 className="whitespace-nowrap ">BSCPE STORE</h1>
+                <span className="bg-gray-100 px-1 rounded-md font-light text-emerald-500 text-[0.6em] ml-1 border border-gray-300 mb-1">
+                  Beta
+                </span>
+              </>
+            ) : pathname === "/login" || pathname === "/register" ? (
+              <>
+                {/* <h1 className="whitespace-nowrap ">BSCPE STORE</h1>
+                <span className="bg-gray-100 px-1 rounded-md font-light text-emerald-500 text-[0.6em] ml-1 border border-gray-300 mb-1">
+                  Beta
+                </span> */}
+              </>
+            ) : (
+              <>
+                <h1 className="whitespace-nowrap ">
+                  {pathname.split("/")[1].toUpperCase()}
+                </h1>
+              </>
+            )}
           </div>
           <div className="flex items-center side">
             <ul className="hidden gap-2 text-gray-400 sm:flex lg:gap-2">
@@ -122,7 +142,7 @@ const Heading = () => {
                 <li>
                   <Link
                     className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                    to={"/user"}
+                    to={"account"}
                   >
                     <svg
                       width="18"

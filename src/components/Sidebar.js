@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, matchRoutes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { NavLink } from "../pages/Home";
+import { UserAuth } from "../lib/Auth";
+import { LogoutIcon } from "@heroicons/react/outline";
+
+// function NavLink({
+//   to,
+//   exact,
+//   className,
+//   activeClassName,
+//   inactiveClassName,
+//   ...rest
+// }) {
+//   let location = useLocation();
+
+//   let isActive = location.pathname === to;
+
+//   let allClassNames =
+//     className + (isActive ? ` ${activeClassName}` : ` ${inactiveClassName}`);
+//   return <Link className={allClassNames} to={to} {...rest} />;
+// }
+
 function Sidebar({ isOpen, setOpen }) {
+  let { currentUser, logout } = UserAuth();
   const handleOpenMenu = () => {
     setOpen((prev) => !prev);
   };
@@ -70,10 +92,12 @@ function Sidebar({ isOpen, setOpen }) {
               </Link>
 
               <div className="flex flex-col gap-1">
-                <Link
-                  to="/"
+                <NavLink
+                  to=""
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
                   onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="icon">
@@ -109,11 +133,13 @@ function Sidebar({ isOpen, setOpen }) {
                       fill="currentColor"
                     />
                   </svg>
-                </Link>
-                <Link
-                  to="/dashboard"
+                </NavLink>
+                <NavLink
+                  to="dashboard"
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
                   onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="icon">
@@ -148,11 +174,13 @@ function Sidebar({ isOpen, setOpen }) {
                       fill="currentColor"
                     />
                   </svg>
-                </Link>
-                <Link
-                  to="/notification"
+                </NavLink>
+                <NavLink
+                  to="notification"
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
                   onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="icon">
@@ -186,11 +214,13 @@ function Sidebar({ isOpen, setOpen }) {
                       fill="currentColor"
                     />
                   </svg>
-                </Link>
-                <Link
-                  to="/settings"
+                </NavLink>
+                <NavLink
+                  to="settings"
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
                   onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="icon">
@@ -224,56 +254,13 @@ function Sidebar({ isOpen, setOpen }) {
                       fill="currentColor"
                     />
                   </svg>
-                </Link>
-              </div>
-            </div>
-
-            <div className="side-footer">
-              <div className="flex flex-col gap-4">
-                <Link
-                  to="/user"
-                  state={test}
+                </NavLink>
+                <NavLink
+                  to="about"
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
                   onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
-                >
-                  <div className="flex items-center gap-6">
-                    <div className="icon">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12.0046 12.49C14.1843 12.49 15.9611 10.5484 15.9611 8.18546C15.9611 5.84087 14.1935 4 12.0046 4C9.834 4 8.04808 5.8775 8.04808 8.20378C8.05724 10.5575 9.82484 12.49 12.0046 12.49ZM12.0046 11.107C10.6674 11.107 9.52261 9.82484 9.52261 8.20378C9.52261 6.61019 10.6491 5.38294 12.0046 5.38294C13.3692 5.38294 14.4865 6.59187 14.4865 8.18546C14.4865 9.80653 13.3509 11.107 12.0046 11.107ZM6.24385 20.9616H17.7562C19.2765 20.9616 20 20.5037 20 19.4963C20 17.0967 16.9685 13.6256 12.0046 13.6256C7.03148 13.6256 4 17.0967 4 19.4963C4 20.5037 4.72353 20.9616 6.24385 20.9616ZM5.81339 19.5787C5.57527 19.5787 5.47453 19.5146 5.47453 19.3223C5.47453 17.8203 7.8008 15.0086 12.0046 15.0086C16.1992 15.0086 18.5255 17.8203 18.5255 19.3223C18.5255 19.5146 18.4339 19.5787 18.1958 19.5787H5.81339Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </div>
-                    <p>Profile</p>
-                  </div>
-                  <svg
-                    className="hidden group-hover:block"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M16 12L10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </Link>
-
-                <Link
-                  to="/about"
-                  onClick={handleOpenMenu}
-                  className="flex items-center justify-between gap-6 px-2 py-4 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-100 group"
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="icon">
@@ -309,7 +296,67 @@ function Sidebar({ isOpen, setOpen }) {
                       fill="currentColor"
                     />
                   </svg>
-                </Link>
+                </NavLink>
+              </div>
+            </div>
+
+            <div className="side-footer">
+              <div className="flex flex-col gap-4">
+                <NavLink
+                  to="account"
+                  activeClassName="bg-gray-700 text-gray-100"
+                  inactiveClassName="hover:bg-gray-200"
+                  state={test}
+                  onClick={handleOpenMenu}
+                  className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
+                >
+                  <div className="flex items-center gap-6">
+                    <div className="icon">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.0046 12.49C14.1843 12.49 15.9611 10.5484 15.9611 8.18546C15.9611 5.84087 14.1935 4 12.0046 4C9.834 4 8.04808 5.8775 8.04808 8.20378C8.05724 10.5575 9.82484 12.49 12.0046 12.49ZM12.0046 11.107C10.6674 11.107 9.52261 9.82484 9.52261 8.20378C9.52261 6.61019 10.6491 5.38294 12.0046 5.38294C13.3692 5.38294 14.4865 6.59187 14.4865 8.18546C14.4865 9.80653 13.3509 11.107 12.0046 11.107ZM6.24385 20.9616H17.7562C19.2765 20.9616 20 20.5037 20 19.4963C20 17.0967 16.9685 13.6256 12.0046 13.6256C7.03148 13.6256 4 17.0967 4 19.4963C4 20.5037 4.72353 20.9616 6.24385 20.9616ZM5.81339 19.5787C5.57527 19.5787 5.47453 19.5146 5.47453 19.3223C5.47453 17.8203 7.8008 15.0086 12.0046 15.0086C16.1992 15.0086 18.5255 17.8203 18.5255 19.3223C18.5255 19.5146 18.4339 19.5787 18.1958 19.5787H5.81339Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </div>
+                    <p>Profile</p>
+                  </div>
+                  <svg
+                    className="hidden group-hover:block"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M16 12L10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </NavLink>
+
+                {currentUser && (
+                  <button
+                    className="flex items-center justify-between gap-6 p-4 bg-gray-100 rounded-md shadow-inner"
+                    onClick={() => {
+                      logout();
+                      handleOpenMenu();
+                    }}
+                  >
+                    <div className="flex items-center gap-6">
+                      <LogoutIcon className="w-4 -h-4" /> Logout
+                    </div>
+                  </button>
+                )}
               </div>
             </div>
           </div>

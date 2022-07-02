@@ -12,6 +12,12 @@ import { getInitialAuthState } from "./AuthState";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  /** This suspend code used as buffer for initial auth state
+   *   as getting initial state value of null when page is hard reloaded from url
+   *  the auth state observer is not updating the global user state at context provider realtime (BUG)
+   */
+  suspend(getInitialAuthState, "initialUserState");
+
   const [currentUser, setCurrentUser] = useState(null);
   const [privateUser, setPrivateUser] = useState(null);
 
@@ -30,14 +36,9 @@ export const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  /** This suspend code used as buffer for initial auth state
-   *   as getting initial state value of null when page is hard reloaded from url
-   *  the auth state observer is not updating the global user state at context provider realtime (BUG)
-   */ suspend(getInitialAuthState, "initialUserState");
-
   //FIREBASE CURRENT LOGGED USER OBSERVER
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    let unsubscribe = onAuthStateChanged(auth, (user) => {
       // setCurrentUser(
       //   {
       //     displayName: user?.displayName,

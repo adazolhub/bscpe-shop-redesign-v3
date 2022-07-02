@@ -1,4 +1,5 @@
 const Trending = () => {
+    console.log('trending rending...')
     return (
         <>
             <aside className="p-2 overflow-hidden lg:overflow-visible lg:order-1 lg:col-end-1">

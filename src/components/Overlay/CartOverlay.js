@@ -58,7 +58,12 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
             <div className="flex justify-between w-full text-gray-500">
               <div className="flex items-center gap-2 ">
                 <ShoppingCartIcon className="w-5 h-5" />
-                <p className="text-sm ">Item added to cart</p>
+                <p className="text-sm ">
+                  Item added to cart{" "}
+                  <span className="font-bold text-gray-500">
+                    ({cart?.length})
+                  </span>
+                </p>
               </div>
               <ChevronDownIcon className="w-5 h-5" onClick={handleToggleCart} />
             </div>
@@ -116,7 +121,7 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
                                     </button>
                                   </div> */}
                       <div
-                        className="text-gray-400 hover:text-rose-400"
+                        className="px-4 text-gray-400 hover:text-rose-400"
                         onClick={() => removeToCart(item)}
                       >
                         <TrashIcon className="w-5 h-5" />

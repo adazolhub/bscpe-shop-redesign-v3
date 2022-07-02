@@ -3,7 +3,6 @@ import { UserAuth } from "../lib/Auth";
 
 function PrivateRoute({ children }) {
   const { currentUser } = UserAuth();
-  // console.log(currentUser);
 
   if (!currentUser) return <Navigate to="/login" />;
   return children;

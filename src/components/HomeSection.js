@@ -14,8 +14,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../lib/Auth";
-import { suspend } from "suspend-react";
-import { getInitialAuthState } from "../lib/AuthState";
+import { Outlet } from "react-router-dom";
 
 let productRef = collection(db, "products");
 let userRef = collection(db, "users");
@@ -55,7 +54,8 @@ let currentUser;
 const HomeSection = ({ user }) => {
   let [list, setList] = useState([]);
   let [cart, setCart] = useState([]);
-  currentUser = suspend(getInitialAuthState, "user");
+  let { currentUser } = UserAuth();
+  // currentUser = suspend(getInitialAuthState, "user");
 
   useEffect(() => {
     let q = query(productRef, limit(12));
@@ -106,12 +106,12 @@ const HomeSection = ({ user }) => {
         <HomeCarousel />
 
         <Trending />
+        <Outlet />
         <ListGrid data={list} user={user} currentUser={currentUser} />
         {/* <ul>
           <ListProduct list={list} />
         </ul> */}
       </div>
-      
     </div>
   );
 };
