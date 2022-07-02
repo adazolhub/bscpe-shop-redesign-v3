@@ -13,7 +13,7 @@ const User = () => {
             className="w-10 h-10 border-2 border-gray-100 rounded-full"
           />
           <div>
-            <p className="text-[0.67em] font-thin text-gray-400">
+            <p className="text-[0.65em] leading-snug font-thin text-gray-400">
               Good morning
             </p>
             <p className="font-medium text-gray-500">
