@@ -46,7 +46,7 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           animate={modalToggle ? "open" : "closed"}
           transition={{ type: "tween", duration: 0.4 }}
           {...props}
-          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-gray-50 z-[101]"
+          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[101]"
         >
           {" "}
           {children}

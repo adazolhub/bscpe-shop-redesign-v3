@@ -1,10 +1,8 @@
-import { memo, Suspense, useEffect, useState } from "react";
+import { memo, Suspense } from "react";
 import Footer from "../components/Footer";
 import Heading from "../components/Heading";
 import HomeSection from "../components/HomeSection";
 import {
-  Routes,
-  Route,
   useLocation,
   matchRoutes,
   Link,
@@ -15,16 +13,15 @@ import {
 import About from "./About";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-
 import Loader from "../components/Loader";
 import UserProfile from "./Profile";
-import { UserAuth } from "../lib/Auth";
 import PrivateRoute, { LoggedOutUser } from "../components/PrivateRoute";
 import Dashboard from "./Dashboard";
 import ProductDash, {
   ProductItem,
 } from "../components/ProductPanel/ProductDash";
 import NotificationPanel from "../components/Notification/NotificationPanel";
+import ListGrid from "../components/ListGrid";
 
 const NotFound = () => {
   return (
@@ -76,8 +73,6 @@ export function NavLink({
   return <Link className={allClassNames} to={to} {...rest} />;
 }
 
-let user;
-
 const Home = memo(() => {
   let element = useRoutes(routes);
 
@@ -86,7 +81,7 @@ const Home = memo(() => {
       <Suspense fallback={<Loader />}>
         <Heading />
         {element}
-        <Footer />
+        {/* <Footer /> */}
       </Suspense>
     </>
   );
@@ -99,10 +94,10 @@ const routes = [
     children: [
       {
         path: "",
-        element: <h2> MEN</h2>,
+        element: <ListGrid />,
       },
-      { path: "1", element: <h2> WOMEN</h2> },
-      { path: "2", element: <h2> KIDS</h2> },
+      { path: "1", element: <ListGrid /> },
+      { path: "2", element: <ListGrid /> },
     ],
   },
   {

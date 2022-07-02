@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ChevronUpIcon,
   ChevronDownIcon,
   ShoppingBagIcon,
-  ShoppingCartIcon,
   TrashIcon,
-  PlusIcon,
-  MinusIcon,
 } from "@heroicons/react/outline";
 import MenuModal from "./MenuModal";
-import { AnimatePresence, motion, useMotionValue } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 const CartOverlay = ({ cart, products, removeToCart }) => {
   let [toggleCart, setToggleCart] = useState(false);
-  let [cartItem, setCartItem] = useState([]);
-
-  let [count, setCount] = useState(1);
-
-  console.log(products);
-
-  let handleCountChange = () => {
-    setCount(count++);
-  };
 
   let handleToggleCart = () => {
     setToggleCart((prev) => !prev);
   };
-
-  console.log(cart);
 
   return (
     <>
@@ -37,10 +23,10 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
           initial={{ opacity: 0, y: "100%", display: "none" }}
           animate={{ opacity: 1, y: 0, display: "flex" }}
           exit={{ opacity: 0, y: "100%", display: "none" }}
-          className="fixed left-0 w-[calc(100%)] bg-gray-100 bottom-0 mx-auto px-6 py-4 rounded-md hover:bg-gray-50 shadow-xl shadow-gray-400 flex justify-between items-center text-gray-500 sm:hidden z-30"
+          className="fixed left-0 w-[calc(100%)] bg-white bottom-0 mx-auto px-4 py-4 rounded-md hover:bg-gray-50 shadow-xl shadow-gray-400 flex justify-between items-center text-gray-500 sm:hidden z-30"
         >
-          <div className="flex items-center gap-2 text-gray-500">
-            <ShoppingCartIcon className="w-5 h-5" />
+          <div className="flex items-center gap-4 text-gray-500">
+            <ShoppingBagIcon className="w-5 h-5" />
             <p className="text-sm ">
               Item added to cart{" "}
               <span className="font-bold text-gray-500">({cart?.length})</span>
@@ -56,8 +42,8 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
           <div className="flex flex-col justify-between h-full">
             {/* HEADER SECTION OF THE MODAL */}
             <div className="flex justify-between w-full text-gray-500">
-              <div className="flex items-center gap-2 ">
-                <ShoppingCartIcon className="w-5 h-5" />
+              <div className="flex items-center gap-4 ">
+                <ShoppingBagIcon className="w-5 h-5" />
                 <p className="text-sm ">
                   Item added to cart{" "}
                   <span className="font-bold text-gray-500">
@@ -134,7 +120,7 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
             <button className="w-full btn-primary">Checkout</button>
           </div>
         </MenuModal>
-        )}
+        )
       </AnimatePresence>
     </>
   );

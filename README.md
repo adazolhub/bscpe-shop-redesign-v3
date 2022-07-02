@@ -20,7 +20,9 @@ This is a redesign from our previous school project during college. Selected thi
 
 > 🍃 Firebase (Back-end)
 
-> 🍃 suspend-react (react suspense)
+> 🍃 suspend-react (React Suspense)
+
+> 🍃 heroicons (Tailwindcss SVG Icons)
 
 > 🍃 more ...
 

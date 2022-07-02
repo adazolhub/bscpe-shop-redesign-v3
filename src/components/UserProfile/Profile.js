@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../lib/Auth";
-import { fromUnixTime, formatDistanceToNow, formatRelative } from "date-fns";
+import { fromUnixTime, formatRelative } from "date-fns";
 
-import { auth } from "../../auth/firebase";
 import User from "./User";
 import {
   BellIcon,

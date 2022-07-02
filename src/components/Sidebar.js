@@ -1,4 +1,4 @@
-import { Link, matchRoutes, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "../pages/Home";
 import { UserAuth } from "../lib/Auth";
@@ -10,7 +10,6 @@ import {
   InformationCircleIcon,
   LogoutIcon,
   ShoppingBagIcon,
-  ShoppingCartIcon,
   UserIcon,
   XIcon,
 } from "@heroicons/react/outline";

@@ -37,7 +37,7 @@ const LoginPage = () => {
     setPassword("");
   };
   return (
-    <div className="grid w-full place-content-center md:place-content-start md:grid-cols-3 lg:grid-cols-2">
+    <div className="grid w-full place-content-center md:place-content-start min-h-[100vh] md:grid-cols-3 lg:grid-cols-2">
       {/* IMAGE ON WIDER SCREEN */}
       <div className="h-[calc(100%-3em)] my-12 bg-blend-overlay relative  rounded-md overflow-hidden hidden md:block">
         <img
