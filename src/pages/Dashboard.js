@@ -115,6 +115,7 @@ const Dashboard = () => {
           </button>
           <button className="btn-primary"> Modal</button>
           <ListProduct id={user.uid} list={list} handleToggle={handleToggle} />
+          
           <Outlet />
         </section>
       </div>

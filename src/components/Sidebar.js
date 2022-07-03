@@ -85,7 +85,7 @@ function Sidebar({ isOpen, setOpen }) {
                   <SideNavButton Icon={HomeIcon} name={"Home"} />
                 </CustomNavLink>
 
-                <CustomNavLink to="dashboard" onClick={handleOpenMenu}>
+                <CustomNavLink to="cart" onClick={handleOpenMenu}>
                   <SideNavButton Icon={ShoppingBagIcon} name={"Cart"} />
                 </CustomNavLink>
 

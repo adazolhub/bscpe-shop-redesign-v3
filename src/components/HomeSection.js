@@ -20,7 +20,7 @@ const HomeSection = ({ user }) => {
 
 function Tabs() {
   return (
-    <div className="sticky z-40 px-2 mt-2 text-xs font-thin text-center text-gray-400 bg-gray-100 border-b border-gray-100 dark:border-gray-300 top-11 lg:col-span-1">
+    <div className="sticky z-40 px-2 mt-2 text-xs font-thin text-center text-gray-400 bg-gray-100 border-b border-gray-100 dark:border-gray-300 top-12 lg:col-span-2 lg:col-start-1">
       <ul className="flex -mb-px font-thin flex-nowrap">
         <NavLink
           to={""}

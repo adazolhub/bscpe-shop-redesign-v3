@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronUpIcon,
   ChevronDownIcon,
@@ -7,12 +7,21 @@ import {
 } from "@heroicons/react/outline";
 import MenuModal from "./MenuModal";
 import { AnimatePresence, motion } from "framer-motion";
-const CartOverlay = ({ cart, products, removeToCart }) => {
+import ShopState from "../../lib/ShopState";
+import { useNavigate } from "react-router-dom";
+const CartOverlay = ({ cart, removeToCart }) => {
   let [toggleCart, setToggleCart] = useState(false);
+  let { products, removeFromCart, total } = ShopState();
+  let navigate = useNavigate();
 
   let handleToggleCart = () => {
     setToggleCart((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (products.length < 2)
+      document.querySelector("html").style.overflow = null;
+  }, [products]);
 
   return (
     <>
@@ -29,7 +38,9 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
             <ShoppingBagIcon className="w-5 h-5" />
             <p className="text-sm ">
               Item added to cart{" "}
-              <span className="font-bold text-gray-500">({cart?.length})</span>
+              <span className="font-bold text-gray-500">
+                ({products?.length})
+              </span>
             </p>
           </div>
           <ChevronUpIcon className="w-5 h-5" onClick={handleToggleCart} />
@@ -46,9 +57,9 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
                 <ShoppingBagIcon className="w-5 h-5" />
                 <p className="text-sm ">
                   Item added to cart{" "}
-                  <span className="font-bold text-gray-500">
-                    ({cart?.length})
-                  </span>
+                  {/* <span className="font-bold text-gray-500">
+                    ({products?.length})
+                  </span> */}
                 </p>
               </div>
               <ChevronDownIcon className="w-5 h-5" onClick={handleToggleCart} />
@@ -57,11 +68,8 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
             {/* ARRAY LIST OF ADDED ITEMS */}
 
             <div className="my-4 overflow-hidden overflow-y-scroll text-gray-600 list max-h-72">
-              <ul className="flex flex-col w-[98%] gap-2 py-4">
-                {cart.map((item) => {
-                  let data = products.find(
-                    (product) => product.product_id === item.product_id
-                  );
+              <ul className="flex flex-col w-[98%] gap-2 py-2">
+                {products.map((item) => {
                   return (
                     <motion.li
                       key={item.product_id}
@@ -73,19 +81,16 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
                     >
                       <div className="flex items-center gap-2">
                         <img
-                          src={data.product_image}
+                          src={item.image}
                           alt=""
                           className="object-cover object-top w-10 h-10 rounded"
                         />
                         <div>
                           <h3 className="whitespace-nowrap max-w-[25ch] overflow-hidden text-ellipsis">
-                            {data.product_name}
+                            {item.name}
                           </h3>
                           <p className="text-xs font-thin text-gray-400 whitespace-nowrap  w-[25ch] overflow-hidden text-ellipsis">
-                            PHP{" "}
-                            {Math.round(
-                              data.product_price - data.product_price * 0.4
-                            )}{" "}
+                            PHP item.price{" "}
                             <span className="text-[0.75em] ml-2">40% OFF</span>
                           </p>
                         </div>
@@ -107,8 +112,10 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
                                     </button>
                                   </div> */}
                       <div
-                        className="px-4 text-gray-400 hover:text-rose-400"
-                        onClick={() => removeToCart(item)}
+                        className="pl-4 text-gray-400 hover:text-rose-400"
+                        onClick={() => {
+                          removeFromCart(item);
+                        }}
                       >
                         <TrashIcon className="w-5 h-5" />
                       </div>
@@ -117,7 +124,31 @@ const CartOverlay = ({ cart, products, removeToCart }) => {
                 })}
               </ul>
             </div>
-            <button className="w-full btn-primary">Checkout</button>
+            <hr />
+            <div className="flex flex-col items-end text-gray-400">
+              <div className="flex flex-col w-full gap-2 px-4 py-4">
+                <div className="flex justify-between text-xs">
+                  <p>Items on cart : </p>
+                  <p>{products.length}</p>
+                </div>
+                <div className="flex justify-between text-xs">
+                  <p>Total price:</p>
+                  <p>{total}.00 PHP</p>
+                </div>
+              </div>
+              <button
+                className="w-full btn-primary"
+                onClick={() => navigate("checkout")}
+              >
+                Checkout
+              </button>
+              <button
+                className="w-full py-1 text-xs"
+                onClick={() => navigate("cart")}
+              >
+                Expand Cart
+              </button>
+            </div>
           </div>
         </MenuModal>
         )

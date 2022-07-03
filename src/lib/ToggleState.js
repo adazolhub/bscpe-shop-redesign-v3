@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ToggleContext = createContext();
 
@@ -18,6 +18,7 @@ function categorySetter(pathname) {
 
 export const ToggleStateProvider = ({ children }) => {
   let [modalToggle, setModalToggle] = useState(false);
+  let navigate = useNavigate();
 
   let modalToggleHandler = () => {
     setModalToggle((prev) => !prev);
@@ -29,8 +30,22 @@ export const ToggleStateProvider = ({ children }) => {
     setToggleListGrid((prev) => !prev);
   };
 
+  let [settingToggle, setSettingToggle] = useState(false);
+  let settingToggleHandler = () => {
+    setSettingToggle((prev) => !prev);
+  };
+
   let { pathname } = useLocation();
   let category = categorySetter(pathname);
+
+  let [cartToggle, setCartToggle] = useState(false);
+
+  let cartToggleHandler = () => {
+    setCartToggle((prev) => !prev);
+  };
+  let cartToggleOff = () => {
+    setCartToggle(false);
+  };
 
   return (
     <ToggleContext.Provider
@@ -39,6 +54,11 @@ export const ToggleStateProvider = ({ children }) => {
         modalToggleHandler,
         toggleListGrid,
         handleToggleListGrid,
+        settingToggle,
+        settingToggleHandler,
+        cartToggle,
+        cartToggleHandler,
+        cartToggleOff,
         category,
       }}
     >

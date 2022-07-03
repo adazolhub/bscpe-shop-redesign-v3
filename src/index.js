@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import Modal from "./components/Overlay/Modal";
 import { ToggleStateProvider } from "./lib/ToggleState";
 import { AuthProvider } from "./lib/Auth";
+import { ShopStateProvider } from "./lib/ShopState";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <BrowserRouter>
       <ToggleStateProvider>
         <AuthProvider>
-          <Home />
+          <ShopStateProvider>
+            <Home />
+          </ShopStateProvider>
         </AuthProvider>
         {/* <Modal /> */}
       </ToggleStateProvider>

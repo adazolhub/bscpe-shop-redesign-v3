@@ -22,6 +22,11 @@ import ProductDash, {
 } from "../components/ProductPanel/ProductDash";
 import NotificationPanel from "../components/Notification/NotificationPanel";
 import ListGrid from "../components/ListGrid";
+import Settings from "../components/UserProfile/Settings";
+import SubSettings from "../components/UserProfile/SubSettings";
+import ShoppingCart from "../components/Cart/ShoppingCart";
+import Checkout from "../components/Checkout/Checkout";
+import CartWrapper from "../components/Cart/CartWrapper";
 
 const NotFound = () => {
   return (
@@ -80,7 +85,11 @@ const Home = memo(() => {
     <>
       <Suspense fallback={<Loader />}>
         <Heading />
-        {element}
+        <main className="mt-12">
+          {element}
+          <CartWrapper />
+        </main>
+
         {/* <Footer /> */}
       </Suspense>
     </>
@@ -98,10 +107,26 @@ const routes = [
       },
       { path: "1", element: <ListGrid /> },
       { path: "2", element: <ListGrid /> },
+      {
+        path: "carts",
+        element: (
+          <>
+            <ListGrid />
+          </>
+        ),
+      },
     ],
   },
   {
-    path: "/dashboard",
+    path: "cart",
+    element: (
+      <>
+        <ShoppingCart />
+      </>
+    ),
+  },
+  {
+    path: "dashboard",
     element: (
       <PrivateRoute>
         <Dashboard />
@@ -118,11 +143,19 @@ const routes = [
     ],
   },
   {
-    path: "/notification",
+    path: "notification",
     element: (
       <PrivateRoute>
         <NotificationPanel />
       </PrivateRoute>
+    ),
+  },
+  {
+    path: "checkout",
+    element: (
+      <>
+        <Checkout />
+      </>
     ),
   },
   {
@@ -132,6 +165,20 @@ const routes = [
         <UserProfile />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "",
+        element: <Settings />,
+        children: [
+          { path: "notification", element: <SubSettings /> },
+          { path: "cart", element: <SubSettings /> },
+          { path: "account-details", element: <SubSettings /> },
+          { path: "payment-information", element: <SubSettings /> },
+          { path: "shipping-address", element: <SubSettings /> },
+          { path: "account-ownership-and-control", element: <SubSettings /> },
+        ],
+      },
+    ],
   },
   {
     path: "/login",

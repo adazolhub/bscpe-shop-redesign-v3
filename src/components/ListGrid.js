@@ -1,4 +1,3 @@
-
 import {
   collection,
   onSnapshot,
@@ -18,6 +17,7 @@ import { ToggleState } from "../lib/ToggleState";
 import OneColumn from "./ListView/OneColumn";
 import TwoColumn from "./ListView/TwoColumn";
 import ListGridToggler from "./ListView/ListGridToggler";
+import ShopState from "../lib/ShopState";
 
 let userRef = collection(db, "users");
 
@@ -36,6 +36,7 @@ const ListGrid = () => {
 
 function WithProps({ data, currentUser = null }) {
   let [cart, setCart] = useState([]);
+  let { products } = ShopState();
 
   let docRef = doc(db, "users", currentUser?.uid);
   let { category, toggleListGrid: toggleList } = ToggleState();
@@ -53,7 +54,7 @@ function WithProps({ data, currentUser = null }) {
           }
         });
         console.log("[firestore] > fetched new list");
-        setCart([...qList[0]]);
+        setCart([...qList]);
       });
 
     return () => {
@@ -62,6 +63,7 @@ function WithProps({ data, currentUser = null }) {
   }, [currentUser]);
 
   let addToCart = (product_id) => {
+    console.log(product_id);
     updateDoc(docRef, {
       cart: arrayUnion({ product_id: product_id }),
     })
@@ -74,6 +76,8 @@ function WithProps({ data, currentUser = null }) {
       cart: arrayRemove(product_id),
     }).then(() => {
       console.log("cart selected removed");
+      //debugging ....
+      document.querySelector("html").style.overflow = null;
     });
   };
   return (
@@ -93,12 +97,19 @@ function WithProps({ data, currentUser = null }) {
           <TwoColumn category={category} addToCart={addToCart} />
         )}
       </main>
-      {cart.length > 0 && (
-        <CartOverlay cart={cart} products={data} removeToCart={removeToCart} />
-      )}
+      <div className="block sm:hidden">
+        {products.length > 0 && (
+          <CartOverlay
+            cart={cart[0]}
+            products={data}
+            removeToCart={removeToCart}
+          />
+        )}
+      </div>
     </>
   );
 }
+
 function WithoutProps() {
   let { category, toggleListGrid: toggleList } = ToggleState();
 

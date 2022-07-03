@@ -1,21 +1,38 @@
-import { useState } from "react";
-import { Link, useLocation, useResolvedPath } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useResolvedPath,
+} from "react-router-dom";
 
 import { UserAuth } from "../lib/Auth";
 import { motion } from "framer-motion";
 
 import Sidebar from "./Sidebar";
+import { NavLink } from "../pages/Home";
+import ShopState from "../lib/ShopState";
+import { ToggleState } from "../lib/ToggleState";
 const Heading = () => {
   //Navigation header title
   let { pathname } = useLocation();
+
+  let { products } = ShopState();
 
   const [open, setOpen] = useState(false);
 
   const { currentUser } = UserAuth();
 
+  let { cartToggle, cartToggleHandler } = ToggleState();
+  let navigate = useNavigate();
+
   const handleOpenMenu = () => {
     setOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (!cartToggle) navigate("/");
+  }, [cartToggle]);
   // console.log(currentUser)
   return (
     <>
@@ -68,9 +85,9 @@ const Heading = () => {
           <div className="flex items-center side">
             <ul className="hidden gap-2 text-gray-400 sm:flex lg:gap-2">
               <li>
-                <a
+                <NavLink
                   className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                  href="/#"
+                  to={""}
                 >
                   <svg
                     width="18"
@@ -87,13 +104,13 @@ const Heading = () => {
                     />
                   </svg>
                   <span className="hidden text-gray-500 lg:block">Home</span>
-                </a>
+                </NavLink>
               </li>
 
               <li>
-                <a
+                <NavLink
                   className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                  href="/#list"
+                  to={"notification"}
                 >
                   <svg
                     width="18"
@@ -112,12 +129,15 @@ const Heading = () => {
                   <span className="hidden text-gray-500 lg:block">
                     Notification
                   </span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <button
                   className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                  href="/dashboard"
+                  onClick={() => {
+                    // navigate("carts");
+                    cartToggleHandler();
+                  }}
                 >
                   <svg
                     width="18"
@@ -134,13 +154,14 @@ const Heading = () => {
                     />
                   </svg>
                   <span className="text-gray-500 ">
-                    Cart <span>(6)</span>
+                    Cart{" "}
+                    {products.length > 0 && <span>({products.length})</span>}
                   </span>
-                </a>
+                </button>
               </li>
               {currentUser ? (
                 <li>
-                  <Link
+                  <NavLink
                     className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
                     to={"account"}
                   >
@@ -161,17 +182,17 @@ const Heading = () => {
                     <span className="text-gray-500 ">
                       {currentUser?.displayName}
                     </span>
-                  </Link>
+                  </NavLink>
                 </li>
               ) : (
                 <li>
-                  <Link
+                  <NavLink
                     className="flex items-center gap-2 px-4 py-2 text-gray-800 bg-gray-100 rounded-md hover:bg-gray-900 hover:text-gray-50 lg:px-4 lg:py-2"
-                    to={"/login"}
+                    to={"login"}
                   >
                     {" "}
                     Login{" "}
-                  </Link>
+                  </NavLink>
                 </li>
               )}
             </ul>
