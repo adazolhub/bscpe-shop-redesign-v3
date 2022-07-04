@@ -10,7 +10,6 @@ const ShoppingCart = () => {
   let { cartToggleOff } = ToggleState();
   let navigate = useNavigate();
 
-  console.log(list);
   return (
     <>
       <WrapperScroll>
@@ -21,23 +20,25 @@ const ShoppingCart = () => {
                 <li
                   key={index}
                   //   onClick={() => handleToggle(data)}
-                  className="flex gap-2 p-2 transition-all bg-gray-50 border border-gray-300 border-dashed rounded-md cursor-pointer hover:scale-[1.02] relative"
+                  className="flex gap-2 p-2 transition-all bg-gray-50 border border-gray-300 border-dashed rounded-md cursor-pointer hover:scale-[1.02] relative max-h-[14em]"
                 >
-                  <img
-                    src={data.image}
-                    alt={data.name}
-                    className="object-cover h-full max-w-[7em] sm:max-w-[12em] lg:max-w-[16em]  rounded-md opacity-100 min-w-20 bg-blend-overlay"
-                  />
+                  <div className="h-[8em] md:h-[10em] lg:min-h-[12em] w-[10em] sm:w-[12em] lg:max-w-[16em]  rounded-md opacity-100">
+                    <img
+                      src={data.image}
+                      alt={data.name}
+                      className="object-cover w-full h-full rounded-md opacity-100 bg-blend-overlay"
+                    />
+                  </div>
 
-                  <div className="relative">
+                  <div className="relative w-72">
                     <p className="text-[0.55em] text-gray-400/80 my-1">
                       SKU: {data.product_id.toUpperCase()}
                     </p>
-                    <h3 className="mr-8 font-thin text-gray-500 line-clamp-4">
+                    <h3 className="mr-8 font-thin text-gray-500 line-clamp-2 sm:line-clamp-3 lg:line-clamp-none">
                       {data.name}
                     </h3>
 
-                    <div className="absolute flex flex-col gap-4 mt-2 text-gray-400 bottom-1">
+                    <div className="absolute flex flex-col gap-2 mt-2 text-gray-400 bottom-1">
                       <p className="text-xs whitespace-nowrap">
                         Quantity:{" "}
                         <span className="font-medium text-gray-500/90">1</span>{" "}
@@ -86,7 +87,7 @@ const ShoppingCart = () => {
                   className="btn-secondary whitespace-nowrap"
                   onClick={() => {
                     cartToggleOff();
-                    navigate("");
+                    navigate("/");
                   }}
                 >
                   Continue Shopping

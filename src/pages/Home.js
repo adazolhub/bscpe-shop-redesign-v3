@@ -115,6 +115,14 @@ const routes = [
           </>
         ),
       },
+      {
+        path: "notification",
+        element: (
+          <>
+            <ListGrid />
+          </>
+        ),
+      },
     ],
   },
   {
@@ -143,7 +151,7 @@ const routes = [
     ],
   },
   {
-    path: "notification",
+    path: "notifications",
     element: (
       <PrivateRoute>
         <NotificationPanel />
@@ -170,12 +178,14 @@ const routes = [
         path: "",
         element: <Settings />,
         children: [
+          { path: "", element: <SubSettings /> },
           { path: "notification", element: <SubSettings /> },
           { path: "cart", element: <SubSettings /> },
           { path: "account-details", element: <SubSettings /> },
           { path: "payment-information", element: <SubSettings /> },
           { path: "shipping-address", element: <SubSettings /> },
           { path: "account-ownership-and-control", element: <SubSettings /> },
+          { path: "about", element: <SubSettings /> },
         ],
       },
     ],

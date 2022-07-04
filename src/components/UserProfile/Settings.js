@@ -120,9 +120,17 @@ function ButtonWithIcon({ children, Icon, ...props }) {
 }
 
 function Info() {
+  const navigate = useNavigate();
+  let { settingToggleHandler } = ToggleState();
   return (
     <>
-      <div className="flex items-start gap-2 px-2 py-3 bg-white rounded-md shadow-lg">
+      <div
+        className="flex items-start gap-2 px-2 py-3 bg-white rounded-md shadow-lg cursor-pointer"
+        onClick={() => {
+          navigate("about");
+          settingToggleHandler();
+        }}
+      >
         <div className="py-1 text-slate-700/70">
           <ExclamationCircleIcon className="w-5 h-5" />
         </div>

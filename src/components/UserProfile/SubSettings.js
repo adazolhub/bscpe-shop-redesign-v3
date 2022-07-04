@@ -8,11 +8,11 @@ import ShippingAddress from "./Settings/ShippingAddress";
 import AccountOwnershipAndControl from "./Settings/AccountOwnershipAndControl";
 import NotificationPanel from "../Notification/NotificationPanel";
 import ShoppingCart from "../Cart/ShoppingCart";
+import About from "../../pages/About";
 
 const SubSettings = () => {
   let { pathname } = useLocation();
   let location = pathname.split("/")[2];
-  console.log(location);
   let { settingToggle, settingToggleHandler } = ToggleState();
 
   return (
@@ -33,6 +33,8 @@ const SubSettings = () => {
         <ShippingAddress />
       ) : location === "account-ownership-and-control" ? (
         <AccountOwnershipAndControl />
+      ) : location === "about" ? (
+        <About />
       ) : (
         <div> Not Found </div>
       )}

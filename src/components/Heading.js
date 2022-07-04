@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Link,
+  Outlet,
   useLocation,
   useNavigate,
   useResolvedPath,
@@ -23,7 +24,7 @@ const Heading = () => {
 
   const { currentUser } = UserAuth();
 
-  let { cartToggle, cartToggleHandler } = ToggleState();
+  let { cartToggle, cartToggleHandler, notifyToggleHandler } = ToggleState();
   let navigate = useNavigate();
 
   const handleOpenMenu = () => {
@@ -86,7 +87,9 @@ const Heading = () => {
             <ul className="hidden gap-2 text-gray-400 sm:flex lg:gap-2">
               <li>
                 <NavLink
-                  className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
+                  activeClassName="bg-gray-200 text-gray-500"
+                  inactiveClassName="hover:bg-gray-100"
+                  className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2 "
                   to={""}
                 >
                   <svg
@@ -109,8 +112,11 @@ const Heading = () => {
 
               <li>
                 <NavLink
-                  className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
+                  activeClassName="bg-gray-200 text-gray-500"
+                  inactiveClassName="hover:bg-gray-100"
+                  className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2"
                   to={"notification"}
+                  onClick={() => notifyToggleHandler()}
                 >
                   <svg
                     width="18"
@@ -132,12 +138,12 @@ const Heading = () => {
                 </NavLink>
               </li>
               <li>
-                <button
-                  className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
-                  onClick={() => {
-                    // navigate("carts");
-                    cartToggleHandler();
-                  }}
+                <NavLink
+                  activeClassName="bg-gray-200 text-gray-500"
+                  inactiveClassName="hover:bg-gray-100"
+                  className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2"
+                  to={"carts"}
+                  onClick={() => cartToggleHandler()}
                 >
                   <svg
                     width="18"
@@ -157,12 +163,14 @@ const Heading = () => {
                     Cart{" "}
                     {products.length > 0 && <span>({products.length})</span>}
                   </span>
-                </button>
+                </NavLink>
               </li>
               {currentUser ? (
                 <li>
                   <NavLink
-                    className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-900 lg:px-4 lg:py-2"
+                    activeClassName="bg-gray-200 text-gray-500"
+                    inactiveClassName="hover:bg-gray-100"
+                    className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2"
                     to={"account"}
                   >
                     <svg
@@ -179,7 +187,7 @@ const Heading = () => {
                         fill="currentColor"
                       />
                     </svg>
-                    <span className="text-gray-500 ">
+                    <span className="hidden text-gray-500 lg:block">
                       {currentUser?.displayName}
                     </span>
                   </NavLink>

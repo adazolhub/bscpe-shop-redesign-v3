@@ -47,6 +47,15 @@ export const ToggleStateProvider = ({ children }) => {
     setCartToggle(false);
   };
 
+  let [notifyToggle, setNotifyToggle] = useState(false);
+
+  let notifyToggleHandler = () => {
+    setCartToggle((prev) => !prev);
+  };
+  let notifyToggleOff = () => {
+    setCartToggle(false);
+  };
+
   return (
     <ToggleContext.Provider
       value={{
@@ -59,6 +68,9 @@ export const ToggleStateProvider = ({ children }) => {
         cartToggle,
         cartToggleHandler,
         cartToggleOff,
+        notifyToggle,
+        notifyToggleHandler,
+        notifyToggleOff,
         category,
       }}
     >

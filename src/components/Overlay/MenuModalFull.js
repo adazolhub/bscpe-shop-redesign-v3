@@ -72,17 +72,16 @@ const MenuModalFull = ({
           drag="x"
           style={{ x }}
           onDragEnd={(e, info) => {
-            console.log(info.point.x);
             if (x.get() > 130) {
+              navigate("");
               modalToggleHandler();
-              //   navigate("/account");
             }
           }}
           dragConstraints={{ left: 0, right: 0 }}
           variants={modal}
           animate={modalToggle ? "open" : "closed"}
           transition={{ type: "tween", duration: 0.4 }}
-          className="fixed w-full  bottom-0 right-0 mx-auto rounded-l-md min-h-[100vh] lg:max-w-screen-sm modal bg-gray-100 z-[101]
+          className="fixed w-full  bottom-0 right-0 mx-auto rounded-l-md min-h-[100vh] lg:max-w-[35em] modal bg-gray-100 z-[101]
           max-h-[100vh]
 
           after:bg-gray-100 after:translate-x-[calc(100%)] after:right-0 after:w-full after:h-full after:absolute after:top-0 after:z-[100] "
@@ -91,14 +90,16 @@ const MenuModalFull = ({
             <button
               className="py-1 pl-0 pr-4 rounded-md sm:pr-2 sm:pl-2 group"
               onClick={() => {
+                navigate("");
                 modalToggleHandler();
-                // navigate("/account");
               }}
             >
               <ChevronLeftIcon className="w-5 h-5 transition-all group-hover:-translate-x-1" />
             </button>
 
-            <p className="text-xs text-gray-400">{title}</p>
+            <p className="text-[0.65em] font-thin text-gray-400">
+              {title?.split("-").join(" ").toUpperCase()}
+            </p>
             <div className="px-2 w-9" />
           </div>
           <div className="px-4">{children}</div>

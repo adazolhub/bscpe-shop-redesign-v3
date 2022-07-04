@@ -10,7 +10,7 @@ import { ShopStateProvider } from "./lib/ShopState";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
-  <React.Fragment>
+  <React.StrictMode>
     <BrowserRouter>
       <ToggleStateProvider>
         <AuthProvider>
@@ -21,5 +21,5 @@ root.render(
         {/* <Modal /> */}
       </ToggleStateProvider>
     </BrowserRouter>
-  </React.Fragment>
+  </React.StrictMode>
 );

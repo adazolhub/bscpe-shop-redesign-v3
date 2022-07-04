@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { ToggleState } from "../../lib/ToggleState";
+import NotificationPanel from "../Notification/NotificationPanel";
 import MenuModalFull from "../Overlay/MenuModalFull";
 import ShoppingCart from "./ShoppingCart";
 
 const CartWrapper = () => {
+  let { pathname } = useLocation();
+  let location = pathname.split("/")[1];
   let { cartToggle, cartToggleHandler } = ToggleState();
   return (
     <div>
@@ -11,7 +15,7 @@ const CartWrapper = () => {
         modalToggle={cartToggle}
         modalToggleHandler={cartToggleHandler}
       >
-        <ShoppingCart />
+        {location === "notification" ? <NotificationPanel /> : <ShoppingCart />}
       </MenuModalFull>
     </div>
   );

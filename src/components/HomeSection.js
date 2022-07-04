@@ -12,6 +12,7 @@ const HomeSection = ({ user }) => {
 
         <Trending />
         <Tabs />
+        {/* //list viewBox */}
         <Outlet />
       </div>
     </div>
