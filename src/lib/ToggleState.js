@@ -61,6 +61,11 @@ export const ToggleStateProvider = ({ children }) => {
   let checkoutToggleHandler = () => {
     setCheckoutToggle((prev) => !prev);
   };
+  let [toggleHeadNotify, setToggleHeadNotify] = useState(true);
+
+  let toggleHeadNotifyHandler = () => {
+    setToggleHeadNotify((prev) => !prev);
+  };
 
   return (
     <ToggleContext.Provider
@@ -79,6 +84,8 @@ export const ToggleStateProvider = ({ children }) => {
         notifyToggle,
         notifyToggleHandler,
         notifyToggleOff,
+        toggleHeadNotify,
+        toggleHeadNotifyHandler,
         category,
       }}
     >

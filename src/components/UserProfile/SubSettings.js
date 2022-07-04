@@ -9,6 +9,7 @@ import AccountOwnershipAndControl from "./Settings/AccountOwnershipAndControl";
 import NotificationPanel from "../Notification/NotificationPanel";
 import ShoppingCart from "../Cart/ShoppingCart";
 import About from "../../pages/About";
+import Profile from "./Profile";
 
 const SubSettings = () => {
   let { pathname } = useLocation();
@@ -36,7 +37,7 @@ const SubSettings = () => {
       ) : location === "about" ? (
         <About />
       ) : (
-        <div> Not Found </div>
+        <Profile />
       )}
     </MenuModalFull>
   );

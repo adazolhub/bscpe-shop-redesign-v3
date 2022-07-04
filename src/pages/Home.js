@@ -13,7 +13,6 @@ import {
 import About from "./About";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import Loader from "../components/Loader";
 import UserProfile from "./Profile";
 import PrivateRoute, { LoggedOutUser } from "../components/PrivateRoute";
 import Dashboard from "./Dashboard";
@@ -83,15 +82,15 @@ const Home = memo(() => {
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
+      <>
         <Heading />
-        <main className="mt-12">
+        <main className="relative top-0 h-full">
           {element}
           <CartWrapper />
         </main>
 
         {/* <Footer /> */}
-      </Suspense>
+      </>
     </>
   );
 });
@@ -153,9 +152,9 @@ const routes = [
   {
     path: "notifications",
     element: (
-      <PrivateRoute>
+      <>
         <NotificationPanel />
-      </PrivateRoute>
+      </>
     ),
   },
   {

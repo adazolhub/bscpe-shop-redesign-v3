@@ -7,8 +7,8 @@ const Trending = () => {
           <h1>Coupon 20% off</h1>
         </div>
         <div className="sticky top-11">
-          <p className="py-2 text-xs font-light text-gray-400">Trending</p>
-          <div className="flex gap-2 lg:gap-4 py-4 overflow-x-auto flex-nowrap container-snap lg:flex-col   lg:overflow-y-auto lg:h-[80vh] lg:items-center">
+          <p className="mt-2 text-xs font-light text-gray-400">Trending</p>
+          <div className="flex gap-2 lg:gap-4 py-2 overflow-x-auto flex-nowrap container-snap lg:flex-col   lg:overflow-y-auto lg:h-[80vh] lg:items-center">
             <div className="card flex-[0_0_auto] rounded-lg h-[160px] bg-gray-900 w-32 overflow-hidden group md:w-3/4 lg:w-full">
               <img
                 className="object-cover w-full h-full transition-all delay-100 opacity-50 group-hover:opacity-100 bg-blend-multiply hover:scale-110"

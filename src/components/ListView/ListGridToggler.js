@@ -1,4 +1,9 @@
-import { ViewGridIcon, ViewListIcon } from "@heroicons/react/outline";
+import {
+  SelectorIcon,
+  ViewBoardsIcon,
+  ViewGridIcon,
+  ViewListIcon,
+} from "@heroicons/react/solid";
 import React from "react";
 import { ToggleState } from "../../lib/ToggleState";
 
@@ -15,11 +20,11 @@ const ListGridToggler = () => {
               : "w-4 h-4 text-gray-100 bg-gray-500 rounded-sm transition-all delay-200"
           }
         />
-        <ViewListIcon
+        <ViewBoardsIcon
           className={
             toggleList
-              ? "w-4 h-4 text-gray-100 bg-gray-500 rounded-sm transition-all delay-200"
-              : "w-4 h-4 transition-all delay-200"
+              ? "rotate-90 w-4 h-4 text-gray-100 bg-gray-500 rounded-sm transition-all delay-200"
+              : "rotate-90 w-4 h-4 transition-all delay-200"
           }
         />
       </button>

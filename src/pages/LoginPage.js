@@ -16,8 +16,6 @@ const LoginPage = () => {
 
     try {
       let user = await signin(email, password);
-
-      console.log(user);
       navigate("/");
     } catch (error) {
       console.log(error.code);

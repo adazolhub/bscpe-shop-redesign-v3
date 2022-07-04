@@ -14,6 +14,7 @@ import Sidebar from "./Sidebar";
 import { NavLink } from "../pages/Home";
 import ShopState from "../lib/ShopState";
 import { ToggleState } from "../lib/ToggleState";
+import { DotsVerticalIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 const Heading = () => {
   //Navigation header title
   let { pathname } = useLocation();
@@ -24,7 +25,13 @@ const Heading = () => {
 
   const { currentUser } = UserAuth();
 
-  let { cartToggle, cartToggleHandler, notifyToggleHandler } = ToggleState();
+  let {
+    cartToggle,
+    cartToggleHandler,
+    notifyToggleHandler,
+    toggleHeadNotify,
+    toggleHeadNotifyHandler,
+  } = ToggleState();
   let navigate = useNavigate();
 
   const handleOpenMenu = () => {
@@ -37,27 +44,27 @@ const Heading = () => {
   // console.log(currentUser)
   return (
     <>
-      <header className="fixed z-30 w-full px-2 text-xs font-thin text-gray-500 bg-white sm:px-4 lg:px-5 -top-0">
-        <nav className="flex justify-between items-center container mx-auto min-h-[48px]">
+      <header className="sticky top-0 z-30 w-full px-2 text-xs font-thin text-gray-500 transition-all bg-white sm:px-4 lg:px-5">
+        {/* HEADER NOTIFICATION */}
+        {toggleHeadNotify && (
+          <div className="flex justify-between items-center px-4 py-2 -mx-2 sm:-mx-4 lg:-mx-5 text-[0.8em] text-gray-300/80 bg-gradient-to-tr from-gray-900 to-emerald-800">
+            <div />
+            <p onClick={() => navigate("/about")}>
+              This is a new version of Bscpe Store web app.{" "}
+              <span className="underline">More details</span>{" "}
+            </p>
+            <XIcon className="w-3 h-3" onClick={toggleHeadNotifyHandler} />
+          </div>
+        )}
+
+        {/* NAVIGATION HEADER */}
+        <nav className="flex justify-between items-center container mx-auto min-h-[48px] transition-all">
           <div className="block hambuger sm:hidden">
             <button
-              className="p-1 rounded-md hover:text-gray-100 focus:text-gray-100 hover:bg-gray-400 focus:bg-gray-400"
+              className="p-1 transition-all rounded-md hover:text-gray-700 focus:text-gray-900 hover:bg-gray-100 focus:-rotate-90"
               onClick={handleOpenMenu}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z"
-                  fill="currentColor"
-                />
-              </svg>
+              <MenuIcon className="w-5 h-5" />
             </button>
           </div>
           <div className="logo flex leading-[0.6em] my-auto">

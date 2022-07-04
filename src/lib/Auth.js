@@ -53,8 +53,6 @@ export const AuthProvider = ({ children }) => {
    */
   suspend(getInitialAuthState, "initialUserState");
 
-  console.log("context rendering");
-
   const [currentUser, setCurrentUser] = useState(null);
   const [privateUser, setPrivateUser] = useState(null);
 

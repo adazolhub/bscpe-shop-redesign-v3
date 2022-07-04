@@ -42,7 +42,7 @@ const SignUpPage = () => {
         updateProfile(user?.user, {
           displayName: username,
         });
-        console.log(user);
+        // console.log(user);
 
         //change from addDoc to setDoc to manualy set root ID or UID of the document
         await setDoc(doc(db, "users", user?.user?.uid), {
@@ -52,7 +52,7 @@ const SignUpPage = () => {
           isSeller: false,
           cart: [],
         });
-        navigate("/");
+        navigate("/account");
       } catch (error) {
         console.log(error.code);
       }

@@ -83,7 +83,7 @@ const ShoppingCart = () => {
                     navigate("/checkout");
                   }}
                 >
-                  Checkout
+                  Proceed to checkout
                 </button>
                 <button
                   className="btn-secondary whitespace-nowrap"
@@ -92,7 +92,7 @@ const ShoppingCart = () => {
                     navigate("/");
                   }}
                 >
-                  Continue Shopping
+                  Continue shopping
                 </button>
               </div>
             </div>
