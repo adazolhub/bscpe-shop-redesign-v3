@@ -116,7 +116,7 @@ const Heading = () => {
                   inactiveClassName="hover:bg-gray-100"
                   className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2"
                   to={"notification"}
-                  onClick={() => notifyToggleHandler()}
+                  onClick={() => cartToggleHandler()}
                 >
                   <svg
                     width="18"
@@ -142,8 +142,7 @@ const Heading = () => {
                   activeClassName="bg-gray-200 text-gray-500"
                   inactiveClassName="hover:bg-gray-100"
                   className="flex items-center gap-2 p-2 rounded-md lg:px-4 lg:py-2"
-                  to={"carts"}
-                  onClick={() => cartToggleHandler()}
+                  to={"cart"}
                 >
                   <svg
                     width="18"
