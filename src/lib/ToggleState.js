@@ -50,10 +50,16 @@ export const ToggleStateProvider = ({ children }) => {
   let [notifyToggle, setNotifyToggle] = useState(false);
 
   let notifyToggleHandler = () => {
-    setCartToggle((prev) => !prev);
+    setNotifyToggle((prev) => !prev);
   };
   let notifyToggleOff = () => {
-    setCartToggle(false);
+    setNotifyToggle(false);
+  };
+
+  let [checkoutToggle, setCheckoutToggle] = useState(false);
+
+  let checkoutToggleHandler = () => {
+    setCheckoutToggle((prev) => !prev);
   };
 
   return (
@@ -65,6 +71,8 @@ export const ToggleStateProvider = ({ children }) => {
         handleToggleListGrid,
         settingToggle,
         settingToggleHandler,
+        checkoutToggle,
+        checkoutToggleHandler,
         cartToggle,
         cartToggleHandler,
         cartToggleOff,

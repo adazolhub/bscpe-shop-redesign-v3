@@ -112,6 +112,8 @@ function WithProps({ data, currentUser = null }) {
 
 function WithoutProps() {
   let { category, toggleListGrid: toggleList } = ToggleState();
+  let [cart, setCart] = useState([]);
+  let { products } = ShopState();
 
   return (
     <>
@@ -127,6 +129,7 @@ function WithoutProps() {
           //2 COLUMN
           <TwoColumn category={category} />
         )}
+        {products.length > 0 && <CartOverlay />}
       </main>
     </>
   );

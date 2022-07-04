@@ -16,7 +16,6 @@ const AccountDetails = () => {
 
 function AccountProfile() {
   let { currentUser } = UserAuth();
-  console.log(currentUser);
   return (
     <div className="text-sm mb-14 profile">
       <div className="relative ">

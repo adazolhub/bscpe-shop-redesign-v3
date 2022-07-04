@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../Overlay/Modal";
 
 const Checkout = () => {
-  return <div>Checkout</div>;
+  let [toggle, setToggle] = useState(true);
+  let handleToggle = () => {
+    setToggle((prev) => !prev);
+  };
+  return (
+    <>
+      <div>
+        <p>Checkout</p>
+      </div>
+    </>
+  );
 };
 
 export default Checkout;

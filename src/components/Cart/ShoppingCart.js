@@ -79,7 +79,9 @@ const ShoppingCart = () => {
               <div className="flex gap-2">
                 <button
                   className="w-full btn-primary"
-                  onClick={() => navigate("/checkout")}
+                  onClick={() => {
+                    navigate("/checkout");
+                  }}
                 >
                   Checkout
                 </button>

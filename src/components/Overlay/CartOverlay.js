@@ -9,9 +9,13 @@ import MenuModal from "./MenuModal";
 import { AnimatePresence, motion } from "framer-motion";
 import ShopState from "../../lib/ShopState";
 import { useNavigate } from "react-router-dom";
+import { ToggleState } from "../../lib/ToggleState";
+import PaymentMethod from "../Checkout/PaymentMethod";
 const CartOverlay = ({ cart, removeToCart }) => {
   let [toggleCart, setToggleCart] = useState(false);
   let { products, removeFromCart, total } = ShopState();
+  let { checkoutToggle, checkoutToggleHandler } = ToggleState();
+
   let navigate = useNavigate();
 
   let handleToggleCart = () => {
@@ -25,10 +29,10 @@ const CartOverlay = ({ cart, removeToCart }) => {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence key={"4"}>
         (
         <motion.div
-          key={1}
+          key={"1"}
           initial={{ opacity: 0, y: "100%", display: "none" }}
           animate={{ opacity: 1, y: 0, display: "flex" }}
           exit={{ opacity: 0, y: "100%", display: "none" }}
@@ -47,6 +51,7 @@ const CartOverlay = ({ cart, removeToCart }) => {
         </motion.div>
         ) (
         <MenuModal
+          key={"2"}
           modalToggle={toggleCart}
           modalToggleHandler={handleToggleCart}
         >
@@ -138,7 +143,7 @@ const CartOverlay = ({ cart, removeToCart }) => {
               </div>
               <button
                 className="w-full btn-primary"
-                onClick={() => navigate("checkout")}
+                onClick={checkoutToggleHandler}
               >
                 Checkout
               </button>
@@ -151,7 +156,7 @@ const CartOverlay = ({ cart, removeToCart }) => {
             </div>
           </div>
         </MenuModal>
-        )
+        <PaymentMethod key={"3"} />)
       </AnimatePresence>
     </>
   );
