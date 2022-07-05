@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  @apply transition-all scroll-smooth;
+  @apply scroll-smooth;
 }
 
 body {
@@ -15,6 +15,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   @apply text-gray-800 bg-gray-100;
+}
+
+/* Scrollbar custom style */
+::-webkit-scrollbar {
+  @apply w-1;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-300;
+}
+::-webkit-scrollbar-thumb {
+  @apply h-6 overflow-hidden rounded-full bg-gradient-to-b from-gray-400 via-gray-700 to-gray-500;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply from-gray-800 to-gray-800;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

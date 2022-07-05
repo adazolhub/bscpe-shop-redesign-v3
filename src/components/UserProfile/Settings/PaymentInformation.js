@@ -8,12 +8,12 @@ const PaymentInformation = () => {
       <div className="relative mx-auto">
         <CardSVG />
       </div>
-      <AccountInformation />
+      <CardDetails />
     </WrapperScroll>
   );
 };
 
-function AccountInformation() {
+function CardDetails() {
   let { currentUser } = UserAuth();
   return (
     <div className="p-2 my-1 bg-white rounded-md shadow">

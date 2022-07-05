@@ -10,11 +10,14 @@ import NotificationPanel from "../Notification/NotificationPanel";
 import ShoppingCart from "../Cart/ShoppingCart";
 import About from "../../pages/About";
 import Profile from "./Profile";
+import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
 
 const SubSettings = () => {
   let { pathname } = useLocation();
   let location = pathname.split("/")[2];
   let { settingToggle, settingToggleHandler } = ToggleState();
+  //Prevent scroll when modal is toggled open
+  scrollDisableOnOverlay(settingToggle);
 
   return (
     <MenuModalFull

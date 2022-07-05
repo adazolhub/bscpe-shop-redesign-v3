@@ -36,8 +36,8 @@ const MenuModalFull = ({
   props,
   title,
 }) => {
-  //Prevent scroll when modal is toggled open
-  scrollDisableOnOverlay(modalToggle);
+
+
   let navigate = useNavigate();
   let x = useMotionValue(0);
   //let display = useTransform(x, [0, 200, 250], ["block", "block", "none"]);
@@ -82,7 +82,6 @@ const MenuModalFull = ({
           animate={modalToggle ? "open" : "closed"}
           transition={{ type: "tween", duration: 0.4 }}
           className="fixed w-full  bottom-0 right-0 mx-auto rounded-l-md min-h-[100vh] lg:max-w-[35em] modal bg-gray-100 z-[101]
-          max-h-[100vh]
 
           after:bg-gray-100 after:translate-x-[calc(100%)] after:right-0 after:w-full after:h-full after:absolute after:top-0 after:z-[100] "
         >
