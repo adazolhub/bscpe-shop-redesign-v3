@@ -11,7 +11,7 @@ import Loader from "./components/Loader";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
-  <React.StrictMode>
+  <>
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <ToggleStateProvider>
@@ -20,9 +20,8 @@ root.render(
               <Home />
             </ShopStateProvider>
           </AuthProvider>
-          {/* <Modal /> */}
         </ToggleStateProvider>
       </Suspense>
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );

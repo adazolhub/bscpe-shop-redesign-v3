@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../lib/Auth";
 const LoginPage = () => {
   const [error, setError] = useState("");
@@ -35,7 +35,7 @@ const LoginPage = () => {
     setPassword("");
   };
   return (
-    <div className="grid w-full place-content-center md:place-content-start min-h-[100vh] md:grid-cols-3 lg:grid-cols-2">
+    <div className="grid justify-center w-full md:place-content-start full md:grid-cols-3 lg:grid-cols-2">
       {/* IMAGE ON WIDER SCREEN */}
       <div className="h-[calc(100%-3em)] my-12 bg-blend-overlay relative  rounded-md overflow-hidden hidden md:block">
         <img
@@ -47,33 +47,28 @@ const LoginPage = () => {
       </div>
       {/* LOGIN FORM */}
       <div className="flex col-span-2 lg:col-span-1">
-        <div className="flex flex-col justify-between items-center h-[calc(100vh-3em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
-          <div />
+        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-6em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
           <div className="flex flex-col w-full p-4 mx-auto rounded-lg">
-            <h1 className="mb-8 text-3xl font-thin text-center text-gray-400">
+            <h1 className="mb-8 text-2xl font-thin text-center text-gray-400">
               Welcome back
             </h1>
             <form onSubmit={login} className="flex flex-col gap-2">
-              <p className="text-orange-500">{error && error} </p>
-              <input
+              <p className="text-xs text-rose-400">{error && error} </p>
+              <Input
                 type="email"
-                className="text-field"
-                name="Email"
+                name="email"
                 placeholder="Email"
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
+                getter={email}
+                setter={setEmail}
               />
-              <input
+              <Input
                 type="password"
-                className="text-field"
                 name="password"
                 placeholder="Password"
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
+                getter={password}
+                setter={setPassword}
               />
-              <div className="flex items-center gap-1 text-xs text-gray-400">
+              <div className="flex items-center gap-1 text-[0.7em] text-gray-400/80 mb-8">
                 <input
                   type="checkbox"
                   name="password-cache"
@@ -126,6 +121,7 @@ const LoginPage = () => {
             <button
               className="btn-secondary-icon"
               aria-label="signin with phone"
+              disabled
             >
               <svg
                 width="19"
@@ -152,16 +148,31 @@ const LoginPage = () => {
               Sign in with Phone
             </button>
           </div>
-          <p className="text-center text-gray-400/70">
+          <p className="py-4 text-xs text-center text-gray-400/70">
             Don't have an account yet?{" "}
-            <a className="btn-link" href="/register">
-              Sign Up
-            </a>
+            <Link className="text-gray-500 btn-link" to={"/register"}>
+              Sign up
+            </Link>
           </p>
         </div>
       </div>
     </div>
   );
 };
+
+function Input({ type, name, placeholder, icon, setter, ...props }) {
+  return (
+    <input
+      type={type}
+      className="text-field placeholder:text-gray-300"
+      name={name}
+      placeholder={placeholder}
+      {...props}
+      onChange={(event) => {
+        setter(event.target.value);
+      }}
+    />
+  );
+}
 
 export default LoginPage;

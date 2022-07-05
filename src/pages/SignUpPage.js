@@ -3,7 +3,7 @@ import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../lib/Auth";
 
 const SignUpPage = () => {
@@ -74,59 +74,51 @@ const SignUpPage = () => {
       </div>
       {/* LOGIN FORM */}
       <div className="flex col-span-2 lg:col-span-1">
-        <div className="flex flex-col justify-between items-center h-[calc(100vh-3em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
-          <div />
+        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-6em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
           <div className="flex flex-col w-full p-4 mx-auto rounded-lg">
-            <h1 className="mb-8 text-3xl font-thin text-center text-gray-400">
+            <h1 className="mb-8 text-2xl font-thin text-center text-gray-400">
               Create a new account
             </h1>
             <form onSubmit={register} className="flex flex-col gap-2">
               <p className="text-orange-500">{error && error} </p>
 
-              <input
+              <Input
                 type="email"
-                className="text-field"
                 name="username"
                 placeholder="Email"
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
+                setter={setEmail}
               />
-              <input
+              <Input
                 type="text"
-                className="text-field"
                 name="name"
                 placeholder="Name"
-                onChange={(event) => {
-                  setUsername(event.target.value);
-                }}
+                setter={setUsername}
               />
-              <input
+              <Input
                 type="password"
-                className="text-field"
                 name="password"
                 placeholder="Password"
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
+                setter={setPassword}
               />
-              <input
+              <Input
                 type="password"
-                className="text-field"
                 name="confirm-password"
                 placeholder="Confirm password"
-                onChange={(event) => {
-                  setConfirmPassword(event.target.value);
-                }}
+                setter={setConfirmPassword}
               />
-              <div className="flex items-center gap-1 text-xs text-gray-400">
+              <div className="flex items-center gap-1 mb-8 text-xs text-gray-400">
                 <input
                   type="checkbox"
-                  name="password-cache"
-                  id="password-cache"
+                  name="terms-and-conditions"
+                  id="terms-and-conditions"
+                  defaultChecked
                 />
-                <label htmlFor="password-cache" className="btn-link">
-                  I agree with terms and conditions
+                <label
+                  htmlFor="terms-and-conditions"
+                  className="text-gray-400 text-[0.8em]"
+                >
+                  I agree with{" "}
+                  <span className="underline">terms and conditions</span>
                 </label>
               </div>
               <button
@@ -200,16 +192,31 @@ const SignUpPage = () => {
               Sign up with Phone
             </button>
           </div>
-          <p className="text-center text-gray-400/70">
+          <p className="py-4 text-xs text-center text-gray-400/70">
             Already a member?{" "}
-            <a className="btn-link" href="/login">
+            <Link className="text-gray-500 btn-link" to={"/login"}>
               Login
-            </a>
+            </Link>
           </p>
         </div>
       </div>
     </div>
   );
 };
+
+function Input({ type, name, placeholder, icon, setter, ...props }) {
+  return (
+    <input
+      type={type}
+      className="text-field placeholder:text-gray-300"
+      name={name}
+      placeholder={placeholder}
+      {...props}
+      onChange={(event) => {
+        setter(event.target.value);
+      }}
+    />
+  );
+}
 
 export default SignUpPage;

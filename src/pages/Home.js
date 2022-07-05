@@ -160,9 +160,9 @@ const routes = [
   {
     path: "checkout",
     element: (
-      <>
+      <PrivateRoute>
         <Checkout />
-      </>
+      </PrivateRoute>
     ),
   },
   {

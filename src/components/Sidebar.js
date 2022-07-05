@@ -18,7 +18,7 @@ import { scrollDisableOnOverlay } from "../utils/disableScrollOnOverlay";
 
 const variants = {
   open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: "-100%" },
+  closed: { opacity: 1, x: "-100%" },
 };
 const backdrop = {
   open: {
@@ -100,24 +100,37 @@ function Sidebar({ isOpen, setOpen }) {
             </div>
 
             <div className="side-footer">
-              <div className="flex flex-col gap-4">
+              <hr className="mb-2" />
+              <div className="flex flex-col gap-2">
                 <CustomNavLink to="account" onClick={handleOpenMenu}>
                   <SideNavButton Icon={UserIcon} name={"Account"} />
                 </CustomNavLink>
 
                 {currentUser && (
                   <button
-                    className="flex items-center justify-between gap-6 p-4 bg-gray-100 rounded-md shadow-inner"
+                    className="flex items-center justify-between gap-4 p-4 text-xs rounded-md shadow-inner bg-gray-50"
                     onClick={() => {
                       logout();
                       handleOpenMenu();
                     }}
                   >
-                    <div className="flex items-center gap-6">
-                      <LogoutIcon className="w-4 -h-4" /> Logout
+                    <div className="flex items-center gap-4">
+                      <LogoutIcon className="w-4 text-gray-400 -h-4" />{" "}
+                      <p className="text-gray-600">Logout</p>
                     </div>
                   </button>
                 )}
+              </div>
+              <div className="mt-10">
+                <a
+                  href="https://adazolhub.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <p className="text-[0.65em] text-center text-gray-400">
+                    © Copyright 2022 | Adazolhub.com
+                  </p>
+                </a>
               </div>
             </div>
           </div>
@@ -130,11 +143,11 @@ function Sidebar({ isOpen, setOpen }) {
 function SideNavButton({ Icon, name }) {
   return (
     <>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4">
         <div className="icon">
-          <Icon className="w-4 h-4" />
+          <Icon className="w-4 h-4 text-gray-400/60" />
         </div>
-        <p>{name}</p>
+        <p className="">{name}</p>
       </div>
       <ChevronRightIcon className="hidden w-4 h-4 group-hover:block" />
     </>
@@ -145,10 +158,10 @@ function CustomNavLink({ to, onClick, children }) {
   return (
     <NavLink
       to={to?.toLowerCase()}
-      activeClassName="bg-gray-700 text-gray-100"
-      inactiveClassName="hover:bg-gray-200"
+      activeClassName="bg-gray-700 text-gray-200 shadow"
+      inactiveClassName="hover:bg-gray-100 hover:shadow"
       onClick={onClick}
-      className="flex items-center justify-between gap-6 px-4 py-4 rounded-md cursor-pointer whitespace-nowrap group"
+      className="flex items-center justify-between gap-4 px-4 py-4 text-xs rounded-md cursor-pointer whitespace-nowrap text-gray-500/80 group"
     >
       {children}
     </NavLink>
