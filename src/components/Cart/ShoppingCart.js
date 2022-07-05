@@ -12,8 +12,8 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <WrapperScroll>
-        <div className="container p-2 mx-auto max-h-[calc(100vh-11em)]">
+      <>
+        <div className="container p-2 mx-auto max-h-[calc(100vh-12em)] overflow-hidden overflow-y-scroll">
           <ul className="flex flex-col gap-2 pb-4">
             {list.length > 0 ? (
               list?.map((data, index) => (
@@ -98,7 +98,7 @@ const ShoppingCart = () => {
             </div>
           )}
         </div>
-      </WrapperScroll>
+      </>
     </>
   );
 };
