@@ -51,7 +51,6 @@ function Sidebar({ isOpen, setOpen }) {
         <motion.div
           key={"2"}
           variants={backdrop}
-          transition={{ delay: 0.3 }}
           animate={isOpen ? "open" : "closed"}
           className="fixed top-0 left-0 z-50 w-full min-h-screen overflow-hidden cursor-pointer sm:hidden"
           onClick={handleOpenMenu}
@@ -62,12 +61,18 @@ function Sidebar({ isOpen, setOpen }) {
         </motion.div>
         <motion.nav
           key={"1"}
+          drag={"x"}
+          dragConstraints={{ right: 0, left: 0 }}
           className="fixed top-0 left-0 z-50 block w-[calc(70%)] h-full sm:hidden"
           variants={variants}
-          transition={{ type: "tween", duration: 0.4 }}
+          transition={{ type: "tween" }}
+          onDragEnd={(e, info) => {
+            if (info.point.x < 40) handleOpenMenu();
+          }}
+          // transition={{ type: "tween", duration: 0.4 }}
           animate={isOpen ? "open" : "closed"}
         >
-          <div className="fixed top-0 z-50 flex flex-col justify-between min-w-full min-h-screen p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-10 before:h-full before:bg-white before:-left-10 before:top-0 ">
+          <div className="relative top-0 z-50 flex flex-col justify-between w-full min-h-screen p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-full before:h-full before:bg-white before:-translate-x-full before:top-0 ">
             <div className="flex flex-col gap-16 text-gray-500 title">
               <div className="flex justify-between">
                 <Link to="/" onClick={handleOpenMenu} className="w-fit">

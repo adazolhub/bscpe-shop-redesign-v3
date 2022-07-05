@@ -44,7 +44,7 @@ const Heading = () => {
   // console.log(currentUser)
   return (
     <>
-      <header className="sticky top-0 z-30 w-full px-2 text-xs font-thin text-gray-500 transition-all bg-white sm:px-4 lg:px-5">
+      <header className="sticky top-0 z-30 w-full px-2 text-xs font-thin text-gray-500 bg-white sm:px-4 lg:px-5">
         {/* HEADER NOTIFICATION */}
         {toggleHeadNotify && (
           <div className="flex justify-between items-center px-4 py-2 -mx-2 sm:-mx-4 lg:-mx-5 text-[0.8em] text-gray-300/80 bg-gradient-to-tr from-gray-900 to-emerald-800">
@@ -58,10 +58,13 @@ const Heading = () => {
         )}
 
         {/* NAVIGATION HEADER */}
-        <nav className="flex justify-between items-center container mx-auto min-h-[48px] transition-all">
+        <nav className="flex justify-between items-center container mx-auto min-h-[48px]">
           <div className="block hambuger sm:hidden">
             <button
-              className="p-1 transition-all rounded-md hover:text-gray-700 focus:text-gray-900 hover:bg-gray-100 focus:-rotate-90"
+              className={[
+                "p-1 transition-all rounded-md hover:text-gray-700 focus:text-gray-900 hover:bg-gray-100 ",
+                open ? "-rotate-90" : "rotate-0",
+              ].join(" ")}
               onClick={handleOpenMenu}
             >
               <MenuIcon className="w-5 h-5" />

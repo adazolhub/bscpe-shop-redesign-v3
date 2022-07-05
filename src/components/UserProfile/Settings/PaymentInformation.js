@@ -149,7 +149,13 @@ function CardSVG({ ...props }) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <rect width="328" height="205" rx="8" fill="currrentColor" />
+      <rect
+        width="328"
+        height="205"
+        rx="8"
+        fill="currrentColor"
+        className="drop-shadow-md"
+      />
       <path
         fillRule="evenodd"
         clipRule="evenodd"

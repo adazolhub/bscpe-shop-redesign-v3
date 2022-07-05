@@ -45,8 +45,13 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           variants={modal}
           animate={modalToggle ? "open" : "closed"}
           transition={{ type: "tween", duration: 0.4 }}
+          drag={"y"}
+          dragConstraints={{ top: 0, bottom: 0 }}
           {...props}
-          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[101]"
+          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[101]
+          
+            after:absolute after:bottom-0 after:translate-y-full after:-mx-4 after:w-full after:h-full after:bg-white 
+          "
         >
           {" "}
           {children}

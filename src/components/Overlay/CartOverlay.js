@@ -36,9 +36,14 @@ const CartOverlay = ({ cart, removeToCart }) => {
           initial={{ opacity: 0, y: "100%", display: "none" }}
           animate={{ opacity: 1, y: 0, display: "flex" }}
           exit={{ opacity: 0, y: "100%", display: "none" }}
+          drag={"y"}
+          dragConstraints={{ top: 0, bottom: 0 }}
           className="fixed left-0 w-[calc(100%)] bg-white bottom-0 mx-auto px-4 py-4 rounded-md hover:bg-gray-50 shadow-xl shadow-gray-400 flex justify-between items-center text-gray-500 sm:hidden z-30"
         >
-          <div className="flex items-center gap-4 text-gray-500">
+          <div
+            className="flex items-center gap-4 text-gray-500"
+            onClick={handleToggleCart}
+          >
             <ShoppingBagIcon className="w-5 h-5" />
             <p className="text-sm ">
               Item added to cart{" "}
@@ -58,7 +63,10 @@ const CartOverlay = ({ cart, removeToCart }) => {
           <div className="flex flex-col justify-between h-full">
             {/* HEADER SECTION OF THE MODAL */}
             <div className="flex justify-between w-full text-gray-500">
-              <div className="flex items-center gap-4 ">
+              <div
+                className="flex items-center gap-4 "
+                onClick={handleToggleCart}
+              >
                 <ShoppingBagIcon className="w-5 h-5" />
                 <p className="text-sm ">
                   Item added to cart{" "}

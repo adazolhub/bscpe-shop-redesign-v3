@@ -30,7 +30,7 @@ function HomeCarousel() {
       </div>
 
       <div className="relative top-0 left-0 flex items-center justify-between w-full h-full -z-0">
-        <AnimatePresence custom={direction}>
+        <AnimatePresence custom={direction} initial={false}>
           <motion.div
             key={count}
             variants={variants}
