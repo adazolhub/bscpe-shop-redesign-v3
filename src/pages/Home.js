@@ -26,6 +26,8 @@ import SubSettings from "../components/UserProfile/SubSettings";
 import ShoppingCart from "../components/Cart/ShoppingCart";
 import Checkout from "../components/Checkout/Checkout";
 import CartWrapper from "../components/Cart/CartWrapper";
+import StepForm from "../components/Signup/StepForm";
+import Completed from "../components/Signup/Completed";
 
 const NotFound = () => {
   return (
@@ -106,6 +108,7 @@ const routes = [
       },
       { path: "1", element: <ListGrid /> },
       { path: "2", element: <ListGrid /> },
+      { path: "success", element: <Completed /> },
       {
         path: "carts",
         element: (
@@ -132,6 +135,7 @@ const routes = [
       </>
     ),
   },
+
   {
     path: "dashboard",
     element: (
@@ -204,6 +208,14 @@ const routes = [
         <SignUpPage />
       </LoggedOutUser>
     ),
+    children: [
+      {
+        path: "",
+        element: <StepForm />,
+      },
+      { path: "success", element: <Completed /> },
+      { path: "2", element: <StepForm /> },
+    ],
   },
   {
     path: "/about",
