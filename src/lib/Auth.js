@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }) => {
    *   as getting initial state value of null when page is hard reloaded from url
    *  the auth state observer is not updating the global user state at context provider realtime (BUG)
    */
-  suspend(getInitialAuthState, "initialUserState");
 
   const [currentUser, setCurrentUser] = useState(null);
   const [privateUser, setPrivateUser] = useState(null);
@@ -68,17 +67,23 @@ export const AuthProvider = ({ children }) => {
 
   //LOGOUT FIREBASE AUTH
   const logout = () => {
+    // localStorage.removeItem("user-cache");
+    setCurrentUser(null);
     return signOut(auth);
   };
 
   //FIREBASE CURRENT LOGGED USER OBSERVER
   useEffect(() => {
     let unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setPrivateUser(user);
+      if (user) {
+        let { auth, accessToken, stsTokenManager, ...userAuth } = user;
+        // localStorage.setItem("user-cache", JSON.stringify(userAuth));
+        setCurrentUser(userAuth);
+      }
     });
     return () => {
-      unsubscribe();
+      // localStorage.removeItem("user-cache");
+      setCurrentUser(null);
     };
   }, []);
 
@@ -107,6 +112,8 @@ export const AuthProvider = ({ children }) => {
       unsub();
     };
   }, []);
+
+  console.log(currentUser);
 
   return (
     <AuthContext.Provider

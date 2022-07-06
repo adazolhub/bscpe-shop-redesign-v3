@@ -9,19 +9,19 @@ import { AuthProvider } from "./lib/Auth";
 import { ShopStateProvider } from "./lib/ShopState";
 import Loader from "./components/Loader";
 
-const root = ReactDOM.createRoot(document.querySelector("#root"));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
-    <BrowserRouter>
+  <AuthProvider>
+    <React.StrictMode>
       <Suspense fallback={<Loader />}>
-        <ToggleStateProvider>
-          <AuthProvider>
-            <ShopStateProvider>
+        <ShopStateProvider>
+          <BrowserRouter>
+            <ToggleStateProvider>
               <Home />
-            </ShopStateProvider>
-          </AuthProvider>
-        </ToggleStateProvider>
+            </ToggleStateProvider>
+          </BrowserRouter>
+        </ShopStateProvider>
       </Suspense>
-    </BrowserRouter>
-  </>
+    </React.StrictMode>
+  </AuthProvider>
 );

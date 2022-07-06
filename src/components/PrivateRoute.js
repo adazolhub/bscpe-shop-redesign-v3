@@ -1,16 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { UserAuth } from "../lib/Auth";
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ children, redirectPath = "/login" }) {
   const { currentUser } = UserAuth();
+  console.log(!currentUser, "👷");
 
-  if (!currentUser) return <Navigate to="/login" />;
-  return children;
+  if (!currentUser) return <Navigate to={redirectPath} replace />;
+  return children ? children : <Outlet />;
 }
 
 export function LoggedOutUser({ children }) {
   const { currentUser } = UserAuth();
-  if (currentUser) return <Navigate to="/" />;
+  if (currentUser) return <Navigate to="/account" replace />;
   return children;
 }
 
