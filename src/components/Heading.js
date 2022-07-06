@@ -20,6 +20,7 @@ import {
   XIcon,
   BellIcon,
   ShoppingBagIcon,
+  LoginIcon,
 } from "@heroicons/react/outline";
 const Heading = () => {
   //Navigation header title
@@ -180,21 +181,30 @@ const Heading = () => {
                 </li>
               )}
             </ul>
-            <button
-              className="block px-1 rounded-md sm:hidden"
-              onClick={() => navigate("/account")}
-            >
-              <div className="w-5 h-5 rounded-full">
-                <img
-                  src={
-                    currentUser?.photoURL ||
-                    "https://firebasestorage.googleapis.com/v0/b/bscpe-store-v2.appspot.com/o/profile%2Fdefault_profile.png?alt=media&token=60bbf95e-c1ad-4fb5-80a4-c81c07558fa4"
-                  }
-                  alt={currentUser?.displayName}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </button>
+            {currentUser ? (
+              <button
+                className="block px-1 rounded-md sm:hidden"
+                onClick={() => navigate("/account")}
+              >
+                <div className="w-5 h-5 rounded-full">
+                  <img
+                    src={
+                      currentUser?.photoURL ||
+                      "https://firebasestorage.googleapis.com/v0/b/bscpe-store-v2.appspot.com/o/profile%2Fdefault_profile.png?alt=media&token=60bbf95e-c1ad-4fb5-80a4-c81c07558fa4"
+                    }
+                    alt={currentUser?.displayName}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </button>
+            ) : (
+              <button
+                className="flex sm:hidden items-center gap-2 px-1 py-1 text-[0.8em] text-gray-500 bg-gray-50 rounded-md hover:bg-gray-100 hover:text-gray-600/70"
+                onClick={() => navigate("/login")}
+              >
+                <LoginIcon className="w-5 h-5" />
+              </button>
+            )}
           </div>
         </nav>
       </header>

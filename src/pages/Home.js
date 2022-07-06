@@ -14,7 +14,7 @@ import About from "./About";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import UserProfile from "./Profile";
-import PrivateRoute, { LoggedOutUser } from "../components/PrivateRoute";
+import PrivateRoute, { LoggedOutUser } from "../utils/PrivateRoute";
 import Dashboard from "./Dashboard";
 import ProductDash, {
   ProductItem,

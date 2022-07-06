@@ -12,16 +12,14 @@ import Loader from "./components/Loader";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
-    <React.StrictMode>
-      <Suspense fallback={<Loader />}>
-        <ShopStateProvider>
-          <BrowserRouter>
-            <ToggleStateProvider>
-              <Home />
-            </ToggleStateProvider>
-          </BrowserRouter>
-        </ShopStateProvider>
-      </Suspense>
-    </React.StrictMode>
+    <Suspense fallback={<Loader />}>
+      <ShopStateProvider>
+        <BrowserRouter>
+          <ToggleStateProvider>
+            <Home />
+          </ToggleStateProvider>
+        </BrowserRouter>
+      </ShopStateProvider>
+    </Suspense>
   </AuthProvider>
 );

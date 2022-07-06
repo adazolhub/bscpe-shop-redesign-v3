@@ -83,6 +83,7 @@ export const AuthProvider = ({ children }) => {
     });
     return () => {
       // localStorage.removeItem("user-cache");
+      unsubscribe();
       setCurrentUser(null);
     };
   }, []);
@@ -113,7 +114,6 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  console.log(currentUser);
 
   return (
     <AuthContext.Provider

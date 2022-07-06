@@ -15,8 +15,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      let user = await signin(email, password) && navigate("/");;
-      
+      (await signin(email, password)) && navigate("/");
     } catch (error) {
       console.log(error.code);
       switch (error.code) {
