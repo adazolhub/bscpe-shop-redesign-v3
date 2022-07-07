@@ -38,7 +38,7 @@ const CartOverlay = ({ cart, removeToCart }) => {
           exit={{ opacity: 0, y: "100%", display: "none" }}
           drag={"y"}
           dragConstraints={{ top: 0, bottom: 0 }}
-          className="fixed left-0 w-[calc(100%)] bg-white bottom-0 mx-auto px-4 py-4 rounded-md hover:bg-gray-50 shadow-xl shadow-gray-400 flex justify-between items-center text-gray-500 sm:hidden z-30"
+          className="fixed left-0  w-[calc(100%-1em)] md:w-[calc(50%)]  md:left-1/4  bg-white bottom-2 mx-2 px-4 py-4 rounded-md hover:bg-gray-50 shadow-xl shadow-gray-400 flex justify-between items-center text-gray-500 sm:hidden z-30"
         >
           <div
             className="flex items-center gap-4 text-gray-500"
@@ -151,7 +151,7 @@ const CartOverlay = ({ cart, removeToCart }) => {
               </div>
               <button
                 className="w-full btn-primary"
-                onClick={checkoutToggleHandler}
+                onClick={() => navigate("checkout")}
               >
                 Checkout
               </button>

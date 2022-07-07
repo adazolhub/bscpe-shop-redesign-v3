@@ -300,9 +300,18 @@ function SecurityDetails({
     confirm_password: null,
   });
   const { createUser } = UserAuth();
+
+  //Password regex format
   let lowerCaseLetters = /[a-z]/g;
   let upperCaseLetters = /[A-Z]/g;
   let number = /\d/g;
+
+  //Password Validator
+  let passLength = values?.password.length < 9;
+  let passNotLower = !values?.password.match(lowerCaseLetters);
+  let passNotUpper = !values?.password.match(upperCaseLetters);
+  let passNotNumber = !values?.password.match(number);
+  let passNotMatch = values?.password !== values?.confirm_password;
 
   let Continue = (e) => {
     e.preventDefault();
@@ -311,7 +320,7 @@ function SecurityDetails({
       return setError(
         (prev) => (prev = { ...prev, password: "Password required" })
       );
-    if (values?.password.length < 9)
+    if (passLength)
       return setError(
         (prev) =>
           (prev = {
@@ -319,7 +328,7 @@ function SecurityDetails({
             password: "Must contain at least 8 or more characters",
           })
       );
-    if (!values?.password.match(lowerCaseLetters))
+    if (passNotLower)
       return setError(
         (prev) =>
           (prev = {
@@ -328,7 +337,7 @@ function SecurityDetails({
           })
       );
 
-    if (!values?.password.match(upperCaseLetters))
+    if (passNotUpper)
       return setError(
         (prev) =>
           (prev = {
@@ -337,7 +346,7 @@ function SecurityDetails({
           })
       );
 
-    if (!values?.password.match(number))
+    if (passNotNumber)
       return setError(
         (prev) =>
           (prev = {
@@ -346,7 +355,7 @@ function SecurityDetails({
           })
       );
 
-    if (values?.password !== values?.confirm_password)
+    if (passNotMatch)
       return setError(
         (prev) => (prev = { ...prev, confirm_password: "Password not match" })
       );
@@ -375,7 +384,7 @@ function SecurityDetails({
         uid: user?.user.uid,
         authProvider: "local",
         email: values?.email,
-        fullname: values?.fullname,
+        fullname: values?.fullname.trim(),
         isSeller: false,
         cart: [],
       });
@@ -391,7 +400,7 @@ function SecurityDetails({
         {
           uid: user?.user.uid,
           cardNumber: "0000000000000000",
-          cardHolder: values?.fullname,
+          cardHolder: values?.fullname.trim(),
           cardType: ["VISA", "Master Card", "AMEX"],
           defaultCard: "VISA",
           color: ["fill-neutral-800", "fill-amber-800", "fill-slate-700"],
@@ -418,6 +427,7 @@ function SecurityDetails({
   };
 
   let navigate = useNavigate();
+
   return (
     <>
       <Form>
@@ -434,7 +444,11 @@ function SecurityDetails({
           autoFocus
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           className={
-            error?.password ? "border-rose-400/30" : "border-gray-400/30"
+            error?.password
+              ? "border-rose-500/30"
+              : passLength || passNotLower || passNotUpper || passNotNumber
+              ? "border-gray-400/30"
+              : "border-emerald-600/30"
           }
           onChange={(e) => {
             setError((prev) => (prev = { ...prev, password: null }));
@@ -455,7 +469,9 @@ function SecurityDetails({
           className={
             error?.confirm_password
               ? "border-rose-400/30"
-              : "border-gray-400/30"
+              : passNotMatch
+              ? "border-gray-400/30"
+              : "border-emerald-600/30"
           }
           onChange={(e) => {
             setError((prev) => (prev = { ...prev, confirm_password: null }));

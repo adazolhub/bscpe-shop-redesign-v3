@@ -48,9 +48,9 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           drag={"y"}
           dragConstraints={{ top: 0, bottom: 0 }}
           {...props}
-          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[105]
+          className="fixed w-full md:w-[50%] md:left-1/4  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[105]
           
-            after:fixed after:bottom-0 after:translate-y-full after:-mx-10 after:w-full after:h-full after:bg-white 
+            after:fixed after:bottom-0 after:translate-y-full after:-mx-4 after:w-full after:h-full after:bg-white 
           "
         >
           {" "}
