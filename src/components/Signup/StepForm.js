@@ -5,7 +5,11 @@ import {
   ArrowSmRightIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/outline";
-import { CheckCircleIcon, CheckIcon } from "@heroicons/react/solid";
+import {
+  BadgeCheckIcon,
+  CheckCircleIcon,
+  CheckIcon,
+} from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import { fetchSignInMethodsForEmail, updateProfile } from "firebase/auth";
 import { auth, db } from "../../auth/firebase";
@@ -267,13 +271,13 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }) {
         />
         <div className="flex flex-row-reverse items-center justify-between my-2 text-xs">
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 rounded-md text-gray-500/70 bg-gray-200/40 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
             onClick={Continue}
           >
             Continue <ArrowNarrowRightIcon className="w-5 h-5" />
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 rounded-md text-gray-500/70 bg-gray-200/40 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
             onClick={Previous}
           >
             <ArrowNarrowLeftIcon className="w-5" /> Back
@@ -296,12 +300,12 @@ function SecurityDetails({
     confirm_password: null,
   });
   const { createUser } = UserAuth();
+  let lowerCaseLetters = /[a-z]/g;
+  let upperCaseLetters = /[A-Z]/g;
+  let number = /\d/g;
 
   let Continue = (e) => {
     e.preventDefault();
-    let lowerCaseLetters = /[a-z]/g;
-    let upperCaseLetters = /[A-Z]/g;
-    let number = /\d/g;
 
     if (values?.password === "")
       return setError(
@@ -458,15 +462,22 @@ function SecurityDetails({
             handleChange("confirm_password")(e);
           }}
         />
+        <PasswordRequirementInfo
+          passLength={values?.password.length < 9}
+          passLowerCase={!values?.password.match(lowerCaseLetters)}
+          passUpperCase={!values?.password.match(upperCaseLetters)}
+          passNumber={!values?.password.match(number)}
+          passNotMatch={values?.password !== values?.confirm_password}
+        />
         <div className="flex flex-row-reverse items-center justify-between my-2 text-xs">
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 rounded-md text-gray-500/70 bg-gray-200/40 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 my-2 text-gray-200 bg-gray-600 rounded-md focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-500"
             onClick={Continue}
           >
             Complete Setup <ArrowNarrowRightIcon className="w-5 h-5" />
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 rounded-md text-gray-500/70 bg-gray-200/40 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
             onClick={Previous}
           >
             <ArrowNarrowLeftIcon className="w-5" /> Back
@@ -474,6 +485,69 @@ function SecurityDetails({
         </div>
       </Form>
       <AdvisorySecurity />
+    </>
+  );
+}
+
+function PasswordRequirementInfo({
+  passLength,
+  passLowerCase,
+  passUpperCase,
+  passNumber,
+  passNotMatch,
+}) {
+  return (
+    <>
+      <div className="px-4 py-2 text-[0.62em] border border-gray-300 border-dashed rounded-md text-gray-400 w-fit mx-auto mt-4">
+        <h3>Password requirement</h3>
+        <div className="text-[0.86em] text-gray-400/70 px-2 font-thin mt-1">
+          <div className="flex items-center gap-2">
+            <BadgeCheckIcon
+              className={[
+                "w-3",
+                passLowerCase ? "text-gray-300" : "text-emerald-600",
+              ].join(" ")}
+            />
+            <p>Must contain lowercase/small characters</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <BadgeCheckIcon
+              className={[
+                "w-3",
+                passUpperCase ? "text-gray-300" : "text-emerald-600",
+              ].join(" ")}
+            />
+            <p>Must contain uppercase/capital characters</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <BadgeCheckIcon
+              className={[
+                "w-3",
+                passNumber ? "text-gray-300" : "text-emerald-600",
+              ].join(" ")}
+            />
+            <p>Must contain at least 1 numeric value</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <BadgeCheckIcon
+              className={[
+                "w-3",
+                passLength ? "text-gray-300" : "text-emerald-600",
+              ].join(" ")}
+            />
+            <p>Must contain at least 8 or more characters</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <BadgeCheckIcon
+              className={[
+                "w-3",
+                passNotMatch ? "text-gray-300" : "text-emerald-600",
+              ].join(" ")}
+            />
+            <p>Password match</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

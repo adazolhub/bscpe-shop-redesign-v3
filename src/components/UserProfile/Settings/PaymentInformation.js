@@ -126,6 +126,7 @@ function Form({ toggle, toggleHandler, cardDetails }) {
           onChange={(e) => {
             handleChange("cardNumber")(e);
           }}
+          onKeyPress="return checkDigit(event)"
         />
         <Input
           type="text"
@@ -174,6 +175,16 @@ function Form({ toggle, toggleHandler, cardDetails }) {
       </form>
     </Modal>
   );
+}
+
+function checkDigit(event) {
+  var code = event.which ? event.which : event.keyCode;
+
+  if ((code < 48 || code > 57) && code > 31) {
+    return false;
+  }
+
+  return true;
 }
 
 function CardDetails({ details, ...props }) {
