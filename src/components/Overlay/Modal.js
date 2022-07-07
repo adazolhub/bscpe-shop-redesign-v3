@@ -34,7 +34,7 @@ const Modal = ({ children, modalToggle, modalToggleHandler, ...props }) => {
               {...props}
               className="relative min-w-[20em] max-w-[94%] lg:max-w-[40em] max-h-[100%] m-auto py-4  rounded-md min-h-[24em] modal overflow-hidden  bg-gray-50 z-[106]"
             >
-              <div className="relative min-w-[20em] max-w-[100%] lg:max-w-[40em] max-h-[30em] lg:max-h-[40em] m-auto p-4  rounded-md min-h-[24em] modal overflow-hidden  bg-gray-50 z-[101]">
+              <div className="relative min-w-[20em] max-w-[100%] lg:max-w-[40em] max-h-[30em] lg:max-h-[40em] m-auto px-4  rounded-md min-h-[24em] modal overflow-hidden  bg-gray-50 z-[101]">
                 {children}
               </div>
             </motion.div>

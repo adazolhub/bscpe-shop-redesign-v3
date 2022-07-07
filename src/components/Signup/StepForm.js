@@ -11,7 +11,8 @@ import { fetchSignInMethodsForEmail, updateProfile } from "firebase/auth";
 import { auth, db } from "../../auth/firebase";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../lib/Auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import config from "../../config.json";
 
 let labels = ["Email", "Basic Information", "Security"];
 
@@ -124,7 +125,9 @@ function EmailDetails({ nextStep, prevStep, handleChange, values }) {
     if (!regex.test(values?.email))
       return setError("Invalid email format. Please try again");
 
-    //Firebase auth to check if email is already registered
+    /**
+     * Firebase auth to check if email is already registered
+     */
     fetchSignInMethodsForEmail(auth, values?.email)
       .then((ifEmailExist) => {
         if (ifEmailExist.length > 0)
@@ -158,7 +161,6 @@ function EmailDetails({ nextStep, prevStep, handleChange, values }) {
           name="email"
           placeholder={"Email"}
           defaultValue={values.email}
-          autoFocus
           required
           onChange={(e) => {
             setError(null);
@@ -361,9 +363,10 @@ function SecurityDetails({
       updateProfile(user?.user, {
         displayName: values?.username,
       });
-      // console.log(user);
 
-      //change from addDoc to setDoc to manualy set root ID or UID of the document
+      /**
+       * change from addDoc to setDoc to manualy set root ID or UID of the document
+       */
       await setDoc(doc(db, "users", user?.user?.uid), {
         uid: user?.user.uid,
         authProvider: "local",
@@ -372,6 +375,26 @@ function SecurityDetails({
         isSeller: false,
         cart: [],
       });
+
+      /**
+       * 07.08.2022 - Added Virtual card to firestore database
+       *
+       * Virtual Card initial setup right after user created an account
+       */
+
+      await setDoc(
+        doc(db, `${config.USER}${user?.user?.uid}${config.PAYMENT}`),
+        {
+          uid: user?.user.uid,
+          cardNumber: "0000000000000000",
+          cardHolder: values?.fullname,
+          cardType: ["VISA", "Master Card", "AMEX"],
+          defaultCard: "VISA",
+          color: ["fill-neutral-800", "fill-amber-800", "fill-slate-700"],
+          bank: "Development Bank of the Philippines",
+        }
+      );
+
       navigate("/success");
     } catch (error) {
       console.log(error.code);

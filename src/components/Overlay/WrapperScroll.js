@@ -3,7 +3,7 @@ import React from "react";
 const WrapperScroll = ({ children }) => {
   return (
     <>
-      <div className="min-h-[calc(100vh-10em)] max-h-[calc(100vh-5em)] px-1 overflow-hidden overflow-y-scroll flex flex-col gap-4 ">
+      <div className="min-h-[calc(100vh-10em)] max-h-[calc(100vh-5em)] px-1 overflow-hidden overflow-y-scroll flex flex-col gap-8 ">
         {children}
       </div>
       {/* <a

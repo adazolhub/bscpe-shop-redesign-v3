@@ -35,7 +35,7 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
             delay: 0.3,
           }}
           animate={modalToggle ? "open" : "closed"}
-          className="fixed top-0 left-0 w-full h-screen backdrop-blur-sm bg-gray-800/70 z-[100]"
+          className="fixed top-0 left-0 w-full h-screen backdrop-blur-sm bg-gray-800/70 z-[105]"
           onClick={modalToggleHandler}
         />
 
@@ -48,9 +48,9 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           drag={"y"}
           dragConstraints={{ top: 0, bottom: 0 }}
           {...props}
-          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[101]
+          className="fixed w-full  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[105]
           
-            after:absolute after:bottom-0 after:translate-y-full after:-mx-4 after:w-full after:h-full after:bg-white 
+            after:fixed after:bottom-0 after:translate-y-full after:-mx-10 after:w-full after:h-full after:bg-white 
           "
         >
           {" "}

@@ -8,58 +8,247 @@ import {
   PencilAltIcon,
   ShieldExclamationIcon,
 } from "@heroicons/react/outline";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../../../auth/firebase";
+import config from "../../../config.json";
+import Modal from "../../Overlay/Modal";
 
 const PaymentInformation = () => {
   let { currentUser } = UserAuth();
+  let docRef = doc(db, `${config.USER}${currentUser.uid}${config.PAYMENT}`);
 
-  let [cardDetails, setCardDetails] = useState({
-    type: "VISA",
-    bank: "Development Bank of the Philippines",
-    card_number: "0000 0000 0000 0000",
-    card_holder: currentUser?.displayName,
-  });
+  let [cardDetails, setCardDetails] = useState({});
 
   useEffect(() => {
-    let element = document.getElementsByClassName("center-card")[0];
-    document.getElementsByClassName("horizontal-snap")[0].scrollLeft =
-      element.offsetLeft;
+    const unsub = onSnapshot(docRef, (doc) => setCardDetails(doc.data()));
+    return () => {
+      unsub();
+    };
   }, []);
 
+  let [toggleEdit, setToggleEdit] = useState(false);
+
+  let toggleEditHandler = () => {
+    setToggleEdit((prev) => !prev);
+  };
+
   return (
-    <WrapperScroll>
-      <Advisory />
-      <div className="gap-4 overflow-hidden ">
-        <div className="flex w-full h-full gap-4 px-8 overflow-x-scroll snap-mandatory snap-x horizontal-snap">
-          <VirtualCard
-            type={cardDetails?.type}
-            bank={cardDetails?.bank}
-            card_number={cardDetails?.card_number}
-            card_holder={cardDetails?.card_holder}
-            className="w-64 fill-neutral-800 snap-center scroll-px-4"
-          />
-
-          <VirtualCard
-            type={"Master Card"}
-            bank={cardDetails?.bank}
-            card_number={cardDetails?.card_number}
-            card_holder={cardDetails?.card_holder}
-            className="w-64 center-card offset fill-amber-800 snap-center scroll-px-4"
-          />
-
-          <VirtualCard
-            type={"AMEX"}
-            bank={cardDetails?.bank}
-            card_number={cardDetails?.card_number}
-            card_holder={cardDetails?.card_holder}
-            className="w-64 fill-slate-700 snap-center"
-          />
+    <>
+      <WrapperScroll>
+        <Advisory />
+        <div className="gap-4 overflow-hidden ">
+          <div className="flex w-full h-full gap-4 px-8 overflow-x-scroll snap-mandatory snap-x horizontal-snap">
+            {cardDetails?.cardType &&
+              cardDetails?.cardType.map((card, index) => (
+                <VirtualCard
+                  key={card}
+                  type={card || "VISA"}
+                  bank={cardDetails?.bank}
+                  card_number={cardDetails?.cardNumber}
+                  card_holder={cardDetails?.cardHolder}
+                  className={[
+                    "w-64  snap-center scroll-px-4",
+                    cardDetails?.color
+                      ? cardDetails?.color[index]
+                      : "fill-neutral-800",
+                  ].join(" ")}
+                />
+              ))}
+          </div>
         </div>
-      </div>
 
-      <CardDetails />
-    </WrapperScroll>
+        <CardDetails
+          details={cardDetails}
+          onClick={() => toggleEditHandler()}
+        />
+      </WrapperScroll>
+      <Form
+        toggle={toggleEdit}
+        toggleHandler={toggleEditHandler}
+        cardDetails={cardDetails}
+      />
+    </>
   );
 };
+
+function Form({ toggle, toggleHandler, cardDetails }) {
+  let { currentUser } = UserAuth();
+
+  let docRef = doc(db, `${config.USER}${currentUser.uid}${config.PAYMENT}`);
+  let [tempInfo, setTempInfo] = useState({
+    cardNumber: "",
+    cardHolder: "",
+    bank: "",
+    defaultCard: "",
+  });
+
+  const modifyCard = (e) => {
+    e.preventDefault();
+    updateDoc(docRef, {
+      cardNumber: tempInfo?.cardNumber || cardDetails?.cardNumber,
+      cardHolder: tempInfo?.cardHolder || cardDetails?.cardHolder,
+      bank: tempInfo?.bank || cardDetails?.bank,
+    })
+      .then((data) => {
+        console.log("> modfied payment successfully ", data);
+        toggleHandler();
+        setTempInfo({});
+      })
+      .catch((error) => {
+        console.log("> modifying payment error occurred :", error);
+      });
+  };
+
+  let handleChange = (input) => (e) => {
+    setTempInfo((prev) => (prev = { ...prev, [input]: e.target.value }));
+  };
+
+  return (
+    <Modal modalToggle={toggle} modalToggleHandler={toggleHandler}>
+      <p className="mb-4 text-xs text-gray-400">Configure virtual card</p>
+
+      <form className="flex flex-col gap-2">
+        <Input
+          type="text"
+          name={"cardNumber"}
+          maxLength={16}
+          label
+          labelText="Card Number"
+          placeholder={cardDetails?.cardNumber || "1234 5678 0000 0000"}
+          defaultValue={tempInfo?.cardNumber}
+          onChange={(e) => {
+            handleChange("cardNumber")(e);
+          }}
+        />
+        <Input
+          type="text"
+          name={"cardHolder"}
+          label
+          labelText="Card Holder Name"
+          placeholder={cardDetails?.cardHolder || "Juan Dela Cruz"}
+          defaultValue={tempInfo?.cardHolder}
+          onChange={(e) => {
+            handleChange("cardHolder")(e);
+          }}
+        />
+        <Input
+          type="text"
+          name={"bank"}
+          label
+          labelText="Bank"
+          placeholder={cardDetails?.bank || "Bank of the Philippine Island"}
+          defaultValue={tempInfo?.bank}
+          onChange={(e) => {
+            handleChange("bank")(e);
+          }}
+        />
+
+        <div className="flex flex-col">
+          <button className="btn-primary" onClick={(e) => modifyCard(e)}>
+            {" "}
+            Confirm Changes{" "}
+          </button>
+          <button
+            className="btn-secondary"
+            onClick={(e) => {
+              e.preventDefault();
+              setTempInfo({
+                cardNumber: "",
+                cardHolder: "",
+                bank: "",
+                defaultCard: "",
+              });
+              toggleHandler();
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </Modal>
+  );
+}
+
+function CardDetails({ details, ...props }) {
+  return (
+    <SubContainer
+      title={"Card Details"}
+      editable
+      modifier={
+        <div className="flex items-center gap-1">
+          <PencilAltIcon className="w-3 h-3" /> Configure
+        </div>
+      }
+      {...props}
+    >
+      <SubSettingsButton
+        name={"Card Number"}
+        value={details?.cardNumber || null}
+        editable
+      />
+      <SubSettingsButton
+        name={"Card Holder Name"}
+        value={details?.cardHolder || null}
+        editable
+      />
+      <SubSettingsButton name={"Bank"} value={details?.bank || null} editable />
+      <SubSettingsButton
+        name={"Card Type"}
+        value={details?.defaultCard || null}
+      />
+    </SubContainer>
+  );
+}
+
+function Input({
+  type,
+  name,
+  placeholder,
+  labelText,
+  icon,
+  label = false,
+  className,
+  setter,
+  ...props
+}) {
+  return (
+    <>
+      {label ? (
+        <label className="flex flex-col text-[0.65em] text-gray-300">
+          <p className="ml-1">{labelText}</p>
+          <input
+            type={type}
+            className={[
+              "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
+              className,
+            ].join(" ")}
+            name={name}
+            placeholder={placeholder}
+            {...props}
+          />
+        </label>
+      ) : (
+        <input
+          type={type}
+          className={[
+            "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
+            className,
+          ].join(" ")}
+          name={name}
+          placeholder={placeholder}
+          {...props}
+        />
+      )}
+    </>
+  );
+}
 
 function Advisory() {
   return (
@@ -104,38 +293,6 @@ function VirtualCard({ type, bank, card_number, card_holder, ...props }) {
         {type}
       </p>
     </div>
-  );
-}
-
-function CardDetails() {
-  let { currentUser } = UserAuth();
-  return (
-    <SubContainer title={"Card Details"}>
-      <SubSettingsButton
-        name={"Card Number"}
-        value={"0000000000000000"}
-        editable
-        modifier={
-          <div className="flex items-center gap-1">
-            <PencilAltIcon className="w-3 h-3" /> Modify
-          </div>
-        }
-      />
-      <SubSettingsButton
-        name={"Card Holder Name"}
-        value={currentUser.displayName}
-        editable
-        modifier={
-          <div className="flex items-center gap-1">
-            <PencilAltIcon className="w-3 h-3" /> Change name
-          </div>
-        }
-      />
-      <SubSettingsButton
-        name={"Date of Account Creation"}
-        value={currentUser?.metadata.creationTime}
-      />
-    </SubContainer>
   );
 }
 
