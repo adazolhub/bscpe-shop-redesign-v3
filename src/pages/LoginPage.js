@@ -147,6 +147,9 @@ function OptionalSignIn() {
 
         <span className="">Sign in with Google</span>
       </button>
+      <div className="g-signin2" data-onsuccess="onSignIn">
+        {" "}
+      </div>
       {/* <button
         className="w-full btn-secondary-icon"
         aria-label="signin with phone"

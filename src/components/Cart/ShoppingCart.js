@@ -13,8 +13,8 @@ const ShoppingCart = () => {
   return (
     <>
       <>
-        <div className="container p-2 mx-auto max-h-[calc(100vh-12em)] overflow-hidden overflow-y-scroll">
-          <ul className="flex flex-col gap-2 pb-4">
+        <div className="container relative p-2 mx-auto  max-h-[calc(100vh-4em)] overflow-hidden overflow-y-scroll">
+          <ul className="flex flex-col gap-2 pb-4 min-h-[calc(100vh-18em)] max-h-[calc(100vh-16em)]">
             {list.length > 0 ? (
               list?.map((data, index) => (
                 <li
@@ -22,7 +22,7 @@ const ShoppingCart = () => {
                   //   onClick={() => handleToggle(data)}
                   className="flex gap-2 p-2 transition-all bg-gray-50 border border-gray-300 border-dashed rounded-md cursor-pointer hover:scale-[1.02] relative max-h-[14em]"
                 >
-                  <div className="h-[8em] md:h-[10em] lg:min-h-[12em] w-[10em] sm:w-[12em] lg:max-w-[16em]  rounded-md opacity-100">
+                  <div className="h-[5em] md:h-[7em] lg:min-h-[9em] w-[10em] sm:w-[12em] lg:max-w-[16em]  rounded-md opacity-100">
                     <img
                       src={data.image}
                       alt={data.name}
@@ -34,7 +34,7 @@ const ShoppingCart = () => {
                     <p className="text-[0.55em] text-gray-400/80 my-1">
                       SKU: {data.product_id.toUpperCase()}
                     </p>
-                    <h3 className="mr-8 font-thin text-gray-500 line-clamp-2 sm:line-clamp-3 lg:line-clamp-none">
+                    <h3 className="mr-8 font-thin text-gray-500 line-clamp-1 sm:line-clamp-3 lg:line-clamp-none">
                       {data.name}
                     </h3>
 
@@ -66,7 +66,7 @@ const ShoppingCart = () => {
           </ul>
 
           {list.length > 0 && (
-            <div className="fixed bottom-0 left-0 w-full gap-2 px-2 pb-2 text-xs bg-white">
+            <div className="fixed bottom-0 left-0 w-full gap-2 px-2 pb-2 text-xs bg-white ">
               <hr />
               <div className="flex justify-between px-4 pt-2 pb-1 text-gray-400">
                 <p>Total items: </p>
@@ -76,7 +76,7 @@ const ShoppingCart = () => {
                 <p>Total price: </p>
                 <p className="font-medium text-gray-500">PHP {total}.00 </p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col ">
                 <button
                   className="w-full btn-primary"
                   onClick={() => {

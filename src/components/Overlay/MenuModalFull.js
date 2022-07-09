@@ -80,23 +80,25 @@ const MenuModalFull = ({
 
           after:bg-gray-100 after:translate-x-[calc(100%)] after:right-0 after:w-full after:h-full after:absolute after:top-0 after:z-[100] "
         >
-          <div className="sticky top-0 flex items-center justify-between z-[102] bg-gray-100 py-2 mx-2">
-            <button
-              className="py-1 pl-0 pr-4 rounded-md sm:pr-2 sm:pl-2 group"
-              onClick={() => {
-                navigate("");
-                modalToggleHandler();
-              }}
-            >
-              <ChevronLeftIcon className="w-5 h-5 transition-all group-hover:-translate-x-1" />
-            </button>
+          <div className="sticky top-0 flex flex-col z-[102] bg-gray-100  mx-2">
+            <div className="flex items-center justify-between py-2">
+              <button
+                className="py-1 pl-0 pr-4 rounded-md sm:pr-2 sm:pl-2 group"
+                onClick={() => {
+                  navigate("");
+                  modalToggleHandler();
+                }}
+              >
+                <ChevronLeftIcon className="w-5 h-5 transition-all group-hover:-translate-x-1" />
+              </button>
 
-            <p className="text-[0.65em] font-thin text-gray-400">
-              {title?.split("-").join(" ").toUpperCase()}
-            </p>
-            <div className="px-2 w-9" />
+              <p className="text-[0.65em] font-thin text-gray-400">
+                {title?.split("-").join(" ").toUpperCase()}
+              </p>
+              <div className="px-2 w-9" />
+            </div>
+            <div className="">{children}</div>
           </div>
-          <div className="px-4">{children}</div>
         </motion.div>
       </AnimatePresence>
     </>

@@ -4,6 +4,8 @@ import Trending from "./Trending";
 import { Outlet } from "react-router-dom";
 import { NavLink } from "../pages/Home";
 import { ToggleState } from "../lib/ToggleState";
+import AccountState from "../lib/AccountState";
+import { UserAuth } from "../lib/Auth";
 
 const HomeSection = ({ user }) => {
   return (

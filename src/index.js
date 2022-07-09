@@ -8,18 +8,23 @@ import { ToggleStateProvider } from "./lib/ToggleState";
 import { AuthProvider } from "./lib/Auth";
 import { ShopStateProvider } from "./lib/ShopState";
 import Loader from "./components/Loader";
+import { AccountStateProvider } from "./lib/AccountState";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
-    <Suspense fallback={<Loader />}>
-      <ShopStateProvider>
-        <BrowserRouter>
-          <ToggleStateProvider>
-            <Home />
-          </ToggleStateProvider>
-        </BrowserRouter>
-      </ShopStateProvider>
-    </Suspense>
-  </AuthProvider>
+  <React.StrictMode>
+    <BrowserRouter>
+      <AccountStateProvider>
+        <AuthProvider>
+          <Suspense fallback={<Loader />}>
+            <ShopStateProvider>
+              <ToggleStateProvider>
+                <Home />
+              </ToggleStateProvider>
+            </ShopStateProvider>
+          </Suspense>
+        </AuthProvider>
+      </AccountStateProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

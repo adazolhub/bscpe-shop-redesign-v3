@@ -1,34 +1,14 @@
 import { PencilAltIcon } from "@heroicons/react/outline";
-import {
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { db } from "../../../auth/firebase";
 import { UserAuth } from "../../../lib/Auth";
 import WrapperScroll from "../../Overlay/WrapperScroll";
 import SubContainer from "./SubContainer";
 import SubSettingsButton from "./SubSettingsButton";
-import config from "../../../config.json";
 import Modal from "../../Overlay/Modal";
+import AccountState from "../../../lib/AccountState";
 
 const ShippingAddress = () => {
-  let { currentUser } = UserAuth();
-  let [address, setAddress] = useState({});
-
-  let docRef = doc(db, `${config.USER}${currentUser.uid}${config.ADDRESS}`);
-  useEffect(() => {
-    const unsub = onSnapshot(docRef, (doc) => setAddress(doc.data()));
-
-    return () => {
-      unsub();
-    };
-  }, []);
+  let { shipping: address } = AccountState();
 
   let [addToggle, setAddToggle] = useState(false);
   let addToggleHandler = () => {
@@ -76,6 +56,7 @@ function AddressInformation({ address, ...props }) {
       <SubSettingsButton name={"Address"} value={address?.address} editable />
       <SubSettingsButton name={"City"} value={address?.city} editable />
       <SubSettingsButton name={"Zipcode"} value={address?.zipcode} editable />
+      <SubSettingsButton name={"Contact"} value={address?.contact} editable />
     </SubContainer>
   );
 }
@@ -88,62 +69,55 @@ function AddForm({ toggle, toggleHandler, address }) {
     address: "",
     city: "",
     zipcode: "",
+    contact: "",
   });
 
-  let docRef = doc(db, `${config.USER}${currentUser.uid}${config.ADDRESS}`);
+  let { addShipping, updateShipping } = AccountState();
 
   const addAddress = (e) => {
     e.preventDefault();
-    if (
-      addressInfo?.recipient ||
-      addressInfo?.address ||
-      addressInfo?.city ||
-      addressInfo?.zipcode
-    ) {
-      setDoc(docRef, {
-        uid: currentUser?.uid,
-        recipient: address?.recipient || addressInfo?.recipient,
-        address: address?.address || addressInfo?.address,
-        city: address?.city || addressInfo?.city,
-        zipcode: address?.zipcode || addressInfo?.zipcode,
-      })
-        .then((data) => {
-          toggleHandler();
-          console.log("> address successfully added", data);
-          setAddressInfo({
-            recipient: "",
-            address: "",
-            city: "",
-            zipcode: "",
-          });
-        })
-        .catch((error) => {
-          console.log("> address error occurred :", error);
-        });
-    }
+
+    //Account Reducer - add new shipping
+    addShipping(
+      currentUser,
+      addressInfo?.recipient,
+      addressInfo?.address,
+      addressInfo?.city,
+      addressInfo?.zipcode,
+      addressInfo?.contact
+    ).then(() => {
+      toggleHandler();
+      setAddressInfo({
+        recipient: "",
+        address: "",
+        city: "",
+        zipcode: "",
+        contact: "",
+      });
+    });
   };
 
+  //Account Reducer - update shipping
   const editAddress = (e) => {
     e.preventDefault();
-    updateDoc(doc(db, `${config.USER}${currentUser.uid}${config.ADDRESS}`), {
-      recipient: addressInfo?.recipient || address?.recipient,
-      address: addressInfo?.address || address?.address,
-      city: addressInfo?.city || address?.city,
-      zipcode: addressInfo?.zipcode || address?.zipcode,
-    })
-      .then((data) => {
-        toggleHandler();
-        console.log("> modfied address successfully ", data);
-        setAddressInfo({
-          recipient: "",
-          address: "",
-          city: "",
-          zipcode: "",
-        });
-      })
-      .catch((error) => {
-        console.log("> modifying address error occurred :", error);
+
+    updateShipping(
+      currentUser,
+      addressInfo?.recipient,
+      addressInfo?.address,
+      addressInfo?.city,
+      addressInfo?.zipcode,
+      addressInfo?.contact
+    ).then(() => {
+      toggleHandler();
+      setAddressInfo({
+        recipient: "",
+        address: "",
+        city: "",
+        zipcode: "",
+        contact: "",
       });
+    });
   };
 
   let handleChange = (input) => (e) => {
@@ -207,6 +181,18 @@ function AddForm({ toggle, toggleHandler, address }) {
             handleChange("zipcode")(e);
           }}
         />
+        <Input
+          type="tel"
+          name={"contact"}
+          maxLength={14}
+          label
+          labelText={"Contact Number"}
+          placeholder={address?.contact || "+6372345678"}
+          defaultValue={addressInfo?.contact}
+          onChange={(e) => {
+            handleChange("contact")(e);
+          }}
+        />
         <div className="flex flex-col">
           {address && address ? (
             <button
@@ -215,7 +201,8 @@ function AddForm({ toggle, toggleHandler, address }) {
                 addressInfo?.recipient ||
                 addressInfo?.address ||
                 addressInfo?.city ||
-                addressInfo?.zipcode
+                addressInfo?.zipcode ||
+                addressInfo?.contact
                   ? false
                   : true
               }
@@ -231,7 +218,8 @@ function AddForm({ toggle, toggleHandler, address }) {
                 addressInfo?.recipient &&
                 addressInfo?.address &&
                 addressInfo?.city &&
-                addressInfo?.zipcode
+                addressInfo?.zipcode &&
+                addressInfo?.contact
                   ? false
                   : true
               }

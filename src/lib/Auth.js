@@ -3,12 +3,10 @@ import { auth, db } from "../auth/firebase";
 import {
   createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { suspend } from "suspend-react";
-import { getInitialAuthState } from "./AuthState";
 import { collection, limit, onSnapshot, query } from "firebase/firestore";
+import AccountState from "./AccountState";
 
 const AuthContext = createContext();
 
@@ -52,8 +50,14 @@ export const AuthProvider = ({ children }) => {
    *  the auth state observer is not updating the global user state at context provider realtime (BUG)
    */
 
-  const [currentUser, setCurrentUser] = useState(null);
   const [privateUser, setPrivateUser] = useState(null);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("user-logged-in") === "yes"
+  );
+
+  //Account Reducer - (getUser) listen for change on login state
+  let { getUser, user: currentUser } = AccountState();
 
   //EMAIL AND PASSWORD FIREBASE AUTH PROVIDER (SIGN UP)
   const createUser = (email, password) => {
@@ -67,24 +71,20 @@ export const AuthProvider = ({ children }) => {
 
   //LOGOUT FIREBASE AUTH
   const logout = () => {
-    // localStorage.removeItem("user-cache");
-    setCurrentUser(null);
-    return signOut(auth);
+    // setCurrentUser(null);
+    return signOut(auth).then(() => {
+      localStorage.setItem("user-logged-in", "no");
+      setPrivateUser(null);
+    });
   };
 
   //FIREBASE CURRENT LOGGED USER OBSERVER
   useEffect(() => {
-    let unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        let { auth, accessToken, stsTokenManager, ...userAuth } = user;
-        // localStorage.setItem("user-cache", JSON.stringify(userAuth));
-        setCurrentUser(userAuth);
-      }
-    });
+    let unsubscribe = getUser(auth);
+
     return () => {
-      // localStorage.removeItem("user-cache");
+      localStorage.setItem("user-logged-in", "no");
       unsubscribe();
-      setCurrentUser(null);
     };
   }, []);
 
@@ -114,6 +114,7 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  console.log("> auth provider re-rendered");
 
   return (
     <AuthContext.Provider
@@ -124,6 +125,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         signin,
         list,
+        isLoggedIn,
       }}
     >
       {children}
