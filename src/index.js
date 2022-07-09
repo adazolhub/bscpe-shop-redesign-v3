@@ -10,15 +10,17 @@ import { ShopStateProvider } from "./lib/ShopState";
 import Loader from "./components/Loader";
 import { AccountStateProvider } from "./lib/AccountState";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <>
     <BrowserRouter>
       <AccountStateProvider>
         <AuthProvider>
           <Suspense fallback={<Loader />}>
             <ShopStateProvider>
               <ToggleStateProvider>
+                
                 <Home />
               </ToggleStateProvider>
             </ShopStateProvider>
@@ -26,5 +28,5 @@ root.render(
         </AuthProvider>
       </AccountStateProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );

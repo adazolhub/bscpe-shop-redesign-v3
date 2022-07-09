@@ -15,6 +15,7 @@ import {
 } from "@heroicons/react/outline";
 import Settings from "./Settings";
 import { ToggleState } from "../../lib/ToggleState";
+import ScrollToTop from "../../utils/ScrollToTop";
 
 const Profile = () => {
   let { settingToggleHandler } = ToggleState();
@@ -22,6 +23,7 @@ const Profile = () => {
   return (
     <div className="flex flex-col w-full max-w-screen-sm gap-4 px-4 py-4 mx-auto text-gray-600 lg:max-w-screen-lg bg-slate-100">
       <div className="flex justify-between w-full">
+      <ScrollToTop />
         <User />
         <button>
           <BellIcon

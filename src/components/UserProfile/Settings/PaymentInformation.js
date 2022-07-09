@@ -34,6 +34,7 @@ const PaymentInformation = () => {
   return (
     <>
       <WrapperScroll>
+        <Advisory />
         <div className="gap-4 ">
           <div className="flex w-full h-full gap-4 px-12 overflow-x-scroll snap-mandatory snap-x horizontal-snap ">
             {cardDetails?.cardType &&
@@ -45,7 +46,7 @@ const PaymentInformation = () => {
                   card_number={cardDetails?.cardNumber}
                   card_holder={cardDetails?.cardHolder}
                   className={[
-                    "w-60  snap-center scroll-px-4",
+                    "w-72  snap-center scroll-px-4",
                     cardDetails?.color
                       ? cardDetails?.color[index]
                       : "fill-neutral-800",
@@ -55,7 +56,6 @@ const PaymentInformation = () => {
           </div>
         </div>
 
-        <Advisory />
         <CardDetails
           details={cardDetails}
           onClick={() => toggleEditHandler()}
@@ -240,20 +240,21 @@ function Input({
 
 function Advisory() {
   return (
-    <div className="flex items-start w-[76%] mx-auto gap-2 p-3 text-xs text-gray-200 rounded-md shadow-md bg-gradient-to-br from-gray-800/80 to-neutral-800">
+    <div className="flex items-start w-[100%] mx-auto gap-2 p-3 text-xs text-gray-200 rounded-md shadow-md bg-gradient-to-br from-gray-800/80 to-neutral-800">
       <div className="">
         <ExclamationCircleIcon className="w-5 h-5" />
       </div>
       <div>
-        <h3 className="font-bold leading-5">Advisory</h3>
-        <div className="text-gray-500/90 text-[0.8em]">
+        <h3 className="font-bold leading-5">Data Privacy</h3>
+        <div className="text-gray-500 text-[0.8em]">
           <p className="mt-1">
             This is a personal project design, so we will not collect or ask for
-            any payment information to transact throughout this web app. Here is
+            a real payment information to transact within this web app. Here is
             your{" "}
             <span className="italic font-bold text-gray-400">Virtual Card</span>
             {"  "}
-            you can use to be able to test the functionality of the application
+            you can use to be able to test or experience the functionality of
+            this application
           </p>
         </div>
       </div>

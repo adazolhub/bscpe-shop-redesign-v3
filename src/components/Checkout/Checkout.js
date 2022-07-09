@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import AccountState from "../../lib/AccountState";
 import ShopState from "../../lib/ShopState";
 import { ToggleState } from "../../lib/ToggleState";
+import ScrollToTop from "../../utils/ScrollToTop";
 import Modal from "../Overlay/Modal";
 import VirtualCard from "../UserProfile/VirtualCreditCard/VirtualCard";
 
@@ -26,6 +27,7 @@ const Checkout = () => {
 
   return (
     <>
+      <ScrollToTop />
       <div className="relative max-w-screen-sm mx-auto space-y-8 text-sm">
         <div className="mx-4 mt-2 space-y-1">
           <p className="text-gray-400 text-[0.8em]">Payment Method</p>

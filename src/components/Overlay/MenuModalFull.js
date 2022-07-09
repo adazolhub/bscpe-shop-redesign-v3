@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, XIcon } from "@heroicons/react/outline";
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import {
   AnimatePresence,
   motion,
@@ -83,16 +87,16 @@ const MenuModalFull = ({
           <div className="sticky top-0 flex flex-col z-[102] bg-gray-100  mx-2">
             <div className="flex items-center justify-between py-2">
               <button
-                className="py-1 pl-0 pr-4 rounded-md sm:pr-2 sm:pl-2 group"
+                className="py-1 pl-1 pr-4 rounded-md sm:pr-2 sm:pl-2 group"
                 onClick={() => {
                   navigate("");
                   modalToggleHandler();
                 }}
               >
-                <ChevronLeftIcon className="w-5 h-5 transition-all group-hover:-translate-x-1" />
+                <ArrowLeftIcon className="w-5 h-5 transition-all group-hover:-translate-x-1" />
               </button>
 
-              <p className="text-[0.65em] font-thin text-gray-400">
+              <p className="text-[0.68em] font-thin text-gray-500/70">
                 {title?.split("-").join(" ").toUpperCase()}
               </p>
               <div className="px-2 w-9" />

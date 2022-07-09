@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ShopState from "../../lib/ShopState";
 import { ToggleState } from "../../lib/ToggleState";
+import ScrollToTop from "../../utils/ScrollToTop";
 import WrapperScroll from "../Overlay/WrapperScroll";
 
 const ShoppingCart = () => {
@@ -12,6 +13,7 @@ const ShoppingCart = () => {
 
   return (
     <>
+    <ScrollToTop />
       <>
         <div className="container relative p-2 mx-auto  max-h-[calc(100vh-4em)] overflow-hidden overflow-y-scroll">
           <ul className="flex flex-col gap-2 pb-4 min-h-[calc(100vh-18em)] max-h-[calc(100vh-16em)]">
@@ -22,7 +24,7 @@ const ShoppingCart = () => {
                   //   onClick={() => handleToggle(data)}
                   className="flex gap-2 p-2 transition-all bg-gray-50 border border-gray-300 border-dashed rounded-md cursor-pointer hover:scale-[1.02] relative max-h-[14em]"
                 >
-                  <div className="h-[5em] md:h-[7em] lg:min-h-[9em] w-[10em] sm:w-[12em] lg:max-w-[16em]  rounded-md opacity-100">
+                  <div className="h-[6em] md:h-[8em] lg:min-h-[10em] w-[8em] sm:w-[10em] lg:max-w-[12em]  rounded-md opacity-100">
                     <img
                       src={data.image}
                       alt={data.name}
