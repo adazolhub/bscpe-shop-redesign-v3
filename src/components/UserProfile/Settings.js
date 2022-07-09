@@ -126,26 +126,49 @@ function Info() {
   let { settingToggleHandler } = ToggleState();
   return (
     <>
-      <div
-        className="flex items-start gap-2 px-2 py-3 bg-white rounded-md shadow-lg cursor-pointer"
-        onClick={() => {
-          navigate("about");
-          settingToggleHandler();
-        }}
-      >
-        <div className="py-1 text-slate-700/70">
+      <div className="flex items-start gap-2 px-2 py-3 text-gray-300 rounded-md shadow-lg cursor-pointer bg-gradient-to-br from-gray-700/95 to-neutral-900">
+        <div className="pt-1 pb-2">
           <ExclamationCircleIcon className="w-5 h-5" />
         </div>
-        <div className="text-[.65em] text-gray-500/70">
-          <h3 className="text-[1.08em] text-slate-600/80 font-medium my-1 ">
+        <div className="text-[.65em] ">
+          <h3
+            className="text-[1.08em] font-medium my-1 "
+            onClick={() => {
+              navigate("about");
+              settingToggleHandler();
+            }}
+          >
             BSCPE STORE V2 <span>(re-design)</span>
           </h3>
-          <h4 className="font-medium text-gray-600/80">About</h4>
-          <p className="mr-6 leading-3 tracking-normal">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo aliquid
-            dolorem asperiores eveniet laboriosam, cupiditate error delectus
-            adipisci optio voluptas.
+          {/* <h4 className="font-medium text-gray-600/80">About</h4> */}
+          <p className="leading-3 tracking-normal mr-7 text-gray-400/50 ">
+            This is a personal project design. Selected as the case study on
+            redesigning the User Interface and User Experience, to implement the
+            knowledged i've through taking up{" "}
+            <span className="font-medium text-gray-300/60">
+              bootcamp courses online
+            </span>{" "}
+            (coursera, udemy, other open-source learning platform), specially
+            the{" "}
+            <a
+              className="font-medium underline text-gray-300/60"
+              href="https://www.coursera.org/professional-certificates/google-ux-design"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Google UX Design Professional Certificate
+            </a>{" "}
+            course on coursera which tackle some discline on building design.
           </p>
+          <span
+            className="font-medium text-[1.05em] text-gray-300/80 inline-flex items-center border border-gray-500 px-2 py-1 rounded-md mt-3"
+            onClick={() => {
+              navigate("about");
+              settingToggleHandler();
+            }}
+          >
+            Read more <ChevronRightIcon className="h-3" />
+          </span>
         </div>
       </div>
     </>
