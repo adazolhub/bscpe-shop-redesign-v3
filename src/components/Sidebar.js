@@ -5,8 +5,6 @@ import { UserAuth } from "../lib/Auth";
 import {
   BellIcon,
   ChevronRightIcon,
-  CogIcon,
-  HomeIcon,
   InformationCircleIcon,
   LogoutIcon,
   ShoppingBagIcon,
@@ -15,25 +13,6 @@ import {
 } from "@heroicons/react/outline";
 
 import { scrollDisableOnOverlay } from "../utils/disableScrollOnOverlay";
-
-const variants = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 1, x: "-100%" },
-};
-const backdrop = {
-  open: {
-    opacity: 1,
-    backgroundColor: "hsla(215, 28%, 17%, 0.7)",
-    backdropFilter: "blur(4px)",
-    display: "block",
-  },
-  closed: {
-    opacity: 0,
-    backgroundColor: "hsla(215, 0%, 0%, 0)",
-    backdropFilter: "blur(0px)",
-    display: "none",
-  },
-};
 
 function Sidebar({ isOpen, setOpen }) {
   let { currentUser, logout } = UserAuth();
@@ -47,101 +26,118 @@ function Sidebar({ isOpen, setOpen }) {
 
   return (
     <>
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={"2"}
-          variants={backdrop}
-          animate={isOpen ? "open" : "closed"}
-          className="fixed top-0 left-0 z-50 w-full min-h-screen overflow-hidden cursor-pointer sm:hidden"
-          onClick={handleOpenMenu}
-        >
-          {/* <div className="fixed rounded-sm close top-4 right-4 hover:bg-gray-600">
-            <XIcon className="w-5 h-5 text-white" />
-          </div> */}
-        </motion.div>
-        <motion.nav
-          key={"1"}
-          drag={"x"}
-          dragConstraints={{ right: 0, left: 0 }}
-          className="fixed top-0 left-0 z-50 block w-[calc(70%)] h-full sm:hidden"
-          variants={variants}
-          transition={{ type: "tween" }}
-          onDragEnd={(e, info) => {
-            if (info.point.x < 40) handleOpenMenu();
-          }}
-          // transition={{ type: "tween", duration: 0.4 }}
-          animate={isOpen ? "open" : "closed"}
-        >
-          <div className="relative top-0 z-50 flex flex-col justify-between w-full min-h-screen p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-full before:h-full before:bg-white before:-translate-x-full before:top-0 ">
-            <div className="flex flex-col gap-16 text-gray-500 title">
-              <div className="flex justify-between">
-                <Link to="/" onClick={handleOpenMenu} className="w-fit">
-                  <p className="text-xs font-thin">
-                    <span className="mt-2">BSCPE STORE</span>
-                  </p>
-                </Link>
-                <button className="pl-4" onClick={handleOpenMenu}>
-                  <XIcon className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <CustomNavLink to="" onClick={handleOpenMenu}>
-                  <SideNavButton Icon={CustomHomeIcon} name={"Home"} />
-                </CustomNavLink>
-
-                <CustomNavLink to="cart" onClick={handleOpenMenu}>
-                  <SideNavButton Icon={ShoppingBagIcon} name={"Cart"} />
-                </CustomNavLink>
-
-                <CustomNavLink to="notifications" onClick={handleOpenMenu}>
-                  <SideNavButton Icon={BellIcon} name={"Notification"} />
-                </CustomNavLink>
-
-                <CustomNavLink to="about" onClick={handleOpenMenu}>
-                  <SideNavButton Icon={InformationCircleIcon} name={"About"} />
-                </CustomNavLink>
-              </div>
+      <AnimatedSideBar isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <div className="relative top-0 z-50 flex flex-col justify-between w-full h-full p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-full before:h-full before:bg-white before:-translate-x-full before:top-0 ">
+          <div className="flex flex-col gap-16 text-gray-500 title">
+            <div className="flex justify-between">
+              <Link to="/" onClick={handleOpenMenu} className="w-fit">
+                <p className="text-xs font-thin">
+                  <span className="mt-2">BSCPE STORE</span>
+                </p>
+              </Link>
+              <button className="pl-4" onClick={handleOpenMenu}>
+                <XIcon className="w-4 h-4" />
+              </button>
             </div>
 
-            <div className="side-footer">
-              <hr className="mb-2" />
-              <div className="flex flex-col gap-2">
-                <CustomNavLink to="account" onClick={handleOpenMenu}>
-                  <SideNavButton Icon={UserIcon} name={"Account"} />
-                </CustomNavLink>
+            <div className="flex flex-col gap-1">
+              <CustomNavLink to="" onClick={handleOpenMenu}>
+                <SideNavButton Icon={CustomHomeIcon} name={"Home"} />
+              </CustomNavLink>
 
-                {currentUser && (
-                  <button
-                    className="flex items-center justify-between gap-4 p-4 text-xs rounded-md shadow-inner bg-gray-50"
-                    onClick={() => {
-                      logout();
-                      handleOpenMenu();
-                    }}
-                  >
-                    <div className="flex items-center gap-4">
-                      <LogoutIcon className="w-4 text-gray-400 -h-4" />{" "}
-                      <p className="text-gray-600">Logout</p>
-                    </div>
-                  </button>
-                )}
-              </div>
-              <div className="mt-10">
-                <a
-                  href="https://adazolhub.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <p className="text-[0.65em] text-center text-gray-400">
-                    © Copyright 2022 | Adazolhub.com
-                  </p>
-                </a>
-              </div>
+              <CustomNavLink to="cart" onClick={handleOpenMenu}>
+                <SideNavButton Icon={ShoppingBagIcon} name={"Cart"} />
+              </CustomNavLink>
+
+              <CustomNavLink to="notifications" onClick={handleOpenMenu}>
+                <SideNavButton Icon={BellIcon} name={"Notification"} />
+              </CustomNavLink>
+
+              <CustomNavLink to="about" onClick={handleOpenMenu}>
+                <SideNavButton Icon={InformationCircleIcon} name={"About"} />
+              </CustomNavLink>
             </div>
           </div>
-        </motion.nav>
-      </AnimatePresence>
+
+          <div className="side-footer">
+            <hr className="mb-2" />
+            <div className="flex flex-col gap-2">
+              <CustomNavLink to="account" onClick={handleOpenMenu}>
+                <SideNavButton Icon={UserIcon} name={"Account"} />
+              </CustomNavLink>
+
+              {currentUser && (
+                <button
+                  className="flex items-center justify-between gap-4 p-4 text-xs rounded-md shadow-inner bg-gray-50"
+                  onClick={() => {
+                    logout();
+                    handleOpenMenu();
+                  }}
+                >
+                  <div className="flex items-center gap-4">
+                    <LogoutIcon className="w-4 text-gray-400 -h-4" />{" "}
+                    <p className="text-gray-600">Logout</p>
+                  </div>
+                </button>
+              )}
+            </div>
+            <div className="mt-10">
+              <a href="https://adazolhub.com" target="_blank" rel="noreferrer">
+                <p className="text-[0.65em] text-center text-gray-400">
+                  © Copyright 2022 | Adazolhub.com
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </AnimatedSideBar>
     </>
+  );
+}
+
+function AnimatedSideBar({ isOpen, handleOpenMenu, children }) {
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 1, x: "-100%" },
+  };
+  const backdrop = {
+    open: {
+      opacity: 1,
+      backgroundColor: "hsla(215, 28%, 17%, 0.7)",
+      backdropFilter: "blur(4px)",
+      display: "block",
+    },
+    closed: {
+      opacity: 0,
+      backgroundColor: "hsla(215, 0%, 0%, 0)",
+      backdropFilter: "blur(0px)",
+      display: "none",
+    },
+  };
+  return (
+    <AnimatePresence initial={false}>
+      <motion.div
+        key={"2"}
+        variants={backdrop}
+        animate={isOpen ? "open" : "closed"}
+        className="fixed top-0 left-0 z-50 w-full h-full overflow-hidden cursor-pointer sm:hidden"
+        onClick={handleOpenMenu}
+      ></motion.div>
+      <motion.nav
+        key={"1"}
+        drag={"x"}
+        dragConstraints={{ right: 0, left: 0 }}
+        className="fixed top-0 left-0 z-50 block w-56 h-full sm:hidden"
+        variants={variants}
+        transition={{ type: "tween" }}
+        onDragEnd={(e, info) => {
+          if (info.point.x < 40) handleOpenMenu();
+        }}
+        animate={isOpen ? "open" : "closed"}
+      >
+        {children}
+      </motion.nav>
+    </AnimatePresence>
   );
 }
 
