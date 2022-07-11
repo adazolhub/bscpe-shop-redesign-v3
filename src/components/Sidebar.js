@@ -27,67 +27,65 @@ function Sidebar({ isOpen, setOpen }) {
   return (
     <>
       <AnimatedSideBar isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
-        <div className="relative top-0 z-50 flex flex-col justify-between w-full h-full p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-full before:h-full before:bg-white before:-translate-x-full before:top-0 ">
-          <div className="flex flex-col gap-16 text-gray-500 title">
-            <div className="flex justify-between">
-              <Link to="/" onClick={handleOpenMenu} className="w-fit">
-                <p className="text-xs font-thin">
-                  <span className="mt-2">BSCPE STORE</span>
-                </p>
-              </Link>
-              <button className="pl-4" onClick={handleOpenMenu}>
-                <XIcon className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <CustomNavLink to="" onClick={handleOpenMenu}>
-                <SideNavButton Icon={CustomHomeIcon} name={"Home"} />
-              </CustomNavLink>
-
-              <CustomNavLink to="cart" onClick={handleOpenMenu}>
-                <SideNavButton Icon={ShoppingBagIcon} name={"Cart"} />
-              </CustomNavLink>
-
-              <CustomNavLink to="notifications" onClick={handleOpenMenu}>
-                <SideNavButton Icon={BellIcon} name={"Notification"} />
-              </CustomNavLink>
-
-              <CustomNavLink to="about" onClick={handleOpenMenu}>
-                <SideNavButton Icon={InformationCircleIcon} name={"About"} />
-              </CustomNavLink>
-            </div>
+        <div className="flex flex-col gap-16 text-gray-500 title">
+          <div className="flex justify-between">
+            <Link to="/" onClick={handleOpenMenu} className="w-fit">
+              <p className="text-xs font-thin">
+                <span className="mt-2">BSCPE STORE</span>
+              </p>
+            </Link>
+            <button className="pl-4" onClick={handleOpenMenu}>
+              <XIcon className="w-4 h-4" />
+            </button>
           </div>
 
-          <div className="side-footer">
-            <hr className="mb-2" />
-            <div className="flex flex-col gap-2">
-              <CustomNavLink to="account" onClick={handleOpenMenu}>
-                <SideNavButton Icon={UserIcon} name={"Account"} />
-              </CustomNavLink>
+          <div className="flex flex-col gap-1">
+            <CustomNavLink to="" onClick={handleOpenMenu}>
+              <SideNavButton Icon={CustomHomeIcon} name={"Home"} />
+            </CustomNavLink>
 
-              {currentUser && (
-                <button
-                  className="flex items-center justify-between gap-4 p-4 text-xs rounded-md shadow-inner bg-gray-50"
-                  onClick={() => {
-                    logout();
-                    handleOpenMenu();
-                  }}
-                >
-                  <div className="flex items-center gap-4">
-                    <LogoutIcon className="w-4 text-gray-400 -h-4" />{" "}
-                    <p className="text-gray-600">Logout</p>
-                  </div>
-                </button>
-              )}
-            </div>
-            <div className="mt-10">
-              <a href="https://adazolhub.com" target="_blank" rel="noreferrer">
-                <p className="text-[0.65em] text-center text-gray-400">
-                  © Copyright 2022 | Adazolhub.com
-                </p>
-              </a>
-            </div>
+            <CustomNavLink to="cart" onClick={handleOpenMenu}>
+              <SideNavButton Icon={ShoppingBagIcon} name={"Cart"} />
+            </CustomNavLink>
+
+            <CustomNavLink to="notifications" onClick={handleOpenMenu}>
+              <SideNavButton Icon={BellIcon} name={"Notification"} />
+            </CustomNavLink>
+
+            <CustomNavLink to="about" onClick={handleOpenMenu}>
+              <SideNavButton Icon={InformationCircleIcon} name={"About"} />
+            </CustomNavLink>
+          </div>
+        </div>
+
+        <div className="side-footer">
+          <hr className="mb-2" />
+          <div className="flex flex-col gap-2">
+            <CustomNavLink to="account" onClick={handleOpenMenu}>
+              <SideNavButton Icon={UserIcon} name={"Account"} />
+            </CustomNavLink>
+
+            {currentUser && (
+              <button
+                className="flex items-center justify-between gap-4 p-4 text-xs rounded-md shadow-inner bg-gray-50"
+                onClick={() => {
+                  logout();
+                  handleOpenMenu();
+                }}
+              >
+                <div className="flex items-center gap-4">
+                  <LogoutIcon className="w-4 text-gray-400 -h-4" />{" "}
+                  <p className="text-gray-600">Logout</p>
+                </div>
+              </button>
+            )}
+          </div>
+          <div className="mt-10">
+            <a href="https://adazolhub.com" target="_blank" rel="noreferrer">
+              <p className="text-[0.65em] text-center text-gray-400">
+                © Copyright 2022 | Adazolhub.com
+              </p>
+            </a>
           </div>
         </div>
       </AnimatedSideBar>
@@ -104,7 +102,7 @@ function AnimatedSideBar({ isOpen, handleOpenMenu, children }) {
     open: {
       opacity: 1,
       backgroundColor: "hsla(215, 28%, 17%, 0.7)",
-      backdropFilter: "blur(4px)",
+      backdropFilter: "blur(1px)",
       display: "block",
     },
     closed: {
@@ -115,7 +113,7 @@ function AnimatedSideBar({ isOpen, handleOpenMenu, children }) {
     },
   };
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence>
       <motion.div
         key={"2"}
         variants={backdrop}
@@ -123,20 +121,18 @@ function AnimatedSideBar({ isOpen, handleOpenMenu, children }) {
         className="fixed top-0 left-0 z-50 w-full h-full overflow-hidden cursor-pointer sm:hidden"
         onClick={handleOpenMenu}
       ></motion.div>
-      <motion.nav
-        key={"1"}
-        drag={"x"}
-        dragConstraints={{ right: 0, left: 0 }}
-        className="fixed top-0 left-0 z-50 block w-56 h-full sm:hidden"
-        variants={variants}
-        transition={{ type: "tween" }}
-        onDragEnd={(e, info) => {
-          if (info.point.x < 40) handleOpenMenu();
-        }}
-        animate={isOpen ? "open" : "closed"}
+      <div
+        className={[
+          "fixed top-0 left-0 z-50 block w-56 h-full sm:hidden transition-transform",
+          isOpen ? "translate-x-0" : "-translate-x-full",
+        ].join(" ")}
       >
-        {children}
-      </motion.nav>
+        <nav
+          className="relative top-0 z-50 flex flex-col justify-between w-full h-full p-4 bg-white shadow-md select-none rounded-r-md before:absolute before:w-full before:h-full before:bg-white before:-translate-x-full before:top-0 "
+        >
+          {children}
+        </nav>
+      </div>
     </AnimatePresence>
   );
 }
@@ -162,7 +158,7 @@ function CustomNavLink({ to, onClick, children }) {
       activeClassName="bg-gray-700 text-gray-200 shadow"
       inactiveClassName="hover:bg-gray-100 hover:shadow"
       onClick={onClick}
-      className="flex items-center justify-between gap-4 px-4 py-4 text-xs rounded-md cursor-pointer whitespace-nowrap text-gray-500/80 group"
+      className="flex items-center justify-between gap-4 px-4 py-4 text-xs transition-colors rounded-md cursor-pointer whitespace-nowrap text-gray-500/80 group"
     >
       {children}
     </NavLink>

@@ -10,7 +10,6 @@ const ScrollToTop = ({ children }) => {
     pathname === "/checkout"
   ) {
     window.scrollTo(0, 0);
-    console.log("scrolled");
   }
 
   return <> {children}</>;

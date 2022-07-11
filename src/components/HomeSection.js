@@ -25,7 +25,7 @@ function Tabs() {
   return (
     <div
       className={[
-        "sticky z-40 px-2 mt-2 text-xs font-thin text-center text-gray-400 bg-gray-100 border-b-2 border-gray-100  dark:border-gray-300 lg:col-span-2 lg:col-start-1 mb-[1px]",
+        "sticky z-40 px-2 mt-2 text-xs font-thin text-center text-gray-400 bg-gray-100  lg:col-span-2 lg:col-start-1 mb-[1px] drop-shadow-md",
         toggleHeadNotify ? "top-20" : "top-11",
       ].join(" ")}
     >
