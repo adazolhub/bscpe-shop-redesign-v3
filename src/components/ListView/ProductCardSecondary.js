@@ -8,6 +8,7 @@ const ProductCardSecondary = ({
   description,
   image,
   price,
+  ...props
 }) => {
   let { products, addToCart, removeFromCart } = ShopState();
   let [isInCart, setIsInCart] = useState(false);
@@ -40,6 +41,7 @@ const ProductCardSecondary = ({
       whileTap={{ scale: 0.97 }}
       whileFocus={{ scale: 1.03 }}
       className="flex w-full min-w-full overflow-hidden bg-white border border-transparent rounded-lg hover:bg-gray-50 hover:shadow-lg md:min-h-90 hover:border-gray-300 group"
+      {...props}
     >
       <div className="flex flex-col justify-between w-full gap-2 p-4 min-h-72 ">
         <div className="flex flex-col gap-2">

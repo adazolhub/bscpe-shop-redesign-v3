@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 import ShopState from "../../lib/ShopState";
 
-const ProductCard = ({ product_id, name, image, price }) => {
+const ProductCard = ({ product_id, name, image, price, ...props }) => {
   let { products, addToCart, removeFromCart } = ShopState();
   let [isInCart, setIsInCart] = useState(false);
 
@@ -36,6 +36,7 @@ const ProductCard = ({ product_id, name, image, price }) => {
       whileTap={{ scale: 0.97 }}
       whileFocus={{ scale: 1.03 }}
       className="relative grid w-full min-w-full overflow-hidden rounded-md h-60 place-content-center hover:shadow-md group"
+      
     >
       <img
         className="object-cover w-full h-full transition-all duration-300 scale-100 opacity-100 hover:opacity-70 group-hover:scale-110 bg-blend-darken"
@@ -55,7 +56,9 @@ const ProductCard = ({ product_id, name, image, price }) => {
           {/* <button className="w-full px-4 py-1 text-sm text-gray-100 border rounded-md whitespace-nowrap border-gray-300/10 bg-gray-100/5 backdrop-blur-sm">
           Buy now
         </button> */}
-          <div className="w-full p-2">
+          <div className="w-full p-2"
+          {...props}
+          >
             <p className="text-sm font-bold text-yellow-600">
               PHP {Math.floor(price - price * 0.4)}{" "}
             </p>
