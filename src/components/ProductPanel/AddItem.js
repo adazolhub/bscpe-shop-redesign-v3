@@ -33,6 +33,8 @@ const AddItem = () => {
     "product-image": null,
     "image-name": null,
     "product-category": "men",
+    "size": [],
+    "color": [],
   });
 
   //image cropper config

@@ -114,7 +114,8 @@ const StepForm = () => {
 };
 
 function EmailDetails({ nextStep, prevStep, handleChange, values }) {
-  let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  // /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  let regex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/g;
   let navigate = useNavigate();
 
   let [error, setError] = useState(null);

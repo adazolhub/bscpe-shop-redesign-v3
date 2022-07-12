@@ -13,4 +13,6 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app)
 const db = getFirestore(app)
 const storage = getStorage(app);
+
+console.log(analytics.app.name)
 export { auth, db, storage }
