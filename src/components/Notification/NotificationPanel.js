@@ -1,6 +1,5 @@
 import React from "react";
 import { BellIcon } from "@heroicons/react/outline";
-import MenuModalFull from "../Overlay/MenuModalFull";
 import WrapperScroll from "../Overlay/WrapperScroll";
 
 const NotificationPanel = () => {

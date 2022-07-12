@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UserAuth } from "../../../lib/Auth";
 import WrapperScroll from "../../Overlay/WrapperScroll";
 import SubContainer from "./SubContainer";
@@ -6,18 +6,8 @@ import SubSettingsButton from "./SubSettingsButton";
 import {
   ExclamationCircleIcon,
   PencilAltIcon,
-  ShieldExclamationIcon,
 } from "@heroicons/react/outline";
-import {
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import { db } from "../../../auth/firebase";
-import config from "../../../config.json";
+
 import Modal from "../../Overlay/Modal";
 import VirtualCard from "../VirtualCreditCard/VirtualCard";
 import AccountState from "../../../lib/AccountState";

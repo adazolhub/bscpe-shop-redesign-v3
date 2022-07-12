@@ -1,5 +1,5 @@
 import { PencilAltIcon } from "@heroicons/react/outline";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UserAuth } from "../../../lib/Auth";
 import WrapperScroll from "../../Overlay/WrapperScroll";
 import SubContainer from "./SubContainer";
@@ -199,10 +199,10 @@ function AddForm({ toggle, toggleHandler, address }) {
               className="btn-primary"
               disabled={
                 addressInfo?.recipient ||
-                addressInfo?.address ||
-                addressInfo?.city ||
-                addressInfo?.zipcode ||
-                addressInfo?.contact
+                  addressInfo?.address ||
+                  addressInfo?.city ||
+                  addressInfo?.zipcode ||
+                  addressInfo?.contact
                   ? false
                   : true
               }
@@ -216,10 +216,10 @@ function AddForm({ toggle, toggleHandler, address }) {
               className="btn-primary"
               disabled={
                 addressInfo?.recipient &&
-                addressInfo?.address &&
-                addressInfo?.city &&
-                addressInfo?.zipcode &&
-                addressInfo?.contact
+                  addressInfo?.address &&
+                  addressInfo?.city &&
+                  addressInfo?.zipcode &&
+                  addressInfo?.contact
                   ? false
                   : true
               }

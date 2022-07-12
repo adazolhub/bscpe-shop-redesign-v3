@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import MenuModal from "../Overlay/MenuModal";
 
 const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
@@ -8,28 +7,44 @@ const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
     <>
       <MenuModal modalToggle={toggleItem} modalToggleHandler={toggleItemHandler}>
         <div>
-          <button className='btn-primary'>Check details</button>
-          <p>{product?.product_name}</p>
+          <div className="flex justify-between mb-4">
+            <p>{product?.product_name}</p>
+            <button className='btn-primary'>Check details</button>
+
+          </div>
 
           <div className="flex gap-2">
             <img src={product?.product_image} alt={product?.product_name}
               className="object-cover w-56 rounded-md h-52"
             />
-            <div className="flex flex-col gap-2 ">
-              <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
-                <img src={product?.product_image} alt={product?.product_name}
-                  className="object-cover w-full h-full mix-blend-multiply"
-                />
-              </div>
-              <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
-                <img src={product?.product_image} alt={product?.product_name}
-                  className="object-cover w-full h-full mix-blend-multiply "
-                />
-              </div>
-              <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
-                <img src={product?.product_image} alt={product?.product_name}
-                  className="object-cover w-full h-full mix-blend-multiply "
-                />
+            <div className="overflow-hidden overflow-y-scroll h-52">
+              <div className='flex flex-col w-full gap-2'>
+                <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
+                  <img src={product?.product_image} alt={product?.product_name}
+                    className="object-cover w-full h-full mix-blend-multiply"
+                  />
+                </div>
+                <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
+                  <img src={product?.product_image} alt={product?.product_name}
+                    className="object-cover w-full h-full mix-blend-multiply "
+                  />
+                </div>
+                <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
+                  <img src={product?.product_image} alt={product?.product_name}
+                    className="object-cover w-full h-full mix-blend-multiply "
+                  />
+                </div>
+                <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
+                  <img src={product?.product_image} alt={product?.product_name}
+                    className="object-cover w-full h-full mix-blend-multiply "
+                  />
+                </div>
+                <div className="w-24 h-16 overflow-hidden bg-gray-600 rounded-md">
+                  <img src={product?.product_image} alt={product?.product_name}
+                    className="object-cover w-full h-full mix-blend-multiply "
+                  />
+                </div>
+
               </div>
 
             </div>

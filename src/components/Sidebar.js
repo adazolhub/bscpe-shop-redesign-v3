@@ -94,10 +94,10 @@ function Sidebar({ isOpen, setOpen }) {
 }
 
 function AnimatedSideBar({ isOpen, handleOpenMenu, children }) {
-  const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 1, x: "-100%" },
-  };
+  // const variants = {
+  //   open: { opacity: 1, x: 0 },
+  //   closed: { opacity: 1, x: "-100%" },
+  // };
   const backdrop = {
     open: {
       opacity: 1,

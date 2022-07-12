@@ -1,16 +1,13 @@
-import { ChevronDownIcon, GlobeIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon } from "@heroicons/react/outline";
 import React, { useCallback, useState } from "react";
 import { ToggleState } from "../../lib/ToggleState";
-import Modal from "../Overlay/Modal";
-import { motion } from "framer-motion";
+
+
 import { db, storage } from "../../auth/firebase";
 import {
   addDoc,
-  setDoc,
   collection,
-  serverTimestamp,
-  doc,
-  getDoc,
+  serverTimestamp
 } from "firebase/firestore";
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";

@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ToggleContext = createContext();
 
@@ -18,7 +18,6 @@ function categorySetter(pathname) {
 
 export const ToggleStateProvider = ({ children }) => {
   let [modalToggle, setModalToggle] = useState(false);
-  let navigate = useNavigate();
 
   let modalToggleHandler = () => {
     setModalToggle((prev) => !prev);

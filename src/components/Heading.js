@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Link,
-  Outlet,
   useLocation,
-  useNavigate,
-  useResolvedPath,
+  useNavigate
 } from "react-router-dom";
 
 import { UserAuth } from "../lib/Auth";
@@ -15,7 +12,6 @@ import { NavLink } from "../pages/Home";
 import ShopState from "../lib/ShopState";
 import { ToggleState } from "../lib/ToggleState";
 import {
-  DotsVerticalIcon,
   MenuIcon,
   XIcon,
   BellIcon,

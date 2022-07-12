@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./style/index.css";
 import Home from "./pages/Home";
 import { BrowserRouter } from "react-router-dom";
-import Modal from "./components/Overlay/Modal";
 import { ToggleStateProvider } from "./lib/ToggleState";
 import { AuthProvider } from "./lib/Auth";
 import { ShopStateProvider } from "./lib/ShopState";
@@ -20,7 +19,7 @@ root.render(
           <Suspense fallback={<Loader />}>
             <ShopStateProvider>
               <ToggleStateProvider>
-                
+
                 <Home />
               </ToggleStateProvider>
             </ShopStateProvider>

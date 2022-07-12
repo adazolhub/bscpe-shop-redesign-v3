@@ -1,19 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../lib/Auth";
-import { fromUnixTime, formatRelative } from "date-fns";
-
 import User from "./User";
 import {
-  BellIcon,
-  UserIcon,
-  ShoppingBagIcon,
-  ChevronRightIcon,
-  CreditCardIcon,
-  MapIcon,
-  ShieldExclamationIcon,
-  ExclamationCircleIcon,
+  BellIcon
 } from "@heroicons/react/outline";
-import Settings from "./Settings";
 import { ToggleState } from "../../lib/ToggleState";
 import ScrollToTop from "../../utils/ScrollToTop";
 
@@ -23,7 +12,7 @@ const Profile = () => {
   return (
     <div className="flex flex-col w-full max-w-screen-sm gap-4 px-4 py-4 mx-auto text-gray-600 lg:max-w-screen-lg bg-slate-100">
       <div className="flex justify-between w-full">
-      <ScrollToTop />
+        <ScrollToTop />
         <User />
         <button>
           <BellIcon

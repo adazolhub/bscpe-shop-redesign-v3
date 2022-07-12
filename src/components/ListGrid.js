@@ -112,7 +112,6 @@ function WithProps({ data, currentUser = null }) {
 
 function WithoutProps() {
   let { category, toggleListGrid: toggleList } = ToggleState();
-  let [cart, setCart] = useState([]);
   let { products } = ShopState();
 
   return (

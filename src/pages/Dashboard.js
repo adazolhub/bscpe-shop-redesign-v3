@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AddItem from "../components/ProductPanel/AddItem";
-import RemoveItem from "../components/ProductPanel/RemoveItem";
-import { ToggleState, ToggleStateProvider } from "../lib/ToggleState";
+
+import { ToggleState } from "../lib/ToggleState";
 import {
-  addDoc,
   collection,
-  serverTimestamp,
   doc,
   onSnapshot,
-  getDoc,
-  getDocs,
   query,
   where,
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import { UserAuth } from "../lib/Auth";
-import { getInitialAuthState } from "../lib/AuthState";
-import { suspend } from "suspend-react";
 import { Outlet } from "react-router-dom";
-import { NavLink } from "./Home";
-import ProductDash from "../components/ProductPanel/ProductDash";
-import { TrashIcon, XCircleIcon, XIcon } from "@heroicons/react/outline";
+import { TrashIcon, XIcon } from "@heroicons/react/outline";
 import Modal from "../components/Overlay/Modal";
 
 let docRef = collection(db, "products");
@@ -115,7 +107,7 @@ const Dashboard = () => {
           </button>
           <button className="btn-primary"> Modal</button>
           <ListProduct id={user.uid} list={list} handleToggle={handleToggle} />
-          
+
           <Outlet />
         </section>
       </div>
@@ -131,9 +123,7 @@ const Dashboard = () => {
 };
 
 const ListProduct = ({ list = [], handleToggle }) => {
-  let handleDelete = (id) => {
-    deleteDoc(doc(db, "products", id));
-  };
+
   return (
     <>
       <ul className="flex flex-col gap-2 mb-2 text-gray-400">

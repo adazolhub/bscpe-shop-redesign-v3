@@ -1,8 +1,6 @@
 import {
-  SelectorIcon,
   ViewBoardsIcon,
   ViewGridIcon,
-  ViewListIcon,
 } from "@heroicons/react/solid";
 import React from "react";
 import { ToggleState } from "../../lib/ToggleState";

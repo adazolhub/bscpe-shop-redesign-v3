@@ -1,4 +1,4 @@
-import { BadgeCheckIcon, XIcon } from "@heroicons/react/outline";
+import { XIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

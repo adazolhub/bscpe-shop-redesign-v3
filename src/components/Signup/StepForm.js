@@ -1,21 +1,18 @@
 import {
   ArrowNarrowLeftIcon,
   ArrowNarrowRightIcon,
-  ArrowSmLeftIcon,
-  ArrowSmRightIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/outline";
 import {
   BadgeCheckIcon,
-  CheckCircleIcon,
   CheckIcon,
 } from "@heroicons/react/solid";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { fetchSignInMethodsForEmail, updateProfile } from "firebase/auth";
 import { auth, db } from "../../auth/firebase";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../lib/Auth";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import config from "../../config.json";
 
 let labels = ["Email", "Basic Information", "Security"];
@@ -205,18 +202,18 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }) {
     if (values.username.length < 5)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            username: "Unable to validate username/display_name",
-          })
+        (prev = {
+          ...prev,
+          username: "Unable to validate username/display_name",
+        })
       );
     if (values.fullname.length < 6)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            fullname: "Unable to validate fullname",
-          })
+        (prev = {
+          ...prev,
+          fullname: "Unable to validate fullname",
+        })
       );
 
     setError((prev) => (prev = { username: null, fullname: null }));
@@ -323,36 +320,36 @@ function SecurityDetails({
     if (passLength)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            password: "Must contain at least 8 or more characters",
-          })
+        (prev = {
+          ...prev,
+          password: "Must contain at least 8 or more characters",
+        })
       );
     if (passNotLower)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            password: "Must contain uppercase/capital characters",
-          })
+        (prev = {
+          ...prev,
+          password: "Must contain uppercase/capital characters",
+        })
       );
 
     if (passNotUpper)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            password: "Must contain uppercase/capital characters",
-          })
+        (prev = {
+          ...prev,
+          password: "Must contain uppercase/capital characters",
+        })
       );
 
     if (passNotNumber)
       return setError(
         (prev) =>
-          (prev = {
-            ...prev,
-            password: "Must contain at least 1 numeric value",
-          })
+        (prev = {
+          ...prev,
+          password: "Must contain at least 1 numeric value",
+        })
       );
 
     if (passNotMatch)
@@ -415,14 +412,14 @@ function SecurityDetails({
 
     setStepper(
       (prev) =>
-        (prev = {
-          step: 1,
-          email: "",
-          username: "",
-          fullname: "",
-          password: "",
-          confirm_password: "",
-        })
+      (prev = {
+        step: 1,
+        email: "",
+        username: "",
+        fullname: "",
+        password: "",
+        confirm_password: "",
+      })
     );
   };
 
@@ -447,8 +444,8 @@ function SecurityDetails({
             error?.password
               ? "border-rose-500/30"
               : passLength || passNotLower || passNotUpper || passNotNumber
-              ? "border-gray-400/30"
-              : "border-emerald-600/30"
+                ? "border-gray-400/30"
+                : "border-emerald-600/30"
           }
           onChange={(e) => {
             setError((prev) => (prev = { ...prev, password: null }));
@@ -470,8 +467,8 @@ function SecurityDetails({
             error?.confirm_password
               ? "border-rose-400/30"
               : passNotMatch
-              ? "border-gray-400/30"
-              : "border-emerald-600/30"
+                ? "border-gray-400/30"
+                : "border-emerald-600/30"
           }
           onChange={(e) => {
             setError((prev) => (prev = { ...prev, confirm_password: null }));

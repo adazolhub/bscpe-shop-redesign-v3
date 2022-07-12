@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import ShopState from "../../lib/ShopState";
 import { ToggleState } from "../../lib/ToggleState";
 import ScrollToTop from "../../utils/ScrollToTop";
-import WrapperScroll from "../Overlay/WrapperScroll";
 
 const ShoppingCart = () => {
   let { products: list, total, removeFromCart } = ShopState();
@@ -13,7 +12,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-    <ScrollToTop />
+      <ScrollToTop />
       <>
         <div className="container relative p-2 mx-auto  max-h-[calc(100vh-4em)] overflow-hidden overflow-y-scroll">
           <ul className="flex flex-col gap-2 pb-4 min-h-[calc(100vh-18em)] max-h-[calc(100vh-16em)]">

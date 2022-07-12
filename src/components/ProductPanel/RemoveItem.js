@@ -1,8 +1,7 @@
 import { deleteDoc, doc } from "firebase/firestore";
-import React, { useState } from "react";
+import React from "react";
 import { db } from "../../auth/firebase";
-import { ToggleState } from "../../lib/ToggleState";
-import MenuModal from "../Overlay/MenuModal";
+
 import Modal from "../Overlay/Modal";
 
 const RemoveItem = ({ modalToggle, modalToggleHandler }) => {

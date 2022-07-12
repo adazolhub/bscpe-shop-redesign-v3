@@ -9,12 +9,10 @@ import MenuModal from "./MenuModal";
 import { AnimatePresence, motion } from "framer-motion";
 import ShopState from "../../lib/ShopState";
 import { useNavigate } from "react-router-dom";
-import { ToggleState } from "../../lib/ToggleState";
 import PaymentMethod from "../Checkout/PaymentMethod";
-const CartOverlay = ({ cart, removeToCart }) => {
+const CartOverlay = () => {
   let [toggleCart, setToggleCart] = useState(false);
   let { products, removeFromCart, total } = ShopState();
-  let { checkoutToggle, checkoutToggleHandler } = ToggleState();
 
   let navigate = useNavigate();
 

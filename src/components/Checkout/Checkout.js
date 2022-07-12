@@ -7,23 +7,18 @@ import {
   PencilAltIcon,
   PhoneIcon,
   TruckIcon,
-  UserIcon,
 } from "@heroicons/react/outline";
 import { CheckCircleIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import AccountState from "../../lib/AccountState";
 import ShopState from "../../lib/ShopState";
-import { ToggleState } from "../../lib/ToggleState";
 import ScrollToTop from "../../utils/ScrollToTop";
-import Modal from "../Overlay/Modal";
 import VirtualCard from "../UserProfile/VirtualCreditCard/VirtualCard";
 
 const Checkout = () => {
-  let { products, total } = ShopState();
   let { payment } = AccountState();
   let navigate = useNavigate();
-  let { settingToggle, settingToggleHandler } = ToggleState();
 
   return (
     <>

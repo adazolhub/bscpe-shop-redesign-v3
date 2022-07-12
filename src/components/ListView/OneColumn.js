@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { UserAuth } from "../../lib/Auth";
 import ProductCardSecondary from "./ProductCardSecondary";
 

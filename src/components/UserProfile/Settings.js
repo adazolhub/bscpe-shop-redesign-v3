@@ -12,16 +12,13 @@ import React from "react";
 import {
   Outlet,
   useNavigate,
-  useParams,
-  use,
-  useLocation,
 } from "react-router-dom";
 import { UserAuth } from "../../lib/Auth";
 import { ToggleState } from "../../lib/ToggleState";
 import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
 
 const Settings = () => {
-  let location = useLocation();
+
   const { currentUser, logout } = UserAuth();
   let { settingToggle, settingToggleHandler } = ToggleState();
   scrollDisableOnOverlay(settingToggle);

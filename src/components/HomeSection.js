@@ -4,9 +4,9 @@ import Trending from "./Trending";
 import { Outlet } from "react-router-dom";
 import { NavLink } from "../pages/Home";
 import { ToggleState } from "../lib/ToggleState";
-import ItemModal from "./Product/ItemModal";
 
-const HomeSection = ({ user }) => {
+
+const HomeSection = () => {
   return (
     <div className="container gap-4 mx-auto min-h-fit top-11" id="home">
       <div className="grid w-full py-2 mx-auto sm:container lg:gap-4 lg:grid-cols-main-aside lg:grid-rows-main-aside">

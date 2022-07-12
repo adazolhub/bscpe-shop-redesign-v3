@@ -73,7 +73,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     // setCurrentUser(null);
     return signOut(auth).then(() => {
-      localStorage.setItem("user-logged-in", "no");
+      setIsLoggedIn(
+        localStorage.setItem("user-logged-in", "no")
+      )
       setPrivateUser(null);
     });
   };
@@ -83,9 +85,13 @@ export const AuthProvider = ({ children }) => {
     let unsubscribe = getUser(auth);
 
     return () => {
-      localStorage.setItem("user-logged-in", "no");
+      setIsLoggedIn(
+
+        localStorage.setItem("user-logged-in", "no")
+      )
       unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let [list, setList] = useState([]);

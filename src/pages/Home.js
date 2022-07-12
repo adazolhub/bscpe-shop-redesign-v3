@@ -1,5 +1,3 @@
-import { memo, Suspense } from "react";
-import Footer from "../components/Footer";
 import Heading from "../components/Heading";
 import HomeSection from "../components/HomeSection";
 import {
@@ -28,7 +26,6 @@ import Checkout from "../components/Checkout/Checkout";
 import CartWrapper from "../components/Cart/CartWrapper";
 import StepForm from "../components/Signup/StepForm";
 import Completed from "../components/Signup/Completed";
-import Loader from "../components/Loader";
 import { getInitialAuthState } from "../lib/AuthState";
 import { suspend } from "suspend-react";
 

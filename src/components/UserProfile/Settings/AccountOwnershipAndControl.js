@@ -1,5 +1,4 @@
 import {
-  ChevronRightIcon,
   FingerPrintIcon,
   TrashIcon,
 } from "@heroicons/react/outline";

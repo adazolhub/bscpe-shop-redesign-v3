@@ -1,18 +1,12 @@
 import {
   ArrowLeftIcon,
-  ChevronLeftIcon,
-  XIcon,
 } from "@heroicons/react/outline";
 import {
   AnimatePresence,
   motion,
-  useAnimation,
   useMotionValue,
-  useTransform,
 } from "framer-motion";
-import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
 
-import useMeasure from "react-use-measure";
 import { useNavigate } from "react-router-dom";
 const modal = {
   open: { opacity: 1, x: 0 },
