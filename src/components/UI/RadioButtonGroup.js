@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const RadioButtonGroup = ({ values, selectedOption, setSelectedOption, children, type = "" }) => {
 
@@ -6,7 +6,6 @@ const RadioButtonGroup = ({ values, selectedOption, setSelectedOption, children,
     let handleOptionChange = event => {
         setSelectedOption(event.target.value)
     }
-    console.log(selectedOption)
     return (
         <>
             {values?.map(value => (

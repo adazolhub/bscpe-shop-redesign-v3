@@ -56,9 +56,9 @@ const Heading = () => {
           </div>
           <div className="logo flex leading-[0.6em] my-auto">
             {pathname === "/1" ||
-            pathname === "/2" ||
-            pathname === "/" ||
-            pathname === "/notification" ? (
+              pathname === "/2" ||
+              pathname === "/" ||
+              pathname === "/notification" ? (
               <>
                 <h1 className="whitespace-nowrap ">BSCPE STORE</h1>
                 <span className="bg-gray-100 px-1 rounded-md font-light text-emerald-500 text-[0.6em] ml-1 border border-gray-300 mb-1">

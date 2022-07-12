@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { NavLink } from "../../pages/Home";
+import { NavLink } from "../../utils/NavLink";
 
 const ProductDash = () => {
   return (
