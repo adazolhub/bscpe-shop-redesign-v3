@@ -42,12 +42,17 @@ const CartOverlay = () => {
             className="flex items-center gap-4 text-gray-500"
             onClick={handleToggleCart}
           >
-            <ShoppingBagIcon className="w-5 h-5" />
+            <div className="relative">
+
+              <ShoppingBagIcon className="w-5 h-5" />
+              {products.length > 0 && (
+                <div className="absolute -top-2 -right-2 px-1 py-[1px] rounded-full bg-gray-700 text-white leading-3 text-[0.62em] ">
+                  <p className="w-[2ch] text-center">{products.length}</p>
+                </div>
+              )}
+            </div>
             <p className="text-sm ">
-              Item added to cart{" "}
-              <span className="font-bold text-gray-500">
-                ({products?.length})
-              </span>
+              Item added to cart
             </p>
           </div>
           <ChevronUpIcon className="w-5 h-5" onClick={handleToggleCart} />
@@ -88,7 +93,7 @@ const CartOverlay = () => {
                       whileHover={{ scale: 1.01 }}
                       drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
-                      className="flex items-center justify-between px-2 py-3 border border-gray-400 border-dashed rounded-md"
+                      className="flex items-center justify-between p-2 border border-gray-400 border-dashed rounded-md"
                     >
                       <div className="flex items-center gap-2">
                         <img
@@ -101,7 +106,7 @@ const CartOverlay = () => {
                             {item.name}
                           </h3>
                           <p className="text-xs font-thin text-gray-400 whitespace-nowrap  w-[25ch] overflow-hidden text-ellipsis">
-                            PHP item.price{" "}
+                            P {item.price}{" "}
                             <span className="text-[0.75em] ml-2">40% OFF</span>
                           </p>
                         </div>

@@ -9,8 +9,18 @@ import {
 
 import { useNavigate } from "react-router-dom";
 const modal = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 1, x: "100%" },
+  open: {
+    opacity: 1, x: 0, transition: {
+      duration: 0.4,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
+  },
+  closed: {
+    opacity: 1, x: "100%", transition: {
+      duration: 0.3,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
+  },
 };
 const backdrop = {
   open: {
@@ -18,12 +28,20 @@ const backdrop = {
     // backgroundColor: "hsla(215, 28%, 17%, 0.7)",
     backdropFilter: "blur(4px)",
     display: "block",
+    transition: {
+      duration: 0.4,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
   },
   closed: {
     opacity: 0,
     // backgroundColor: "hsla(215, 0%, 0%, 0)",
     backdropFilter: "blur(0px)",
     display: "none",
+    transition: {
+      duration: 0.3,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
   },
 };
 

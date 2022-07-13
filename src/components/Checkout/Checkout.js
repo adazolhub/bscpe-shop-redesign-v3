@@ -51,7 +51,7 @@ const Checkout = () => {
           <OrderSection />
         </div>
 
-        <div className="relative bottom-0 flex flex-col w-full gap-2 p-2 text-xs bg-white">
+        <div className="relative bottom-0 flex flex-col w-full gap-2 p-2 text-xs bg-gray-100">
           <button className="flex-1 btn-primary whitespace-nowrap">
             Confirm checkout
           </button>

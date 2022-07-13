@@ -30,6 +30,7 @@ import { getInitialAuthState } from "../lib/AuthState";
 import { suspend } from "suspend-react";
 import NotFound from "../components/PageNotFound/NotFound";
 import ProductMain from "../components/Product/ProductMain";
+import Footer from "../components/Footer"
 
 export function NavLink({
   to,
@@ -73,7 +74,7 @@ const Home = () => {
           <CartWrapper />
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </>
     </>
   );

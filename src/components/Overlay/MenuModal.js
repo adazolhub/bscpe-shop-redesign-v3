@@ -2,20 +2,38 @@ import { AnimatePresence, motion } from "framer-motion";
 import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
 
 const modal = {
-  open: { opacity: 1, y: 0 },
-  closed: { opacity: 0, y: "100%" },
+  open: {
+    opacity: 1, y: 0, transition: {
+      duration: 0.4,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
+  },
+  closed: {
+    opacity: 0, y: "100%", transition: {
+      duration: 0.3,
+      ease: [0.36, 0.66, 0.04, 1]
+    }
+  },
 };
 const backdrop = {
   open: {
     opacity: 1,
     backgroundColor: "hsla(215, 28%, 17%, 0.7)",
-    backdropFilter: "blur(4px)",
+    backdropFilter: "blur(2px)",
+    transition: {
+      duration: 0.4,
+      ease: [0.36, 0.66, 0.04, 1]
+    },
     display: "block",
   },
   closed: {
     opacity: 0,
     backgroundColor: "hsla(215, 0%, 0%, 0)",
     backdropFilter: "blur(0px)",
+    transition: {
+      duration: 0.3,
+      ease: [0.36, 0.66, 0.04, 1]
+    },
     display: "none",
   },
 };
