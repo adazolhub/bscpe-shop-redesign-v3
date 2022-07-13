@@ -84,6 +84,10 @@ const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
       name: product?.product_name,
       image: product?.product_image,
       price: Math.floor(product?.product_price - (product?.product_price * 0.4)),
+      color: selectedColorOption,
+      size: selectedSizeOption,
+      quantity
+
     };
     if (isInCart) {
       removeFromCart(prodItem);
@@ -92,22 +96,29 @@ const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
     }
   };
 
+  let handleChange = (event) => {
+    setQuantity(event?.target?.value)
+  }
 
   return (
     <>
       <MenuModal modalToggle={toggleItem} modalToggleHandler={toggleItemHandler}>
         <div className="mb-2 space-y-4">
-          <div className="flex items-start justify-between gap-4 mb-4">
-            <div className="text-gray-500">
-              <p className="px-2 py-[3px] rounded-md text-emerald-600 font-medium text-[0.6em] bg-emerald-200/40 w-fit mb-1">New</p>
-              <p>{product?.product_name}</p>
+          <div className="gap-4 mb-4 space-y-2">
+            <div className="flex items-end justify-between text-gray-500">
+              <div className="flex gap-1">
+
+                <span className="px-2 py-[3px] rounded-md text-emerald-600 font-medium text-[0.6em] bg-emerald-200/40 w-fit mb-1">New</span>
+                <span className="px-2 py-[3px] rounded-md text-blue-600 font-medium text-[0.6em] bg-blue-200/40 w-fit mb-1">Sale</span>
+              </div>
+              <button className='flex items-center gap-2 px-4 py-2 text-xs text-gray-600 border border-dashed rounded-md border-gray-400/60 whitespace-nowrap'
+                onClick={() => {
+                  toggleItemHandler()
+                  navigate(`product/${product?.product_id}`)
+                }}
+              >Product details <span><ChevronRightIcon className="w-4 h-4" /></span></button>
             </div>
-            <button className='flex items-center gap-2 px-4 py-1 text-gray-600 border border-dashed rounded-md border-gray-400/60 whitespace-nowrap'
-              onClick={() => {
-                toggleItemHandler()
-                navigate(`product/${product?.product_id}`)
-              }}
-            >Details <span><ChevronRightIcon className="w-4 h-4" /></span></button>
+            <p>{product?.product_name}</p>
 
           </div>
 
@@ -166,18 +177,18 @@ const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
             </div>
             <div>
               <p className="text-gray-400/80">Quantity</p>
-              <ul className="flex mt-1">
+              <ul className="flex mt-3">
 
                 <button onClick={() => minusQuantity()}>
-                  <li className="p-1">
+                  <li className="p-2">
                     <MinusIcon className="w-4 h-4" />
                   </li>
                 </button>
                 <li>
-                  <input type="text" name="quantity" maxLength={2} max={2} value={quantity} className='w-[4ch] border rounded-sm text-center py-1 px-1' />
+                  <input type="number" name="quantity" maxLength={2} max={2} pattern="[0-9]{2}" value={quantity} onChange={handleChange} className='w-[6ch] border rounded-sm text-center py-2 px-0' />
                 </li>
                 <button onClick={() => addQuantity()}>
-                  <li className="p-1">
+                  <li className="p-2">
                     <PlusIcon className="w-4 h-4" />
                   </li>
                 </button>

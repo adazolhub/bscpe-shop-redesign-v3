@@ -173,7 +173,7 @@ function OrderSection() {
                 key={product?.product_id}
                 className="flex gap-2 p-1 border border-gray-300 border-dashed rounded-md"
               >
-                <div className="w-10 h-10">
+                <div className="w-14 h-14">
                   <img
                     src={product?.image}
                     alt={product?.name}
@@ -184,13 +184,34 @@ function OrderSection() {
                   <p className="text-xs font-thin text-gray-500 line-clamp-1">
                     {product?.name}
                   </p>
-                  <p>
-                    {" "}
-                    <span className="font-bold text-gray-600">
-                      PHP {product?.price}.00
-                    </span>{" "}
-                    x 1
-                  </p>
+                  <div className="flex gap-4">
+                    <div>
+                      <span className="text-[0.65em] text-gray-400">Price</span>
+                      <p>
+                        {" "}
+                        <span className="text-xs font-medium text-gray-500">
+                          ₱ {product?.price}.00
+                        </span>{" "}
+                        x {product?.quantity}
+                      </p>
+                    </div>
+                    <div>
+                      <span className="text-[0.65em] text-gray-400">Size</span>
+                      <p>
+                        <span className="font-medium text-gray-500">
+                          {sizeFormater(product?.size)}
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <span className="text-[0.65em] text-gray-400 ">Color</span>
+                      <p>
+                        <span className="mt-2 font-medium text-gray-500">
+                          {colorFormater(product?.color)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
@@ -230,5 +251,35 @@ function AmountInfo() {
     </div>
   );
 }
+
+
+export function sizeFormater(size = "") {
+
+  let label = size?.toLowerCase() === 'small' ? "S"
+    : size?.toLowerCase() === 'medium' ? "M"
+      : size?.toLowerCase() === 'large' ? "L"
+        : "XL"
+
+  return (
+    <div className="grid w-6 h-6 text-center border border-gray-300 rounded place-items-center">
+      <span className="px-1 text-xs leading-4">{label}</span>
+    </div>
+  )
+}
+
+export function colorFormater(color = "") {
+
+  let colorStype = color?.toLowerCase() === 'red' ? "bg-rose-400"
+    : color?.toLowerCase() === 'blue' ? "bg-blue-400"
+      : color?.toLowerCase() === 'green' ? "bg-emerald-400"
+        : "bg-gray-400"
+
+  return (
+    <>
+      <div className={["w-4 h-4 rounded-full m-1", colorStype].join(" ")} >{" "}</div>
+    </>
+  )
+}
+
 
 export default Checkout;

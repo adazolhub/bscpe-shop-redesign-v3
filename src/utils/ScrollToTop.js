@@ -6,7 +6,8 @@ const ScrollToTop = ({ children }) => {
     pathname === "/account" ||
     pathname === "/cart" ||
     pathname === "/notifications" ||
-    pathname === "/checkout"
+    pathname === "/checkout" ||
+    pathname === "/product"
   ) {
     window.scrollTo(0, 0);
   }

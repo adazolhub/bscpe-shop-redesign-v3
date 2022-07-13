@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { UserAuth } from '../../lib/Auth'
 import ShopState from '../../lib/ShopState'
+import ScrollToTop from '../../utils/ScrollToTop'
 import RadioButtonGroup from '../UI/RadioButtonGroup'
 
 const ProductMain = () => {
@@ -82,6 +83,7 @@ const ProductMain = () => {
     let [selectedSizeOption, setSelectedSizeOption] = useState(size[0]?.option)
     return (
         <>
+        <ScrollToTop />
             {product && <div className='sticky top-0 w-full '>
                 {/* <div className='px-4 py-4 bg-white'>
                 <ArrowLeftIcon className="w-5 h-5" />
@@ -93,8 +95,8 @@ const ProductMain = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2 m-4'>
+                        <p className='text-xs font-thin text-gray-400'>SKU: {product?.product_id.toUpperCase()}</p>
                         <h1 className='text-2xl font-bold leading-6'>{product?.product_name}</h1>
-                        <p className='text-xs font-thin'>SKU: {product?.product_id.toUpperCase()}</p>
                         <div className='grid grid-cols-3 gap-1 py-4 text-sm'>
                             <div>
                                 <h3 className='font-medium '>Category:</h3>

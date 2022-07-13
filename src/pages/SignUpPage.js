@@ -14,7 +14,7 @@ const SignUpPage = () => {
       </div>
       {/* LOGIN FORM */}
       <div className="flex col-span-2 lg:col-span-1">
-        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-6em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
+        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-8em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
           <div className="flex flex-col w-full p-4 mx-auto rounded-lg">
             <h1 className="mb-8 text-2xl font-thin text-center text-gray-400">
               Create a new account

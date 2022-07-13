@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ShopState from "../../lib/ShopState";
 import { ToggleState } from "../../lib/ToggleState";
 import ScrollToTop from "../../utils/ScrollToTop";
+import { colorFormater, sizeFormater } from "../Checkout/Checkout";
 
 const ShoppingCart = () => {
   let { products: list, total, removeFromCart } = ShopState();
@@ -38,18 +39,33 @@ const ShoppingCart = () => {
                     <h3 className="mr-8 font-thin text-gray-500 line-clamp-1 sm:line-clamp-3 lg:line-clamp-none">
                       {data.name}
                     </h3>
-
-                    <div className="absolute flex flex-col gap-2 mt-2 text-gray-400 bottom-1">
-                      <p className="text-xs whitespace-nowrap">
-                        Quantity:{" "}
-                        <span className="font-medium text-gray-500/90">1</span>{" "}
-                      </p>
-                      <p className="text-xs whitespace-nowrap">
-                        Price:{" "}
-                        <span className="font-medium text-gray-500">
-                          {data.price}.00 PHP
-                        </span>
-                      </p>
+                    <div className="flex gap-4">
+                      <div>
+                        <span className="text-[0.65em] text-gray-400">Price</span>
+                        <p className="text-sm font-medium text-gray-500">
+                          {" "}
+                          <span>
+                            ₱ {data?.price}.00
+                          </span>{" "}
+                          x {data?.quantity}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-[0.65em] text-gray-400">Size</span>
+                        <p>
+                          <span className="font-medium text-gray-500">
+                            {sizeFormater(data?.size)}
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-[0.65em] text-gray-400 ">Color</span>
+                        <p>
+                          <span className="mt-2 font-medium text-gray-500">
+                            {colorFormater(data?.color)}
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -75,7 +91,7 @@ const ShoppingCart = () => {
               </div>
               <div className="flex justify-between px-4 pb-2 text-gray-400">
                 <p>Total price: </p>
-                <p className="font-medium text-gray-500">PHP {total}.00 </p>
+                <p className="text-sm font-medium text-gray-500">₱ {total}.00 </p>
               </div>
               <div className="flex flex-col ">
                 <button

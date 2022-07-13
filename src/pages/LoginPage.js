@@ -36,7 +36,7 @@ const LoginPage = () => {
   return (
     <div className="grid justify-center w-full md:place-content-start full md:grid-cols-3 lg:grid-cols-2">
       {/* IMAGE ON WIDER SCREEN */}
-      <div className="h-[calc(100%-3em)] my-12 bg-blend-overlay relative  rounded-md overflow-hidden hidden md:block">
+      <div className="h-[calc(100%)] my-12 bg-blend-overlay relative  rounded-md overflow-hidden hidden md:block">
         <img
           className="absolute top-0 left-0 hidden object-cover w-full h-full mb-5 opacity-100 md:block"
           src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -46,7 +46,7 @@ const LoginPage = () => {
       </div>
       {/* LOGIN FORM */}
       <div className="flex col-span-2 lg:col-span-1">
-        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-6em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
+        <div className="flex flex-col justify-between items-center min-h-[calc(100vh-8em)] w-[calc(100vw-2em)] md:w-[calc(90%-2em)] lg:max-w-md mx-auto">
           <div className="flex flex-col w-full p-4 mx-auto rounded-lg">
             <h1 className="mb-8 text-2xl font-thin text-center text-gray-400">
               Welcome back

@@ -149,7 +149,7 @@ const CartOverlay = () => {
                 </div>
                 <div className="flex justify-between text-xs">
                   <p>Total price:</p>
-                  <p>{total}.00 PHP</p>
+                  <p className="text-sm font-medium"> ₱ {total}.00</p>
                 </div>
               </div>
               <button
