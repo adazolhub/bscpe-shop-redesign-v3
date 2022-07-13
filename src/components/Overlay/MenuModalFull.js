@@ -51,6 +51,7 @@ const MenuModalFull = ({
   modalToggleHandler,
   props,
   title,
+  drag
 }) => {
   let navigate = useNavigate();
   let x = useMotionValue(0);
@@ -83,7 +84,7 @@ const MenuModalFull = ({
           <m.div
             {...props}
             key={"5g2"}
-            drag="x"
+            drag={drag ? "x" : "undefined"}
             style={{ x }}
             onDragEnd={(e, info) => {
               if (x.get() > 130) {

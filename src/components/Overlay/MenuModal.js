@@ -51,7 +51,7 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
 
           {/* MODAL BACKDROP */}
           <m.div
-            key={"4g3"}
+            id={"4g3"}
             variants={backdrop}
             transition={{
               delay: 0.3,
@@ -62,7 +62,7 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           />
           {/* MODAL CONTENT */}
           <m.div
-            key={"5g2"}
+            id={"5g2"}
             variants={modal}
             animate={modalToggle ? "open" : "closed"}
             transition={{ type: "tween", duration: 0.4 }}

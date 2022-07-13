@@ -3,22 +3,35 @@ import {
   CreditCardIcon,
   CurrencyDollarIcon,
   DocumentAddIcon,
+  InformationCircleIcon,
   MapIcon,
   PencilAltIcon,
   PhoneIcon,
   TruckIcon,
+  XIcon,
 } from "@heroicons/react/outline";
-import { CheckCircleIcon } from "@heroicons/react/solid";
-import React from "react";
+import { BadgeCheckIcon, CheckCircleIcon } from "@heroicons/react/solid";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AccountState from "../../lib/AccountState";
 import ShopState from "../../lib/ShopState";
 import ScrollToTop from "../../utils/ScrollToTop";
+import MenuModalFull from "../Overlay/MenuModalFull";
+import MiniModal from "../Overlay/MiniModal";
+import Modal from "../Overlay/Modal";
+import ModalFull from "../Overlay/ModalFull";
 import VirtualCard from "../UserProfile/VirtualCreditCard/VirtualCard";
 
 const Checkout = () => {
-  let { payment } = AccountState();
+  let { payment, shipping } = AccountState();
+  console.log("[type] >", shipping)
   let navigate = useNavigate();
+
+  let [checkoutToggle, setCheckoutToggle] = useState(false)
+
+
+  let checkoutToggleHandler = () => setCheckoutToggle(!checkoutToggle)
+
 
   return (
     <>
@@ -52,7 +65,7 @@ const Checkout = () => {
         </div>
 
         <div className="relative bottom-0 flex flex-col w-full gap-2 p-2 text-xs bg-gray-100">
-          <button className="flex-1 btn-primary whitespace-nowrap">
+          <button className="flex-1 btn-primary whitespace-nowrap" onClick={checkoutToggleHandler}>
             Confirm checkout
           </button>
           <button
@@ -65,9 +78,75 @@ const Checkout = () => {
           </button>
         </div>
       </div>
+      <ConfirmationModal checkoutToggle={checkoutToggle} checkoutToggleHandler={checkoutToggleHandler} />
     </>
   );
 };
+
+function ConfirmationModal({ checkoutToggle, checkoutToggleHandler }) {
+  let { shipping } = AccountState();
+  let navigate = useNavigate()
+  return (
+
+    <>
+      {shipping ?
+        <ModalFull title={"Order completed"} modalToggle={checkoutToggle} modalToggleHandler={checkoutToggleHandler}>
+          <div className="grid min-h-screen lg:min-h-fit lg:w-[50em] place-content-start">
+            <button className="p-2 w-fit"
+              onClick={() => navigate("/")}
+            >
+              <span >
+                <XIcon className="w-6 h-6" />
+
+              </span>
+            </button>
+
+            <div className="grid gap-2 px-6 min-h-[calc(100vh-8em)] lg:min-h-0 w-full place-content-center place-items-center">
+              <BadgeCheckIcon className="w-16 h-16 text-emerald-500" />
+              <h1 className="text-xl">Congrats! Order completed.</h1>
+              <p className="text-gray-500/70">
+                You our order number of <span className="text-gray-600 underline underline-offset-2">#3434355</span> is being process for deliver. Expect for your package to be delived with<span className="text-gray-600"> 10-15 business day</span>
+              </p>
+
+              <div className="flex flex-col w-full">
+                <button className="w-full btn-primary" onClick={() => { navigate('/account') }}>Check order status</button>
+              </div>
+            </div>
+          </div>
+        </ModalFull> :
+        <MiniModal modalToggle={checkoutToggle} modalToggleHandler={checkoutToggleHandler}>
+          <div className="flex items-start gap-2">
+            <div>
+              <InformationCircleIcon className="w-6 h-6 text-rose-400" />
+            </div>
+
+            <div className="flex flex-col w-full gap-2">
+              <div className="flex justify-between w-full">
+                <span className="text-sm text-rose-400">Missing shipping address</span>
+                <button onClick={checkoutToggleHandler}>
+                  <span>
+                    <XIcon className="w-5 h-5" />
+                  </span>
+                </button>
+              </div>
+              <div className="w-[calc(100%-2.5em)] text-xs text-gray-400 space-y-2 mb-4">
+                <p>Seems, you haven't setup your shipping address yet. A shipping details is required in order to complete your checkout.</p>
+                <p>You can update or create your shipping details on your profile</p>
+                <code className="block text-[0.8em] p-2 bg-gray-600 text-gray-200 rounded w-full mt-2">Profile {">"} Settings {">"}  Shipping address</code>
+              </div>
+
+              <div className="flex w-[calc(100%-2em)]">
+                <button className="w-full btn-secondary whitespace-nowrap"
+                  onClick={() => { navigate('/account') }}
+                >Update Shipping address</button>
+              </div>
+            </div>
+          </div>
+        </MiniModal>
+      }
+    </>
+  )
+}
 
 function PaymentMethod() {
   return (
