@@ -105,7 +105,7 @@ function ConfirmationModal({ checkoutToggle, checkoutToggleHandler }) {
               <BadgeCheckIcon className="w-16 h-16 text-emerald-500" />
               <h1 className="text-xl">Congrats! Order completed.</h1>
               <p className="text-gray-500/70">
-                You our order number of <span className="text-gray-600 underline underline-offset-2">#3434355</span> is being process for deliver. Expect for your package to be delived with<span className="text-gray-600"> 10-15 business day</span>
+                You our order number of <span className="text-gray-600 underline underline-offset-2">#3434355</span> is being process for deliver. Expect for your package to be delivered within<span className="text-gray-600"> 10-15 business day</span>
               </p>
 
               <div className="flex flex-col w-full">
