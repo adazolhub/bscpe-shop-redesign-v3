@@ -31,18 +31,25 @@ export const ShopStateProvider = ({ children }) => {
 
   const updatePrice = (products) => {
     let total = 0;
-    products.forEach((product) => (total += product.price));
+    let totalQuantity = 0;
+    console.log(products)
+    products.forEach((product) => {
+      (total += (product?.price * product?.quantity))
+      totalQuantity += product?.quantity
+    });
 
     dispatch({
       type: "UPDATE_PRICE",
       payload: {
         total,
+        totalQuantity
       },
     });
   };
 
   let value = {
     total: state.total,
+    totalQuantity: state.totalQuantity,
     products: state.products,
     addToCart,
     removeFromCart,

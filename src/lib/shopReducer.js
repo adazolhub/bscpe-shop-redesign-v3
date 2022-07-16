@@ -21,6 +21,7 @@ const shopReducer = (state, action) => {
       return {
         ...state,
         total: payload.total,
+        totalQuantity: payload.totalQuantity,
       };
     default:
       throw new Error(`No case for type ${type} found in show reducer`);

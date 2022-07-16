@@ -68,7 +68,7 @@ const MenuModalFull = ({
   return (
     <>
       <LazyMotion features={loadFeatures}>
-        <AnimatePresence initial={false}>
+        <AnimatePresence key={1} initial={false}>
           {/* MODAL BACKDROP */}
           <m.div
             key={"4g3"}

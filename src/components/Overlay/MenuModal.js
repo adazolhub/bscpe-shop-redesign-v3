@@ -47,11 +47,11 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
   return (
     <>
       <LazyMotion features={loadFeatures}>
-        <AnimatePresence initial={false}>
+        <AnimatePresence key={3} initial={false}>
 
           {/* MODAL BACKDROP */}
           <m.div
-            id={"4g3"}
+            key={1}
             variants={backdrop}
             transition={{
               delay: 0.3,
@@ -62,17 +62,19 @@ const MenuModal = ({ children, modalToggle, modalToggleHandler, props }) => {
           />
           {/* MODAL CONTENT */}
           <m.div
-            id={"5g2"}
+            key={2}
             variants={modal}
             animate={modalToggle ? "open" : "closed"}
             transition={{ type: "tween", duration: 0.4 }}
             drag={"y"}
             dragConstraints={{ top: 0, bottom: 0 }}
             {...props}
-            className="fixed w-full md:w-[50%] md:left-1/4  bottom-0 left-0 mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%] modal bg-white z-[105]
-          
-              after:fixed after:bottom-0 after:translate-y-full after:-mx-4 after:w-full after:h-full after:bg-white
-            "
+            className="fixed w-full  bottom-0   my-auto left-0  mx-auto p-4 rounded-t-md min-h-[12em] max-h-[96%]   modal bg-white z-[105]
+
+            lg:w-[50%] lg:rounded-b-md lg:inset-y-1/4 lg:left-1/4 lg:max-h-max lg:after:hidden
+
+          after:fixed  after:bottom-0 after:translate-y-full after:-mx-4 after:w-full after:h-full after:bg-white
+          "
           >
             {" "}
             {children}

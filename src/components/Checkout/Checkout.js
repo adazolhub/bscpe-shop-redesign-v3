@@ -340,9 +340,9 @@ export function sizeFormater(size = "") {
         : "XL"
 
   return (
-    <div className="grid w-6 h-6 text-center border border-gray-300 rounded place-items-center">
+    <p className="grid w-6 h-6 text-center border border-gray-300 rounded place-items-center">
       <span className="px-1 text-xs leading-4">{label}</span>
-    </div>
+    </p>
   )
 }
 

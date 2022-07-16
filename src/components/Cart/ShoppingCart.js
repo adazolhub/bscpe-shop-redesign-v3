@@ -7,7 +7,7 @@ import ScrollToTop from "../../utils/ScrollToTop";
 import { colorFormater, sizeFormater } from "../Checkout/Checkout";
 
 const ShoppingCart = () => {
-  let { products: list, total, removeFromCart } = ShopState();
+  let { products: list, total, removeFromCart, totalQuantity } = ShopState();
   let { cartToggleOff } = ToggleState();
   let navigate = useNavigate();
 
@@ -51,20 +51,14 @@ const ShoppingCart = () => {
                         </p>
                       </div>
                       <div>
-                        <span className="text-[0.65em] text-gray-400">Size</span>
-                        <p>
-                          <span className="font-medium text-gray-500">
-                            {sizeFormater(data?.size)}
-                          </span>
-                        </p>
+                        <span className="text-[0.65em]  text-gray-400">Size</span>
+                        {sizeFormater(data?.size)}
                       </div>
                       <div>
                         <span className="text-[0.65em] text-gray-400 ">Color</span>
-                        <p>
-                          <span className="mt-2 font-medium text-gray-500">
-                            {colorFormater(data?.color)}
-                          </span>
-                        </p>
+                        <div className="mt-2 font-medium text-gray-500">
+                          {colorFormater(data?.color)}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -87,7 +81,7 @@ const ShoppingCart = () => {
               <hr />
               <div className="flex justify-between px-4 pt-2 pb-1 text-gray-400">
                 <p>Total items: </p>
-                <p className="font-medium ">{list.length} </p>
+                <p className="font-medium ">{totalQuantity} </p>
               </div>
               <div className="flex justify-between px-4 pb-2 text-gray-400">
                 <p>Total price: </p>

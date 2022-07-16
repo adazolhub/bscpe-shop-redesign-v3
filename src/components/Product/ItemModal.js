@@ -175,35 +175,39 @@ const ItemModal = ({ toggleItem, toggleItemHandler, product }) => {
 
               </ul>
             </div>
-            <div>
-              <p className="text-gray-400/80">Quantity</p>
-              <ul className="flex mt-3">
-
-                <button onClick={() => minusQuantity()}>
-                  <li className="p-2">
-                    <MinusIcon className="w-4 h-4" />
-                  </li>
-                </button>
-                <li>
-                  <input type="number" name="quantity" maxLength={2} max={2} pattern="[0-9]{2}" value={quantity} onChange={handleChange} className='w-[6ch] border rounded-sm text-center py-2 px-0' />
-                </li>
-                <button onClick={() => addQuantity()}>
-                  <li className="p-2">
-                    <PlusIcon className="w-4 h-4" />
-                  </li>
-                </button>
-
-              </ul>
-            </div>
-
           </div>
-          <button className='w-full btn-primary'
-            onClick={() => {
-              handleClick()
-              toggleItemHandler()
-            }}
-          >{isInCart ? "Remove to cart" : "Add to cart"}</button>
+
+          <div className="inline-flex items-center w-full gap-4">
+            <div className="inline-flex">
+
+              <button className="px-2 py-4 text-white bg-gray-400 rounded-l-md" onClick={() => minusQuantity()}>
+
+                <MinusIcon className="w-6 h-6" />
+
+              </button>
+              <div className="relative grid w-10 p-2 border border-gray-400 h-14 place-content-center">
+                <span className="">
+                  {quantity}
+
+                </span>
+              </div>
+              {/* <input type="number" name="quantity" maxLength={2} max={2} pattern="[0-9]{2}" value={quantity} onChange={handleChange} className='w-[6ch] border rounded-sm text-center py-2 px-0' /> */}
+
+              <button className="px-2 py-4 text-white bg-gray-400 rounded-r-md" onClick={() => addQuantity()}>
+
+                <PlusIcon className="w-6 h-6" />
+              </button>
+
+            </div>
+            <button className='w-full btn-primary'
+              onClick={() => {
+                handleClick()
+                toggleItemHandler()
+              }}
+            >{isInCart ? "Remove to cart" : "Add to cart"}</button>
+          </div>
           <button className="w-full btn-link" onClick={toggleItemHandler}>Close</button>
+
         </div>
       </MenuModal>
     </>

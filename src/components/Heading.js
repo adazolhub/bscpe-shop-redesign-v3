@@ -47,7 +47,7 @@ const Heading = () => {
             <button
               className={[
                 "p-1 transition-all rounded-md hover:text-gray-700 focus:text-gray-900 hover:bg-gray-100 ",
-                open ? "-rotate-90" : "rotate-0",
+                open ? "-rotate-90" : "ro-0",
               ].join(" ")}
               onClick={handleOpenMenu}
             >

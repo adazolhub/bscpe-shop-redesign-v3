@@ -10,9 +10,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import ShopState from "../../lib/ShopState";
 import { useNavigate } from "react-router-dom";
 import PaymentMethod from "../Checkout/PaymentMethod";
+import { colorFormater, sizeFormater } from "../Checkout/Checkout";
 const CartOverlay = () => {
   let [toggleCart, setToggleCart] = useState(false);
-  let { products, removeFromCart, total } = ShopState();
+  let { products, removeFromCart, total, totalQuantity } = ShopState();
 
   let navigate = useNavigate();
 
@@ -105,11 +106,27 @@ const CartOverlay = () => {
                           <h3 className="whitespace-nowrap max-w-[25ch] overflow-hidden text-ellipsis">
                             {item.name}
                           </h3>
-                          <p className="text-xs font-thin text-gray-400 whitespace-nowrap  w-[25ch] overflow-hidden text-ellipsis">
-                            P {item.price}{" "}
-                            <span className="text-[0.75em] ml-2">40% OFF</span>
-                          </p>
+
+                          <div className="inline-flex gap-2">
+
+                            <div className="inline-flex items-center gap-2 scale-90">
+                              {colorFormater(item.color)}
+                            </div>
+                            <div className="inline-flex items-center gap-2 scale-75">
+                              {sizeFormater(item.size)}
+                            </div>
+                            <div className="inline-flex items-center">
+                              <p className="overflow-hidden text-xs font-thin text-gray-400 whitespace-nowrap w-fit text-ellipsis">
+                                P {item.price}
+                              </p>
+                              <span className="text-[0.8em] font-medium ml-1 text-gray-500 whitespace-nowrap">x {item.quantity}</span>
+                            </div>
+
+                          </div>
+
+
                         </div>
+
                       </div>
                       {/* <div>
                                     <button className="p-2" onClick={handleCountChange}>
@@ -145,7 +162,7 @@ const CartOverlay = () => {
               <div className="flex flex-col w-full gap-2 px-4 py-4">
                 <div className="flex justify-between text-xs">
                   <p>Items on cart : </p>
-                  <p>{products.length}</p>
+                  <p>{totalQuantity}</p>
                 </div>
                 <div className="flex justify-between text-xs">
                   <p>Total price:</p>
