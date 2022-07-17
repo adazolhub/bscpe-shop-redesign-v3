@@ -14,7 +14,7 @@ interface Modal {
 const NavHeader = ({ toggleState, toggleHandler } : Modal) => {
   return (
     <header className={style.nav_header + " "}>
-      {toggleState['header_notify'] && <div className='flex items-center justify-between px-6 py-1 text-white bg-gradient-to-br from-emerald-600 to-emerald-900'> 
+      {toggleState['header_notify'] && <div className='flex items-center justify-between px-6 py-1 text-xs text-white bg-gradient-to-br from-emerald-600 to-emerald-900'> 
       <div>Helo</div>
       <button onClick={() => toggleHandler('header_notify')}><XIcon className='w-4 h-4 text-white brightness-100' /></button>
       </div>}
