@@ -7,6 +7,8 @@
   pointer-events: none;
 }
 
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +37,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/** DEFAULT ELEMENTS STYLES */
+
+.btn_icon {
+  @apply p-2 rounded-full hover:bg-white/5 hover:shadow-sm;
+}
+.btn_icon:hover svg {
+  @apply text-gray-500/80;
+}
+svg {
+  @apply w-6 h-6 stroke-1;
 }

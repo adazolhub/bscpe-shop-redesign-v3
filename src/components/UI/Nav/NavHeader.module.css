@@ -1,0 +1,29 @@
+/** MOBILE FIRST APPROACH */
+
+.nav_header {
+    @apply  bg-gradient-to-br backdrop-blur-md
+    from-black to-black/80 
+      fixed top-0 inset-x-0 w-full z-20;
+}
+.nav_header nav {
+    @apply flex justify-between items-center h-nav-height px-4 text-gray-200 mix-blend-difference;
+}
+svg {
+    @apply mix-blend-difference;
+}
+
+
+
+
+.nav_header_list {
+    @apply  gap-1 hidden md:inline-flex;
+}
+
+.nav_header_list button {
+
+    @apply px-1 hover:underline underline-offset-2 underline text-gray-400;
+}
+
+.nav_header_list_mobile {
+    @apply  gap-1 inline-flex;
+}
