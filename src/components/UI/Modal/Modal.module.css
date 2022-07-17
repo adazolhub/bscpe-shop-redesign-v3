@@ -2,20 +2,19 @@
 /** MODAL SIDE  **/
 
 .modal_side {
-    @apply w-full md:w-modal-side fixed inset-y-0 h-full bg-white/90 px-4 flex flex-col right-0
-    translate-x-full transition-transform duration-500 shadow-lg z-40 backdrop-blur-lg;
+    @apply fixed inset-y-0 right-0 z-40 flex flex-col invisible w-full h-full px-4 transition-all duration-500 translate-x-full shadow-lg md:w-modal-side bg-white/90 backdrop-blur-lg;
 
 }
 .backdrop {
-    @apply fixed inset-0 w-full h-full bg-black/5 backdrop-blur-[2px] z-40 cursor-default;
+    @apply fixed inset-0 z-40 w-full h-full cursor-default bg-black/40;
 }
 .modal_side_active{
-    @apply -translate-x-0;
+    @apply  visible -translate-x-0;
 }
 
 /* modal header section*/
 .modal_side nav {
-    @apply inline-flex justify-between py-4 text-gray-400 items-center h-nav-height;
+    @apply inline-flex items-center justify-between py-4 text-gray-400 h-nav-height;
 
 }
 
@@ -47,11 +46,11 @@
 }
 
 .modal_side_footer_delay {
-    @apply opacity-100 translate-y-0  delay-500 ;
+    @apply delay-500 translate-y-0 opacity-100 ;
 }
 
 .modal_side footer a {
-    @apply whitespace-nowrap inline-flex underline items-center px-1 rounded hover:text-gray-500;
+    @apply inline-flex items-center px-1 underline rounded whitespace-nowrap hover:text-gray-500;
 
 }
 /*! hidden component on modal */
@@ -60,28 +59,68 @@
 /** MODAL IOS  **/
 
 .modal_ios {
-    @apply w-[calc(100%+1rem)] fixed md:hidden inset-x-0 h-auto bottom-0  px-4 flex flex-col gap-2 -mx-2  shadow-lg z-40  translate-y-full transition-all duration-500;
+    @apply w-[calc(100%+1rem)] fixed md:hidden inset-x-0 max-h-0 bottom-0  px-4 flex flex-col gap-2 -mx-2  shadow-lg z-40  translate-y-full transition-all duration-500 invisible;
 
+}
+.modal_ios_active {
+    @apply visible max-h-full scale-100 translate-y-0;
 }
 
 .modal_ios_close {
-    @apply bg-gray-100 backdrop-blur-md mb-3 p-3 rounded-lg ring-1 ring-inset ring-white  text-red-400 font-medium mix-blend-screen shadow-lg inline-flex items-center justify-center gap-2;
+    @apply inline-flex items-center justify-center gap-2 p-3 mb-3 font-medium rounded-lg shadow-lg bg-neutral-700/50 backdrop-blur-lg ring-1 ring-inset ring-white/10 mix-blend-screen;
 }
 
-.modal_ios_active {
-    @apply translate-y-0;
+.modal_ios_close span {
+    @apply text-orange-700 ;
 }
 
-.modal_ios_close svg {
-    @apply text-red-400 w-5 h-5;
-}
 
 .modal_ios_content {
-    @apply bg-white/80 backdrop-blur p-3 rounded-lg;
+    @apply p-3 rounded-lg shadow-md bg-white/90 backdrop-blur;
 }
 
 
 
-.modal_ios_content button {
-    @apply p-3 border border-gray-300 bg-gray-100 rounded
+/** MODAL FULL  **/
+.modal_full {
+    @apply fixed inset-0 z-40 invisible h-full px-4 text-gray-700 transition-all duration-200 scale-0 translate-y-full bg-transparent opacity-0 rounded-xl;
 }
+.modal_full_active {
+    @apply visible scale-100 translate-y-0 bg-white rounded-none opacity-100;
+}
+
+/* modal header section*/
+.modal_full nav {
+    @apply inline-flex items-center justify-between w-full py-4 text-gray-400 h-nav-height;
+
+}
+
+
+/** MODAL STANDARD  **/
+
+.modal_standard {
+    @apply fixed z-50 inset-x-0 top-1/2 -translate-y-1/2 bg-white min-w-[4em] max-w-xs lg:max-w-xl mx-auto  h-0 my-auto  scale-150 opacity-0 transition-all duration-300 overflow-hidden rounded drop-shadow-lg invisible;
+}
+
+.modal_standard_active {
+    @apply visible h-auto scale-90 opacity-100;
+}
+
+
+.modal_standard nav {
+    @apply relative right-0 mx-4 mt-4 h-7 ;
+}
+
+.modal_standard nav button {
+    @apply absolute right-0 p-1 rounded-full;
+}
+.modal_standard svg {
+    @apply w-5 h-5 text-gray-500;
+}
+
+.modal_standard_content {
+    @apply  m-4;
+}
+
+
+

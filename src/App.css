@@ -42,11 +42,16 @@
 /** DEFAULT ELEMENTS STYLES */
 
 .btn_icon {
-  @apply p-2 rounded-full hover:bg-white/5 hover:shadow-sm;
+  @apply p-2 rounded-full hover:bg-white/10 hover:shadow-sm;
 }
 .btn_icon:hover svg {
-  @apply text-gray-500/80;
+  @apply shadow-lg brightness-75;
 }
 svg {
   @apply w-6 h-6 stroke-1;
+}
+
+
+.btn_primary {
+  @apply w-full p-3 text-gray-200 rounded bg-black/90;
 }
