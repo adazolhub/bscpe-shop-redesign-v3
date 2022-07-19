@@ -11,8 +11,9 @@ module.exports = {
       width: {
         "modal-side": "var(--modal-side)",
       },
-      
+
     },
   },
   plugins: [],
+  important: true,
 }

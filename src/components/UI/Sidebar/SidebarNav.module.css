@@ -1,0 +1,70 @@
+.side_bar {
+    @apply fixed inset-0 z-[100] w-[18rem] bg-white rounded-r-lg overflow-hidden -translate-x-full transition-all duration-500 invisible;
+}
+
+.side_bar_active{
+    @apply  visible -translate-x-0 ;
+}
+
+.backdrop {
+    @apply fixed inset-0 w-full h-full cursor-default bg-black/20 backdrop-blur-sm z-[100];
+}
+
+/** HEAD SECTION */
+
+.side_bar_header {
+    @apply bg-gradient-to-t from-black to-black/50 h-36 p-4 relative;
+}
+
+.side_bar_header button {
+    @apply  p-2 rounded-full bg-white/5 text-white;
+}
+.top {
+    @apply absolute top-4 right-4 flex justify-end gap-2;
+}
+
+.side_bar_header h2 {
+    @apply font-medium text-white text-lg
+}
+
+.side_bar_header p {
+    @apply text-sm text-white/60 font-thin
+}
+
+.bottom {
+    @apply absolute bottom-4 
+}
+/** END OF HEAD SECTION */
+
+/** NAVIGATION SECTION */ 
+.side_bar nav {
+    @apply flex flex-col gap-1  py-2 px-4 overflow-y-scroll h-[calc(100%-14em)] mt-2;
+}
+.side_bar nav button {
+    @apply inline-flex justify-between items-center text-black px-4 py-4 rounded;
+}
+.active {
+    @apply text-white bg-black !important;
+}
+
+
+.side_bar nav button div {
+    @apply inline-flex gap-4   items-center;
+}
+
+/** END OF NAVIGATION SECTION */ 
+
+
+/** FOOTER  SECTION */ 
+.footer {
+    @apply flex p-4 w-full absolute bottom-0 bg-white;
+}
+
+
+.login {
+    @apply bg-black inline-flex gap-4 rounded text-white p-4 w-full justify-between;
+}
+.profile {
+    @apply bg-black inline-flex gap-4 rounded text-white p-4 w-full justify-between;
+}
+

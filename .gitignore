@@ -22,3 +22,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# auth
+/src/auth
+/src/auth/firebase.ts
+/src/firebaseConfig.json
+/src/config.json
+
+# firebase
+.firebase
+.github
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+remoteconfig.template.json
+storage.rules

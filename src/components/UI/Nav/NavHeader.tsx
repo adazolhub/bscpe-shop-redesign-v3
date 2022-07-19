@@ -1,6 +1,6 @@
 import React from 'react'
 import { ShoppingBagIcon, FireIcon } from '@heroicons/react/solid'
-import { ShoppingBagIcon as ShoppingBagIconOutline, BellIcon as BellIconOutline, XIcon } from '@heroicons/react/outline'
+import { ShoppingBagIcon as ShoppingBagIconOutline, BellIcon as BellIconOutline, XIcon, MenuIcon } from '@heroicons/react/outline'
 import style from './NavHeader.module.css'
 
 
@@ -8,7 +8,7 @@ interface Modal {
   toggleState: { 
     [key : string]: boolean;
  } ;
-  toggleHandler: (type: 'modal' | 'cart' | 'notification' | 'header_notify' ) => void
+  toggleHandler: (type: 'modal' | 'cart' | 'notification' | 'header_notify' | 'side_bar' ) => void
 }
 
 const NavHeader = ({ toggleState, toggleHandler } : Modal) => {
@@ -19,8 +19,13 @@ const NavHeader = ({ toggleState, toggleHandler } : Modal) => {
       <button onClick={() => toggleHandler('header_notify')}><XIcon className='w-4 h-4 text-white brightness-100' /></button>
       </div>}
       <nav>
-        <div className='flex gap-4'>
+        <div className='flex items-center gap-4'>
+          <button className='btn_icon' onClick={() => toggleHandler('side_bar')}>
+            <span>
+             <MenuIcon />
 
+            </span>
+          </button>
         <FireIcon />
         <span>BSCPE Store</span>
         </div>

@@ -17,6 +17,9 @@
     @apply inline-flex items-center justify-between py-4 text-gray-400 h-nav-height;
 
 }
+.modal_side nav button {
+    @apply text-gray-400;
+ }
 
 .scrollable {
     @apply overflow-y-scroll;

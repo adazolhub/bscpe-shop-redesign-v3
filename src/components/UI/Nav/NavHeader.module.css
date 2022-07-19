@@ -7,9 +7,7 @@
 .nav_header nav {
     @apply flex items-center justify-between px-4 text-gray-200 bg-gradient-to-br backdrop-blur-md from-black to-black/80 h-nav-height mix-blend-difference;
 }
-svg {
-    @apply mix-blend-difference;
-}
+
 
 
 

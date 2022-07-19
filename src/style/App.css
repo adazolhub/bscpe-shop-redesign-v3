@@ -42,9 +42,9 @@
 /** DEFAULT ELEMENTS STYLES */
 
 .btn_icon {
-  @apply p-2 rounded-full hover:bg-white/10 hover:shadow-sm;
+  @apply p-2 rounded-full hover:bg-white/10 hover:shadow-sm text-white;
 }
-.btn_icon:hover svg {
+.btn_icon:hover {
   @apply shadow-lg brightness-75;
 }
 svg {
@@ -54,4 +54,12 @@ svg {
 
 .btn_primary {
   @apply w-full p-3 text-gray-200 rounded bg-black/90;
+}
+
+::-webkit-scrollbar {
+  @apply w-[2px] bg-transparent
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black/40 rounded-full
 }

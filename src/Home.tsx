@@ -1,21 +1,27 @@
 import { BellIcon, ShoppingBagIcon } from '@heroicons/react/outline'
 import React, { useState } from 'react'
+import { Link, matchRoutes, useLocation, useResolvedPath } from 'react-router-dom';
 import ModalFull from './components/UI/Modal/Full/ModalFull';
 import ModalIos from './components/UI/Modal/Ios/ModalIos'
 import ModalSide from './components/UI/Modal/Side/ModalSide'
 import ModalStandard from './components/UI/Modal/Standard/ModalStandard';
+import { SidebarNav } from './components/UI/Sidebar/SidebarNav';
+
 
 interface Modal {
     toggleState: { 
         [key : string]: boolean;
      } ;
-    setToggleStateHandler: (mode: 'modal' | 'cart' | 'notification' | 'header_notify' | 'modal_ios' | 'modal_full' | 'modal_standard' ) => void
+    setToggleStateHandler: (mode: 'modal' | 'cart' | 'notification' | 'header_notify' | 'modal_ios' | 'modal_full' | 'modal_standard' | 'side_bar' ) => void
   }
+
+
 
 const Home = ({ toggleState, setToggleStateHandler } : Modal) => {
 
   return (
     <div className='absolute bottom-0 overlay' role={'dialog'}>
+        <SidebarNav state={toggleState["side_bar"]}   toggleStateHandler={() => setToggleStateHandler("side_bar")} />
 
         <ModalSide
           title={'Cart'}
