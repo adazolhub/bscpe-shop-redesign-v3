@@ -5,12 +5,14 @@ module.exports = {
     extend: {
       height: {
         "nav-height": "var(--nav-height)",
-
+        "changable_height": "var(--height-top)",
 
       },
+      
       width: {
         "modal-side": "var(--modal-side)",
       },
+      
 
     },
   },

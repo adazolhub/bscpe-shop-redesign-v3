@@ -1,21 +1,29 @@
-import { TrashIcon } from "@heroicons/react/outline";
+import { ShoppingBagIcon, TrashIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ShopState from "../../utils/lib/ShopState";
 import { ToggleState } from "../../utils/lib/ToggleState";
 import ScrollToTop from "../../utils/hooks/useScrollToTop";
 import { colorFormater, sizeFormater } from "../Checkout/Checkout";
+import ModalSide from "../UI/Modal/Side/ModalSide";
 
 const ShoppingCart = () => {
   let { products: list, total, removeFromCart, totalQuantity } = ShopState();
 
   //TODOS: Need to fix types of the Toggle State (temporarily set to 'any')
-  let { cartToggleOff } : any = ToggleState();
-  let navigate = useNavigate();
+
+  const { toggleState, toggleStateHandler }: any = ToggleState();
 
   return (
-    <>
-      <ScrollToTop />
+    <ModalSide
+      title={"Cart"}
+      icon={<ShoppingBagIcon />}
+      state={toggleState["cart"]}
+      scrollable={list.length > 2}
+      enableFooter={list.length > 0}
+      footer={<FooterSummary total={total} totalQuantity={totalQuantity} />}
+      toggleStateHandler={() => toggleStateHandler("cart")}
+    >
       <>
         <div className="container relative p-2 mx-auto  max-h-[calc(100vh-4em)] overflow-hidden overflow-y-scroll">
           <ul className="flex flex-col gap-2 pb-4 min-h-[calc(100vh-18em)] max-h-[calc(100vh-16em)]">
@@ -43,21 +51,24 @@ const ShoppingCart = () => {
                     </h3>
                     <div className="flex gap-4">
                       <div>
-                        <span className="text-[0.65em] text-gray-400">Price</span>
+                        <span className="text-[0.65em] text-gray-400">
+                          Price
+                        </span>
                         <p className="text-sm font-medium text-gray-500">
                           {" "}
-                          <span>
-                            ₱ {data?.price}.00
-                          </span>{" "}
-                          x {data?.quantity}
+                          <span>₱ {data?.price}.00</span> x {data?.quantity}
                         </p>
                       </div>
                       <div>
-                        <span className="text-[0.65em]  text-gray-400">Size</span>
+                        <span className="text-[0.65em]  text-gray-400">
+                          Size
+                        </span>
                         {sizeFormater(data?.size)}
                       </div>
                       <div>
-                        <span className="text-[0.65em] text-gray-400 ">Color</span>
+                        <span className="text-[0.65em] text-gray-400 ">
+                          Color
+                        </span>
                         <div className="mt-2 font-medium text-gray-500">
                           {colorFormater(data?.color)}
                         </div>
@@ -67,7 +78,9 @@ const ShoppingCart = () => {
 
                   <button
                     className="absolute px-4 py-2 top-1 right-2 btn-link"
-                    onClick={() => {data && removeFromCart!(data)}}
+                    onClick={() => {
+                      data && removeFromCart!(data);
+                    }}
                   >
                     <TrashIcon className="w-5 h-5 text-red-400" />
                   </button>
@@ -77,43 +90,57 @@ const ShoppingCart = () => {
               <li className="py-4 mx-auto text-gray-400">Cart is empty</li>
             )}
           </ul>
-
-          {list.length > 0 && (
-            <div className="fixed bottom-0 left-0 w-full gap-2 px-2 pb-2 text-xs bg-white ">
-              <hr />
-              <div className="flex justify-between px-4 pt-2 pb-1 text-gray-400">
-                <p>Total items: </p>
-                <p className="font-medium ">{totalQuantity} </p>
-              </div>
-              <div className="flex justify-between px-4 pb-2 text-gray-400">
-                <p>Total price: </p>
-                <p className="text-sm font-medium text-gray-500">₱ {total}.00 </p>
-              </div>
-              <div className="flex flex-col ">
-                <button
-                  className="w-full btn-primary"
-                  onClick={() => {
-                    navigate("/checkout");
-                  }}
-                >
-                  Proceed to checkout
-                </button>
-                <button
-                  className="btn-secondary whitespace-nowrap"
-                  onClick={() => {
-                    cartToggleOff();
-                    navigate("/");
-                  }}
-                >
-                  Continue shopping
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </>
-    </>
+    </ModalSide>
   );
 };
+
+function FooterSummary({
+  total,
+  totalQuantity,
+}: {
+  total: number;
+  totalQuantity: number;
+}) {
+  const { toggleStateHandler }: any = ToggleState();
+  let navigate = useNavigate();
+  return (
+    <div className="flex flex-col gap-1 h-fit">
+      <div>
+        <table className="w-full border-separate table-fixed border-spacing-2">
+          <tbody className="w-full">
+            <tr className="text-sm text-gray-500">
+              <td>Quantity</td>
+              <td className="text-end">{totalQuantity?.toFixed(0)}</td>
+            </tr>
+            <tr className="text-sm text-gray-500">
+              <td>Discount</td>
+              <td className="text-end">40%</td>
+            </tr>
+            <tr className="text-lg font-medium ">
+              <td>Total ammount</td>
+              <td className="text-end">₱ {total?.toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button
+        onClick={() => {
+          navigate("/checkout");
+        }}
+        className="w-full p-4 text-gray-200 bg-black/90"
+      >
+        Checkout
+      </button>
+      <button
+        onClick={() => toggleStateHandler("cart")}
+        className="w-full p-4 underline bg-transparent underline-offset-2"
+      >
+        Cancel
+      </button>
+    </div>
+  );
+}
 
 export default ShoppingCart;

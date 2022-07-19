@@ -1,10 +1,10 @@
 import { useState, createContext, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { TypeJSX } from "../../types";
+import { States, StaticState, TypeJSX } from "../../types";
 
-const ToggleContext = createContext({});
+const ToggleContext = createContext<States | StaticState>({});
 
-function categorySetter(pathname : string) {
+function categorySetter(pathname: string) {
   switch (pathname) {
     case "/":
       return "men";
@@ -17,8 +17,52 @@ function categorySetter(pathname : string) {
   }
 }
 
-export const ToggleStateProvider = ({ children } : any) => {
+export const ToggleStateProvider = ({ children }: any) => {
   let [modalToggle, setModalToggle] = useState(false);
+
+  const [toggleState, setToggleState] = useState<{ [state: string]: boolean }>({
+    modal: false,
+    notification: false,
+    cart: false,
+    modal_ios: false,
+    modal_full: false,
+    modal_standard: false,
+    header_notify: true,
+    side_bar: false,
+    hamburger_mobile: false,
+  });
+
+  /**
+   * Function for toggling the state
+   * @param modal_type This is state that toggles some components
+   * example @param modal_type:
+   *   - string<type>
+   *   - modal
+   *   - cart
+   *   - notification
+   *   - header_notify
+   *   - modal_ios
+   *   - modal_full
+   *   - modal_standard
+   *   - side_bar
+   *   - hamburger_mobile
+   */
+  const toggleStateHandler = (
+    modal_type:
+      | string
+      | "modal"
+      | "cart"
+      | "notification"
+      | "header_notify"
+      | "modal_ios"
+      | "modal_full"
+      | "modal_standard"
+      | "side_bar"
+      | "hamburger_mobile"
+  ) =>
+    setToggleState(
+      (prev) => (prev = { ...prev, [modal_type]: !prev[modal_type] })
+    );
 
   let modalToggleHandler = () => {
     setModalToggle((prev) => !prev);
@@ -35,8 +79,8 @@ export const ToggleStateProvider = ({ children } : any) => {
     setSettingToggle((prev) => !prev);
   };
 
-  // let { pathname } = useLocation();
-  // let category = categorySetter(pathname);
+  let { pathname } = useLocation();
+  let category = categorySetter(pathname);
 
   let [cartToggle, setCartToggle] = useState(false);
 
@@ -67,30 +111,31 @@ export const ToggleStateProvider = ({ children } : any) => {
     setToggleHeadNotify((prev) => !prev);
   };
 
+  let values = {
+    modalToggle,
+    modalToggleHandler,
+    toggleListGrid,
+    handleToggleListGrid,
+    settingToggle,
+    settingToggleHandler,
+    checkoutToggle,
+    checkoutToggleHandler,
+    cartToggle,
+    cartToggleHandler,
+    cartToggleOff,
+    notifyToggle,
+    notifyToggleHandler,
+    notifyToggleOff,
+    toggleHeadNotify,
+    toggleHeadNotifyHandler,
+    category,
+
+    toggleState,
+    toggleStateHandler,
+  };
+
   return (
-    <ToggleContext.Provider
-      value={{
-        modalToggle,
-        modalToggleHandler,
-        toggleListGrid,
-        handleToggleListGrid,
-        settingToggle,
-        settingToggleHandler,
-        checkoutToggle,
-        checkoutToggleHandler,
-        cartToggle,
-        cartToggleHandler,
-        cartToggleOff,
-        notifyToggle,
-        notifyToggleHandler,
-        notifyToggleOff,
-        toggleHeadNotify,
-        toggleHeadNotifyHandler,
-        // category,
-      }}
-    >
-      {children}
-    </ToggleContext.Provider>
+    <ToggleContext.Provider value={values}>{children}</ToggleContext.Provider>
   );
 };
 

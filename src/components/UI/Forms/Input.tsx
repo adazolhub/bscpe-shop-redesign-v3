@@ -26,6 +26,9 @@ function Input({
       name={name}
       placeholder={placeholder}
       {...props}
+      onChange={(event) => {
+        setter(event.target.value);
+      }}
     />
   );
 }

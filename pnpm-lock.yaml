@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@heroicons/react': ^1.0.6
+  '@juggle/resize-observer': ^3.3.1
   '@types/jest': ^27.5.2
   '@types/node': ^16.11.45
   '@types/react': ^18.0.15
@@ -22,6 +23,7 @@ specifiers:
 
 dependencies:
   '@heroicons/react': 1.0.6_react@18.2.0
+  '@juggle/resize-observer': 3.3.1
   '@types/jest': 27.5.2
   '@types/node': 16.11.45
   '@types/react': 18.0.15
@@ -2498,6 +2500,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: false
+
+  /@juggle/resize-observer/3.3.1:
+    resolution: {integrity: sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==}
     dev: false
 
   /@leichtgewicht/ip-codec/2.0.4:
