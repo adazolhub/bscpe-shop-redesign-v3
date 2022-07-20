@@ -31,7 +31,6 @@ export const SidebarNav = ({ state, toggleStateHandler }: Modal) => {
 
   let navigate = useNavigate();
   let { toggleStateHandler: rootStateHandler } = ToggleState() as StaticState;
-  console.log(currentUser);
   return (
     <>
       {state && (

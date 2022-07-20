@@ -15,9 +15,9 @@ function PasswordRequirementInfo({
 }) {
   return (
     <>
-      <div className="px-4 py-2 text-[0.62em] border border-gray-300 border-dashed rounded-md text-gray-400 w-fit mx-auto mt-4">
+      <div className="px-4 py-2 text-[0.62em] border border-gray-300 border-dashed rounded-md text-gray-400 w-full mt-4">
         <h3>Password requirement</h3>
-        <div className="text-[0.86em] text-gray-400/70 px-2 font-thin mt-1">
+        <div className="text-[0.9em] text-black/60 px-2 font-light mt-1">
           <div className="flex items-center gap-2">
             <BadgeCheckIcon
               className={[
@@ -27,7 +27,7 @@ function PasswordRequirementInfo({
             />
             <p>Must contain lowercase/small characters</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 leading-3">
             <BadgeCheckIcon
               className={[
                 "w-3",
@@ -36,7 +36,7 @@ function PasswordRequirementInfo({
             />
             <p>Must contain uppercase/capital characters</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 leading-3">
             <BadgeCheckIcon
               className={[
                 "w-3",
@@ -45,7 +45,7 @@ function PasswordRequirementInfo({
             />
             <p>Must contain at least 1 numeric value</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 leading-3">
             <BadgeCheckIcon
               className={[
                 "w-3",
@@ -54,7 +54,7 @@ function PasswordRequirementInfo({
             />
             <p>Must contain at least 8 or more characters</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 leading-3">
             <BadgeCheckIcon
               className={[
                 "w-3",

@@ -168,8 +168,15 @@ function SecurityDetails({
   return (
     <>
       <Form>
+        <PasswordRequirementInfo
+          passLength={values?.password.length < 9}
+          passLowerCase={!values?.password.match(lowerCaseLetters)}
+          passUpperCase={!values?.password.match(upperCaseLetters)}
+          passNumber={!values?.password.match(number)}
+          passNotMatch={values?.password !== values?.confirm_password}
+        />
         <div className="h-3 ">
-          <p className="text-rose-300/70 text-[0.68em] ">
+          <p className="text-rose-400 text-[0.68em] ">
             {error?.password && error?.password}
           </p>
         </div>
@@ -182,7 +189,7 @@ function SecurityDetails({
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           className={
             error?.password
-              ? "border-rose-500/30"
+              ? "border-rose-400"
               : passLength || passNotLower || passNotUpper || passNotNumber
               ? "border-gray-400/30"
               : "border-emerald-600/30"
@@ -193,7 +200,7 @@ function SecurityDetails({
           }}
         />
         <div className="h-3 ">
-          <p className="text-rose-300/70 text-[0.68em] ">
+          <p className="text-rose-400 text-[0.68em] ">
             {error?.confirm_password && error?.confirm_password}
           </p>
         </div>
@@ -205,8 +212,12 @@ function SecurityDetails({
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           className={
             error?.confirm_password
-              ? "border-rose-400/30"
-              : passNotMatch
+              ? "border-rose-400"
+              : passLength ||
+                passNotLower ||
+                passNotUpper ||
+                passNotNumber ||
+                passNotMatch
               ? "border-gray-400/30"
               : "border-emerald-600/30"
           }
@@ -215,22 +226,16 @@ function SecurityDetails({
             handleChange!("confirm_password")(e);
           }}
         />
-        <PasswordRequirementInfo
-          passLength={values?.password.length < 9}
-          passLowerCase={!values?.password.match(lowerCaseLetters)}
-          passUpperCase={!values?.password.match(upperCaseLetters)}
-          passNumber={!values?.password.match(number)}
-          passNotMatch={values?.password !== values?.confirm_password}
-        />
+
         <div className="flex flex-row-reverse items-center justify-between my-2 text-xs">
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 text-gray-200 bg-gray-600 rounded-md focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-500"
+            className="flex items-center gap-2 px-4 py-2 my-2 text-gray-200 rounded-md bg-black/90 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-gray-500"
             onClick={Continue}
           >
             Complete Setup <ArrowNarrowRightIcon className="w-5 h-5" />
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-black/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
             onClick={Previous}
           >
             <ArrowNarrowLeftIcon className="w-5" /> Back

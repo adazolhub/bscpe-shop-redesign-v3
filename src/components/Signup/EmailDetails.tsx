@@ -1,3 +1,4 @@
+import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +60,7 @@ function EmailDetails({ nextStep, prevStep, handleChange, values }: Steps) {
       <Form>
         <div className="h-3">
           {error && (
-            <p className="text-rose-300 text-[0.68em] ">{<>{error}</>}</p>
+            <p className="text-rose-400 text-[0.6em] ">{<>{error}</>}</p>
           )}
         </div>
         <Input
@@ -72,15 +73,21 @@ function EmailDetails({ nextStep, prevStep, handleChange, values }: Steps) {
             setError(null);
             handleChange("email")(e);
           }}
-          className={error ? "border-rose-400/60" : "border-gray-400/30"}
+          className={error ? "border-rose-400" : "border-gray-400/30"}
         />
         <div
           className={
-            "flex flex-row-reverse items-center justify-between text-xs"
+            "flex flex-row-reverse items-center justify-center text-xs"
           }
         >
-          <button className="w-full btn-primary" onClick={Continue}>
+          {/* <button className="w-full btn-primary" onClick={Continue}>
             Create an account
+          </button> */}
+          <button
+            className="flex items-center gap-2 px-4 py-3 my-2 text-gray-200 rounded-md bg-black/90 focus:outline focus:outline-1 focus:outline-offset-2 hover:bg-black/70"
+            onClick={Continue}
+          >
+            Create an account <ArrowNarrowRightIcon className="w-5 h-5" />
           </button>
         </div>
       </Form>

@@ -59,7 +59,7 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }: Steps) {
     <>
       <Form>
         <div className="h-3 ">
-          <p className="text-rose-300/80 text-[0.68em] ">
+          <p className="text-rose-400 text-[0.68em] ">
             {error?.username && error?.username}
           </p>
         </div>
@@ -69,9 +69,7 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }: Steps) {
           placeholder={"Username"}
           defaultValue={values.username}
           autoFocus
-          className={
-            error?.username ? "border-rose-400/30" : "border-gray-400/30"
-          }
+          className={error?.username ? "border-rose-300" : "border-gray-400/30"}
           // autoComplete="off"
           onChange={(e: any) => {
             setError((prev) => (prev = { ...prev, username: null }));
@@ -79,7 +77,7 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }: Steps) {
           }}
         />
         <div className="h-3">
-          <p className="text-rose-300/80 text-[0.68em] ">
+          <p className="text-rose-400 text-[0.65em] ">
             {error?.fullname && error?.fullname}
           </p>
         </div>
@@ -88,9 +86,7 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }: Steps) {
           name="fullname"
           placeholder={"Fullname"}
           defaultValue={values.fullname}
-          className={
-            error?.fullname ? "border-rose-400/30" : "border-gray-400/30"
-          }
+          className={error?.fullname ? "border-rose-400" : "border-gray-400/30"}
           // autoComplete="off"
           onChange={(e: any) => {
             setError((prev) => (prev = { ...prev, fullname: null }));
@@ -99,13 +95,13 @@ function PersonalDetails({ nextStep, prevStep, handleChange, values }: Steps) {
         />
         <div className="flex flex-row-reverse items-center justify-between my-2 text-xs">
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-black/70 bg-gray-200/40 hover:bg-gray-100 hover:border-black/40"
             onClick={Continue}
           >
             Continue <ArrowNarrowRightIcon className="w-5 h-5" />
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-gray-500/70 bg-gray-200/40 hover:bg-gray-100 hover:border-gray-400"
+            className="flex items-center gap-2 px-4 py-2 my-2 border border-transparent rounded-md text-black/70 bg-gray-200/40 hover:bg-gray-100 hover:border-black/40"
             onClick={Previous}
           >
             <ArrowNarrowLeftIcon className="w-5" /> Back

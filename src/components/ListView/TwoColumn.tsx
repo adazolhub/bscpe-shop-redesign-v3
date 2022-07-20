@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ProductCart, ProductList } from "../../types";
+import { ProductCart, ProductList, StaticState } from "../../types";
+import IsOnCart from "../../utils/hooks/useOnCartListener";
 import { UserAuth } from "../../utils/lib/Auth";
+import { ToggleState } from "../../utils/lib/ToggleState";
 import ItemModal from "../Product/ItemModal";
 import ProductCardGrid from "../UI/Cards/ProductCardGrid";
+import ModalMobile from "../UI/Modal/Mobile/ModalMobile";
 import ProductCard from "./ProductCard";
+import SelectedProduct from "./SelectedProduct";
 
 //TODOS : need to fix their types > temporarity set to (any)
 const TwoColumn = ({ category, addToCart }: any) => {
+  const { toggleState, toggleStateHandler, selectedProduct } =
+    ToggleState() as StaticState;
   const { list: data }: any = UserAuth();
   let navigate = useNavigate();
 
@@ -19,18 +25,15 @@ const TwoColumn = ({ category, addToCart }: any) => {
             ?.filter((prod: any) => prod.product_category === category)
             .map((product: ProductList) => (
               <React.Fragment key={product.product_id}>
-                {/* <ProductCard
-                  key={product.product_id}
-                  product_id={product.product_id}
-                  name={product.product_name}
-                  image={product.product_image}
-                  price={product.product_price}
-                  onClick={() => navigate(`/product/${product.product_id}`)}
-                /> */}
-                <ProductCardGrid product={product} cartStatus={false} />
+                <ProductCardGrid product={product} isInCart={false} />
               </React.Fragment>
             ))}
-        {/* <ItemModal toggleItem={toggleItem} toggleItemHandler={toggleItemHandler} product={selectedProduct} /> */}
+        <ModalMobile
+          state={toggleState["modal_mobile"]}
+          toggleStateHandler={() => toggleStateHandler("modal_mobile")}
+        >
+          {selectedProduct && <SelectedProduct product={selectedProduct} />}
+        </ModalMobile>
       </div>
     </>
   );

@@ -6,8 +6,8 @@ import { ExclamationCircleIcon, PencilAltIcon } from "@heroicons/react/outline";
 
 import VirtualCard from "../VirtualCreditCard/VirtualCard";
 import AccountState from "../../../utils/lib/AccountState";
-import ModalStandard from "../../UI/Modal/Standard/ModalStandard";
 import ModalFull from "../../UI/Modal/Full/ModalFull";
+import Input from "../../UI/Forms/Input";
 
 const PaymentInformation = () => {
   let { payment: cardDetails } = AccountState();
@@ -184,49 +184,6 @@ function CardDetails({ details, ...props }: any) {
         value={details?.defaultCard || null}
       />
     </SubContainer>
-  );
-}
-
-function Input({
-  type,
-  name,
-  placeholder,
-  labelText,
-  icon,
-  label = false,
-  className,
-  setter,
-  ...props
-}: any) {
-  return (
-    <>
-      {label ? (
-        <label className="flex flex-col text-[0.65em] text-gray-300">
-          <p className="ml-1">{labelText}</p>
-          <input
-            type={type}
-            className={[
-              "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
-              className,
-            ].join(" ")}
-            name={name}
-            placeholder={placeholder}
-            {...props}
-          />
-        </label>
-      ) : (
-        <input
-          type={type}
-          className={[
-            "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
-            className,
-          ].join(" ")}
-          name={name}
-          placeholder={placeholder}
-          {...props}
-        />
-      )}
-    </>
   );
 }
 

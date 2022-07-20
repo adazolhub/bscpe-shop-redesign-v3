@@ -61,7 +61,7 @@ const ShoppingCart = () => {
                         </span>
                         <p className="text-sm font-medium text-gray-500">
                           {" "}
-                          <span>₱ {data?.price}.00</span> x {data?.quantity}
+                          <span>₱ {data?.price}</span> x {data?.quantity}
                         </p>
                       </div>
                       <div>

@@ -108,3 +108,34 @@
 .modal_standard_content {
   @apply p-4;
 }
+
+.modal_mobile {
+  @apply w-[calc(100%)] fixed md:hidden inset-x-0 max-h-0 bottom-0  flex flex-col gap-2   shadow-lg z-40  translate-y-full transition-all transform-gpu duration-500 invisible;
+}
+.modal_mobile_active {
+  @apply visible max-h-full scale-100 translate-y-0;
+}
+
+.modal_mobile_close {
+  @apply inline-flex items-center justify-center gap-2 p-3 mb-3 font-medium rounded-lg shadow-lg bg-neutral-700/50 backdrop-blur-lg ring-1 ring-inset ring-white/10 mix-blend-screen;
+}
+
+.modal_mobile_close span {
+  @apply text-orange-700;
+}
+
+.modal_mobile_content {
+  @apply p-4 rounded-t-lg shadow-md bg-white/90 backdrop-blur;
+}
+
+.modal_mobile_content nav {
+  @apply inline-flex justify-between w-full;
+}
+
+.modal_mobile_cart {
+  @apply inline-flex items-center justify-center w-full gap-4 px-4 py-4 text-white bg-black rounded-md;
+}
+
+.modal_mobile_subtitle {
+  @apply text-xs;
+}

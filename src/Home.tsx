@@ -9,8 +9,10 @@ import {
 import ShoppingCart from "./components/Cart/ShoppingCart";
 import ModalNotification from "./components/Notification/ModalNotification";
 import NotificationPanel from "./components/Notification/NotificationPanel";
+// import { AddToCart } from "./components/UI/Cards/ProductCardGrid";
 import ModalFull from "./components/UI/Modal/Full/ModalFull";
 import ModalIos from "./components/UI/Modal/Ios/ModalIos";
+import ModalMobile from "./components/UI/Modal/Mobile/ModalMobile";
 import ModalSide from "./components/UI/Modal/Side/ModalSide";
 import ModalStandard from "./components/UI/Modal/Standard/ModalStandard";
 import { SidebarNav } from "./components/UI/Sidebar/SidebarNav";
@@ -31,11 +33,13 @@ interface Modal {
       | "modal_full"
       | "modal_standard"
       | "side_bar"
+      | "modal_mobile"
   ) => void;
 }
 
 const Home = () => {
-  let { toggleState, toggleStateHandler } = ToggleState() as StaticState;
+  let { toggleState, toggleStateHandler, selectedProduct } =
+    ToggleState() as StaticState;
   return (
     <div className="absolute bottom-0 overlay" role={"dialog"}>
       {/** Mobile Sidebar*/}
@@ -50,7 +54,7 @@ const Home = () => {
       {/** Cart Overlay*/}
       <ShoppingCart />
 
-      <ModalIos
+      {/* <ModalIos
         state={toggleState["modal_ios"]}
         toggleStateHandler={() => toggleStateHandler("modal_ios")}
       >
@@ -76,17 +80,9 @@ const Home = () => {
             </button>
           </div>
         </div>
-      </ModalIos>
+      </ModalIos> */}
+      {/* {selectedProduct && <AddToCart product={selectedProduct} />} */}
 
-      {/* <ModalFull
-        state={toggleState["modal_full"]}
-        toggleStateHandler={() => toggleStateHandler("modal_full")}
-      />
-
-      <ModalStandard
-        state={toggleState["modal_standard"]}
-        toggleStateHandler={() => toggleStateHandler("modal_standard")}
-      /> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import SubSettingsButton from "./SubSettingsButton";
 import AccountState from "../../../utils/lib/AccountState";
 import ModalStandard from "../../UI/Modal/Standard/ModalStandard";
 import ModalFull from "../../UI/Modal/Full/ModalFull";
+import Input from "../../UI/Forms/Input";
 
 const ShippingAddress = () => {
   let { shipping: address }: any = AccountState();
@@ -139,7 +140,7 @@ function AddForm({ toggle, toggleHandler, address }: any) {
           labelText={"Recipient Name (receiver)"}
           placeholder={address?.recipient || "Juan Dela Cruz"}
           defaultValue={addressInfo?.recipient}
-          onChange={(e: any) => {
+          onChange={(e: Event) => {
             handleChange("recipient")(e);
           }}
         />
@@ -154,7 +155,7 @@ function AddForm({ toggle, toggleHandler, address }: any) {
             "123 Street, Curve Corner, Lower Taguig, Bicutan"
           }
           defaultValue={addressInfo?.address}
-          onChange={(e: any) => {
+          onChange={(e: Event) => {
             handleChange("address")(e);
           }}
         />
@@ -166,7 +167,7 @@ function AddForm({ toggle, toggleHandler, address }: any) {
           labelText={"City"}
           placeholder={address?.city || "New York City"}
           defaultValue={addressInfo?.city}
-          onChange={(e: any) => {
+          onChange={(e: Event) => {
             handleChange("city")(e);
           }}
         />
@@ -177,7 +178,7 @@ function AddForm({ toggle, toggleHandler, address }: any) {
           labelText={"Zipcode"}
           placeholder={address?.zipcode || "1234"}
           defaultValue={addressInfo?.zipcode}
-          onChange={(e: any) => {
+          onChange={(e: Event) => {
             handleChange("zipcode")(e);
           }}
         />
@@ -189,7 +190,7 @@ function AddForm({ toggle, toggleHandler, address }: any) {
           labelText={"Contact Number"}
           placeholder={address?.contact || "+6372345678"}
           defaultValue={addressInfo?.contact}
-          onChange={(e: any) => {
+          onChange={(e: Event) => {
             handleChange("contact")(e);
           }}
         />
@@ -247,49 +248,6 @@ function AddForm({ toggle, toggleHandler, address }: any) {
         </div>
       </form>
     </ModalFull>
-  );
-}
-
-function Input({
-  type,
-  name,
-  placeholder,
-  labelText,
-  icon,
-  label = false,
-  className,
-  setter,
-  ...props
-}: any) {
-  return (
-    <>
-      {label ? (
-        <label className="flex flex-col text-[0.65em] text-gray-300">
-          <p className="ml-1">{labelText}</p>
-          <input
-            type={type}
-            className={[
-              "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
-              className,
-            ].join(" ")}
-            name={name}
-            placeholder={placeholder}
-            {...props}
-          />
-        </label>
-      ) : (
-        <input
-          type={type}
-          className={[
-            "text-field placeholder:text-gray-400 focus:placeholder:text-gray-300 focus:border-gray-400",
-            className,
-          ].join(" ")}
-          name={name}
-          placeholder={placeholder}
-          {...props}
-        />
-      )}
-    </>
   );
 }
 

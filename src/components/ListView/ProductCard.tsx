@@ -19,19 +19,19 @@ const ProductCard = ({ product_id, name, image, price, ...props } : any) => {
     }
   }, [products, name]);
 
-  let handleClick = () => {
-    let product = {
-      product_id,
-      name,
-      image,
-      price: Math.floor(price - price * 0.4),
-    };
-    if (isInCart) {
-      removeFromCart(product);
-    } else {
-      addToCart(product);
-    }
-  };
+  // let handleClick = () => {
+  //   let product = {
+  //     product_id,
+  //     name,
+  //     image,
+  //     price: Math.floor(price - price * 0.4),
+  //   };
+  //   if (isInCart) {
+  //     removeFromCart(product);
+  //   } else {
+  //     addToCart(product);
+  //   }
+  // };
 
   const [toggleItem, setToggleItem] = useState(false)
   let [selectedProduct, setSelectedProduct] = useState({})
@@ -98,6 +98,8 @@ const ProductCard = ({ product_id, name, image, price, ...props } : any) => {
           </div>
         </div>
       </motion.div>
+
+      {/**MOdal */}
       <ItemModal toggleItem={toggleItem} toggleItemHandler={toggleItemHandler} product={selectedProduct} />
     </>
   );

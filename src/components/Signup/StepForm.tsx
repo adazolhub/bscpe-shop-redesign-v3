@@ -72,7 +72,7 @@ const StepForm = () => {
 
   return (
     <div className="w-full space-y-6">
-      <div className="relative flex w-full before:absolute before:h-[2px] before:w-[calc(100%-35%)] before:bg-gray-300 before:top-[30%] before:left-0 before:mx-[15%]">
+      <div className="relative flex w-full before:absolute before:h-[1px] before:w-[calc(100%-35%)] before:bg-black/20 before:top-[25%] before:left-0 before:mx-[15%]">
         {labels.map((label, index: number) => (
           <div
             className="w-[calc(33%)] 
@@ -80,18 +80,20 @@ const StepForm = () => {
             key={label}
           >
             <div className="grid gap-1 text-[0.5em] text-gray-300 after:rounded-full place-items-center">
-              <div className="grid p-[2px] bg-gray-300 border-8 border-gray-100 rounded-full place-content-center">
+              <div className="grid p-[4px] bg-white border-0 border-gray-100 rounded-full place-content-center">
                 {index + 1 < stepper.step ? (
-                  <CheckIcon className="w-3  p-[2px] text-gray-300 bg-gray-700 rounded-full" />
+                  <CheckIcon className="w-4 h-4  p-[2px] text-white bg-black rounded-full" />
                 ) : index + 1 === stepper.step ? (
-                  <CheckIcon className="w-3 p-[2px] text-gray-300 bg-gray-400/70 rounded-full" />
+                  <CheckIcon className="w-4 h-4 p-[2px] text-white bg-black/30 rounded-full" />
                 ) : (
-                  <CheckIcon className="w-3 p-[2px] text-gray-300 bg-gray-300 rounded-full" />
+                  <CheckIcon className="w-4 h-4 p-[2px] text-transparent bg-black/10 rounded-full" />
                 )}
               </div>
               <p
                 className={
-                  index + 1 === stepper.step ? "text-gray-400" : undefined
+                  index + 1 === stepper.step
+                    ? "text-black/70 font-bold"
+                    : undefined
                 }
               >
                 {label}

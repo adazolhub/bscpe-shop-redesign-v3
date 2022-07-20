@@ -4,7 +4,7 @@
   @apply sticky inset-x-0 top-0 z-20 w-full;
 }
 .nav_header nav {
-  @apply flex items-center justify-between px-4 text-gray-200 bg-gradient-to-br backdrop-blur-md from-black to-black/80 h-nav-height mix-blend-difference;
+  @apply flex items-center justify-between px-4 text-black bg-gradient-to-br from-white to-white h-nav-height mix-blend-difference;
 }
 
 .nav_header_list {
@@ -12,9 +12,13 @@
 }
 
 .nav_header_list button {
-  @apply px-1 text-gray-400 underline hover:underline underline-offset-2;
+  @apply px-1 text-black underline hover:underline underline-offset-2;
 }
 
 .nav_header_list_mobile {
   @apply inline-flex gap-1;
+}
+
+.nav_header svg {
+  @apply text-black;
 }

@@ -61,6 +61,8 @@ export interface StaticState {
       | "side_bar"
       | "hamburger_mobile"
   ) => void;
+  selectedProduct: any;
+  setSelectedProduct: any;
 }
 
 export interface States {
