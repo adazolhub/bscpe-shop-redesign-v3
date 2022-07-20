@@ -34,13 +34,13 @@ interface Modal {
   ) => void;
 }
 
-const Home = ({ toggleState, setToggleStateHandler }: Modal) => {
-  let { toggleState: state, toggleStateHandler } = ToggleState() as StaticState;
+const Home = () => {
+  let { toggleState, toggleStateHandler } = ToggleState() as StaticState;
   return (
     <div className="absolute bottom-0 overlay" role={"dialog"}>
       {/** Mobile Sidebar*/}
       <SidebarNav
-        state={state["hamburger_mobile"]}
+        state={toggleState["hamburger_mobile"]}
         toggleStateHandler={() => toggleStateHandler("hamburger_mobile")}
       />
 
@@ -52,7 +52,7 @@ const Home = ({ toggleState, setToggleStateHandler }: Modal) => {
 
       <ModalIos
         state={toggleState["modal_ios"]}
-        toggleStateHandler={() => setToggleStateHandler("modal_ios")}
+        toggleStateHandler={() => toggleStateHandler("modal_ios")}
       >
         <div>
           <nav className="inline-flex items-center gap-2 mb-2 text-sm text-gray-400">
@@ -78,15 +78,15 @@ const Home = ({ toggleState, setToggleStateHandler }: Modal) => {
         </div>
       </ModalIos>
 
-      <ModalFull
+      {/* <ModalFull
         state={toggleState["modal_full"]}
-        toggleStateHandler={() => setToggleStateHandler("modal_full")}
+        toggleStateHandler={() => toggleStateHandler("modal_full")}
       />
 
       <ModalStandard
         state={toggleState["modal_standard"]}
-        toggleStateHandler={() => setToggleStateHandler("modal_standard")}
-      />
+        toggleStateHandler={() => toggleStateHandler("modal_standard")}
+      /> */}
     </div>
   );
 };

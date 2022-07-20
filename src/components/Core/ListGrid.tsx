@@ -14,8 +14,6 @@ import {
 } from "firebase/firestore";
 import { SetStateAction, useEffect, useState } from "react";
 
-
-
 import OneColumn from "../ListView/OneColumn";
 import TwoColumn from "../ListView/TwoColumn";
 import ListGridToggler from "../ListView/ListGridToggler";
@@ -24,12 +22,11 @@ import { UserAuth } from "../../utils/lib/Auth";
 import ShopState from "../../utils/lib/ShopState";
 import { ToggleState } from "../../utils/lib/ToggleState";
 
-
 //TODOS: Need to fix types of States (temporarily set to 'any')
 let userRef = collection(db, "users");
 
 const ListGrid = () => {
-  const { currentUser, list } : any = UserAuth();
+  const { currentUser, list }: any = UserAuth();
   return (
     <>
       {!currentUser ? (
@@ -41,17 +38,21 @@ const ListGrid = () => {
   );
 };
 
-function WithProps({ data, currentUser = null } : {
-  data : any; currentUser: any
+function WithProps({
+  data,
+  currentUser = null,
+}: {
+  data: any;
+  currentUser: any;
 }) {
   let [cart, setCart] = useState([]);
   let { products } = ShopState();
 
   let docRef = doc(db, "users", currentUser?.uid);
-  let { category, toggleListGrid: toggleList } : any = ToggleState();
+  let { category, toggleListGrid: toggleList }: any = ToggleState();
 
   useEffect(() => {
-    let qUser : Query<DocumentData> =
+    let qUser: Query<DocumentData> =
       currentUser && query(userRef, where("uid", "==", currentUser?.uid));
     let userUnsub =
       currentUser &&
@@ -86,8 +87,8 @@ function WithProps({ data, currentUser = null } : {
     }).then(() => {
       console.log("cart selected removed");
       //debugging ....
-      let root_html =  document.querySelector("html")
-      root_html!.style.overflow = '';
+      let root_html = document.querySelector("html");
+      root_html!.style.overflow = "";
     });
   };
   return (
@@ -97,7 +98,7 @@ function WithProps({ data, currentUser = null } : {
         id="list"
       >
         {/* //this props need to move to global context props (UPDATED 03/07/2022 [refactor]) */}
-        <ListGridToggler />
+        {/* <ListGridToggler /> */}
 
         {toggleList ? (
           //1 COLUMN
@@ -122,7 +123,7 @@ function WithProps({ data, currentUser = null } : {
 
 function WithoutProps() {
   //TODOS: Need to fix types of the Toggle State (temporarily set to 'any')
-  let { category, toggleListGrid: toggleList } : any = ToggleState();
+  let { category, toggleListGrid: toggleList }: any = ToggleState();
   let { products } = ShopState();
 
   return (

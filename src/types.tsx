@@ -32,6 +32,16 @@ export interface ProductCart {
   color: string;
 }
 
+export interface ProductList {
+  product_id: string;
+  product_name: string;
+  product_image: string;
+  product_quantity: number;
+  product_price: number;
+  product_size: string[];
+  product_color: string[];
+}
+
 export interface StaticState {
   /**
    * This is the state that can be called by toggleStateHandler param of modal_type

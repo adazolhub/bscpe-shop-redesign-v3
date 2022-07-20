@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@heroicons/react': ^1.0.6
   '@juggle/resize-observer': ^3.3.1
+  '@tailwindcss/line-clamp': ^0.4.0
   '@types/jest': ^27.5.2
   '@types/node': ^16.11.45
   '@types/react': ^18.0.15
@@ -25,6 +26,7 @@ specifiers:
 dependencies:
   '@heroicons/react': 1.0.6_react@18.2.0
   '@juggle/resize-observer': 3.3.1
+  '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.6
   '@types/jest': 27.5.2
   '@types/node': 16.11.45
   '@types/react': 18.0.15
@@ -3222,6 +3224,14 @@ packages:
       loader-utils: 2.0.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@tailwindcss/line-clamp/0.4.0_tailwindcss@3.1.6:
+    resolution: {integrity: sha512-HQZo6gfx1D0+DU3nWlNLD5iA6Ef4JAXh0LeD8lOGrJwEDBwwJNKQza6WoXhhY1uQrxOuU8ROxV7CqiQV4CoiLw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.1.6
     dev: false
 
   /@tootallnate/once/1.1.2:

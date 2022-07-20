@@ -64,10 +64,7 @@ function App() {
 
       <HomePage />
 
-      <Home
-        toggleState={toggleState}
-        setToggleStateHandler={setToggleStateHandler}
-      />
+      <Home />
     </div>
   );
 }
@@ -121,13 +118,13 @@ function HomeContent({ setToggleStateHandler }: Modal) {
           </span>{" "}
         </button>
 
-        <button
+        {/* <button
           onClick={() => setToggleStateHandler("modal_full")}
           className="grid px-6 mx-auto mt-10 text-xs text-gray-500 animate-bounce place-items-center w-fit"
         >
           <span>Scroll</span>
           <ArrowDownIcon className="w-4" />
-        </button>
+        </button> */}
       </div>
     </animated.div>
   );

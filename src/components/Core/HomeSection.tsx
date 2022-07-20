@@ -27,7 +27,7 @@ function Tabs() {
   //TODOS: Need to fix types of the Toggle State (temporarily set to 'any')
   // let { toggleHeadNotify }: any = ToggleState();
   const [ref, { top, y }] = useMeasure({ polyfill: IntersectionObserver });
-  console.log(y);
+  console.log(top);
   return (
     <div
       ref={ref}
@@ -37,7 +37,7 @@ function Tabs() {
     >
       <ul className="grid grid-cols-3 p-1 -mb-px font-thin transition-all duration-500 lg:flex flex-nowrap transform-gpu">
         <NavLink
-          to={"0"}
+          to={""}
           activeClassName="bg-black w-full lg:w-auto text-gray-200 "
           className="px-6 py-3 rounded"
           exact={true}

@@ -8,14 +8,17 @@ module.exports = {
         "changable_height": "var(--height-top)",
 
       },
-      
+
       width: {
         "modal-side": "var(--modal-side)",
       },
-      
 
+      fontFamily: {
+        'sans': ['Raleway', 'sans-serif']
+      }
     },
   },
-  plugins: [],
-  important: true,
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

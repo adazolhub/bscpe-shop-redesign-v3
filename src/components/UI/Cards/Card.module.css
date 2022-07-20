@@ -1,0 +1,90 @@
+/** PRODUCT CARD GRID */
+.product {
+  @apply grid mx-auto overflow-hidden text-xs rounded-md w-fit;
+}
+
+.product__top {
+  @apply relative w-[calc(50vw-1.5rem)] max-w-[240px] overflow-hidden rounded-md h-[156px] md:h-[260px];
+}
+.product__image {
+  @apply absolute inset-0;
+}
+
+.product__image img {
+  @apply object-cover w-full h-full transition-all duration-500 transform-gpu grayscale-[20%];
+}
+
+.product__tag {
+  @apply absolute px-2 py-1 text-[0.9em] text-white rounded bg-black/30 top-2 left-2;
+}
+
+.product__bottom {
+  @apply inline-flex items-start justify-between w-full p-2 text-black/70;
+}
+
+.product__details {
+  @apply w-full space-y-1;
+}
+.product__title {
+  @apply max-w-[14ch] hover:underline underline-offset-2 font-medium line-clamp-3;
+}
+
+.product__price {
+  @apply inline-flex gap-1 font-bold text-amber-700 whitespace-nowrap;
+}
+
+.product__original_price {
+  @apply font-normal text-[0.8em] line-through text-black/70 whitespace-nowrap;
+}
+.product__cart {
+  @apply p-2 rounded-full hover:bg-black/10 hover:shadow-sm;
+}
+
+.product__cart svg {
+  @apply w-5 h-5;
+}
+
+/** END OF PRODUCT CARD GRID */
+
+.large {
+  @apply relative w-64 h-64 overflow-hidden rounded grayscale-[70%] transform-gpu transition-all duration-500;
+}
+
+.large__image {
+  @apply absolute inset-0;
+}
+
+.large__image img {
+  @apply object-cover w-full h-full transition-all duration-500 origin-bottom transform-gpu;
+}
+
+.large__details {
+  @apply absolute inset-x-0 bottom-0 flex flex-col gap-2 m-4 text-white;
+}
+
+.large__title {
+  @apply mb-1 text-lg font-semibold leading-6 max-w-[16ch] hover:underline underline-offset-2;
+}
+
+.large__price {
+  @apply text-[0.8em] font-bold;
+}
+.large__original_price {
+  @apply font-thin line-through text-white/50;
+}
+
+.large__footer {
+  @apply inline-flex justify-between w-full text-[0.8em] items-center;
+}
+
+.large__navigate {
+  @apply px-3 py-2 text-black bg-white rounded;
+}
+
+.large__cart {
+  @apply p-2 rounded-full bg-white/5 hover:bg-white/10 hover:shadow;
+}
+
+.large__cart svg {
+  @apply w-5 h-5;
+}
