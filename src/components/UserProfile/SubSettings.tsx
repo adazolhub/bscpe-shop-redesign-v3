@@ -1,34 +1,37 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
-import { ToggleState } from "../../lib/ToggleState";
-import MenuModalFull from "../Overlay/MenuModalFull";
+import About from "../../pages/About";
+import { States, StaticState } from "../../types";
+import { scrollDisableOnOverlay } from "../../utils/hooks/useScrollDisable";
+import { ToggleState } from "../../utils/lib/ToggleState";
+import ModalCart from "../Cart/ModalCart";
+import ShoppingCart from "../Cart/ShoppingCart";
+import NotificationPanel from "../Notification/NotificationPanel";
+import ModalSide from "../UI/Modal/Side/ModalSide";
+import Profile from "./Profile";
 import AccountDetails from "./Settings/AccountDetails";
+import AccountOwnershipAndControl from "./Settings/AccountOwnershipAndControl";
 import PaymentInformation from "./Settings/PaymentInformation";
 import ShippingAddress from "./Settings/ShippingAddress";
-import AccountOwnershipAndControl from "./Settings/AccountOwnershipAndControl";
-import NotificationPanel from "../Notification/NotificationPanel";
-import ShoppingCart from "../Cart/ShoppingCart";
-import About from "../../pages/About";
-import Profile from "./Profile";
-import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
 
 const SubSettings = () => {
   let { pathname } = useLocation();
   let location = pathname.split("/")[2];
-  let { settingToggle, settingToggleHandler } = ToggleState();
+
+  const { toggleState, toggleStateHandler } = ToggleState() as StaticState;
+  let { settingToggle, settingToggleHandler } = ToggleState() as States;
   //Prevent scroll when modal is toggled open
-  scrollDisableOnOverlay(settingToggle);
+  scrollDisableOnOverlay(toggleState["settings"]);
 
   return (
-    <MenuModalFull
-      modalToggle={settingToggle}
-      modalToggleHandler={settingToggleHandler}
+    <ModalSide
+      state={toggleState["settings"]}
+      toggleStateHandler={() => toggleStateHandler("settings")}
       title={location}
     >
       {location === "notification" ? (
         <NotificationPanel />
       ) : location === "cart" ? (
-        <ShoppingCart />
+        <ModalCart />
       ) : location === "account-details" ? (
         <AccountDetails />
       ) : location === "payment-information" ? (
@@ -42,7 +45,7 @@ const SubSettings = () => {
       ) : (
         <Profile />
       )}
-    </MenuModalFull>
+    </ModalSide>
   );
 };
 

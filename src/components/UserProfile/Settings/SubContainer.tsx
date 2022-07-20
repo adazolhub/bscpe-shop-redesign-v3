@@ -1,4 +1,15 @@
-function SubContainer({ title, editable, modifier, children, ...props }) {
+function SubContainer({
+  title,
+  editable,
+  modifier,
+  children,
+  ...props
+}: {
+  title?: string;
+  editable?: boolean;
+  modifier?: JSX.Element | JSX.Element[] | string;
+  children?: any;
+}) {
   return (
     <div className="px-4 py-2 bg-white rounded-md shadow-sm">
       <div className="flex items-center justify-between">

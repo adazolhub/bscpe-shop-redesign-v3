@@ -1,14 +1,14 @@
 import { PencilAltIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
-import { UserAuth } from "../../../lib/Auth";
-import WrapperScroll from "../../Overlay/WrapperScroll";
+import { UserAuth } from "../../../utils/lib/Auth";
 import SubContainer from "./SubContainer";
 import SubSettingsButton from "./SubSettingsButton";
-import Modal from "../../Overlay/Modal";
-import AccountState from "../../../lib/AccountState";
+import AccountState from "../../../utils/lib/AccountState";
+import ModalStandard from "../../UI/Modal/Standard/ModalStandard";
+import ModalFull from "../../UI/Modal/Full/ModalFull";
 
 const ShippingAddress = () => {
-  let { shipping: address } = AccountState();
+  let { shipping: address }: any = AccountState();
 
   let [addToggle, setAddToggle] = useState(false);
   let addToggleHandler = () => {
@@ -16,7 +16,7 @@ const ShippingAddress = () => {
   };
 
   return (
-    <WrapperScroll>
+    <>
       {address && address ? (
         <AddressInformation onClick={addToggleHandler} address={address} />
       ) : (
@@ -36,11 +36,11 @@ const ShippingAddress = () => {
         toggleHandler={addToggleHandler}
         address={address}
       />
-    </WrapperScroll>
+    </>
   );
 };
 
-function AddressInformation({ address, ...props }) {
+function AddressInformation({ address, ...props }: any) {
   return (
     <SubContainer
       title={"Address"}
@@ -61,8 +61,8 @@ function AddressInformation({ address, ...props }) {
   );
 }
 
-function AddForm({ toggle, toggleHandler, address }) {
-  let { currentUser } = UserAuth();
+function AddForm({ toggle, toggleHandler, address }: any) {
+  let { currentUser }: any = UserAuth();
 
   let [addressInfo, setAddressInfo] = useState({
     recipient: "",
@@ -72,9 +72,9 @@ function AddForm({ toggle, toggleHandler, address }) {
     contact: "",
   });
 
-  let { addShipping, updateShipping } = AccountState();
+  let { addShipping, updateShipping }: any = AccountState();
 
-  const addAddress = (e) => {
+  const addAddress = (e: any) => {
     e.preventDefault();
 
     //Account Reducer - add new shipping
@@ -98,7 +98,7 @@ function AddForm({ toggle, toggleHandler, address }) {
   };
 
   //Account Reducer - update shipping
-  const editAddress = (e) => {
+  const editAddress = (e: any) => {
     e.preventDefault();
 
     updateShipping(
@@ -120,12 +120,12 @@ function AddForm({ toggle, toggleHandler, address }) {
     });
   };
 
-  let handleChange = (input) => (e) => {
+  let handleChange = (input: any) => (e: any) => {
     setAddressInfo((prev) => (prev = { ...prev, [input]: e.target.value }));
   };
 
   return (
-    <Modal modalToggle={toggle} modalToggleHandler={toggleHandler}>
+    <ModalFull state={toggle} toggleStateHandler={toggleHandler}>
       {address && address ? (
         <p className="mb-4 text-xs text-gray-400">Update Address</p>
       ) : (
@@ -139,7 +139,7 @@ function AddForm({ toggle, toggleHandler, address }) {
           labelText={"Recipient Name (receiver)"}
           placeholder={address?.recipient || "Juan Dela Cruz"}
           defaultValue={addressInfo?.recipient}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("recipient")(e);
           }}
         />
@@ -154,7 +154,7 @@ function AddForm({ toggle, toggleHandler, address }) {
             "123 Street, Curve Corner, Lower Taguig, Bicutan"
           }
           defaultValue={addressInfo?.address}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("address")(e);
           }}
         />
@@ -166,7 +166,7 @@ function AddForm({ toggle, toggleHandler, address }) {
           labelText={"City"}
           placeholder={address?.city || "New York City"}
           defaultValue={addressInfo?.city}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("city")(e);
           }}
         />
@@ -177,7 +177,7 @@ function AddForm({ toggle, toggleHandler, address }) {
           labelText={"Zipcode"}
           placeholder={address?.zipcode || "1234"}
           defaultValue={addressInfo?.zipcode}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("zipcode")(e);
           }}
         />
@@ -189,7 +189,7 @@ function AddForm({ toggle, toggleHandler, address }) {
           labelText={"Contact Number"}
           placeholder={address?.contact || "+6372345678"}
           defaultValue={addressInfo?.contact}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("contact")(e);
           }}
         />
@@ -199,10 +199,10 @@ function AddForm({ toggle, toggleHandler, address }) {
               className="btn-primary"
               disabled={
                 addressInfo?.recipient ||
-                  addressInfo?.address ||
-                  addressInfo?.city ||
-                  addressInfo?.zipcode ||
-                  addressInfo?.contact
+                addressInfo?.address ||
+                addressInfo?.city ||
+                addressInfo?.zipcode ||
+                addressInfo?.contact
                   ? false
                   : true
               }
@@ -216,10 +216,10 @@ function AddForm({ toggle, toggleHandler, address }) {
               className="btn-primary"
               disabled={
                 addressInfo?.recipient &&
-                  addressInfo?.address &&
-                  addressInfo?.city &&
-                  addressInfo?.zipcode &&
-                  addressInfo?.contact
+                addressInfo?.address &&
+                addressInfo?.city &&
+                addressInfo?.zipcode &&
+                addressInfo?.contact
                   ? false
                   : true
               }
@@ -232,7 +232,13 @@ function AddForm({ toggle, toggleHandler, address }) {
             className="btn-secondary"
             onClick={(e) => {
               e.preventDefault();
-              setAddressInfo({});
+              setAddressInfo({
+                recipient: "",
+                address: "",
+                city: "",
+                zipcode: "",
+                contact: "",
+              });
               toggleHandler();
             }}
           >
@@ -240,7 +246,7 @@ function AddForm({ toggle, toggleHandler, address }) {
           </button>
         </div>
       </form>
-    </Modal>
+    </ModalFull>
   );
 }
 
@@ -254,7 +260,7 @@ function Input({
   className,
   setter,
   ...props
-}) {
+}: any) {
   return (
     <>
       {label ? (

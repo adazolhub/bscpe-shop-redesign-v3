@@ -1,22 +1,17 @@
-import {
-  FingerPrintIcon,
-  TrashIcon,
-} from "@heroicons/react/outline";
-import React from "react";
-import WrapperScroll from "../../Overlay/WrapperScroll";
+import { FingerPrintIcon, TrashIcon } from "@heroicons/react/outline";
 
 const AccountOwnershipAndControl = () => {
   return (
-    <WrapperScroll>
+    <>
       <div className="flex flex-col w-full gap-2 py-4">
         <ButtonWithIcon Icon={FingerPrintIcon}>Change password</ButtonWithIcon>
         <ButtonWithIconRed Icon={TrashIcon}>Delele account</ButtonWithIconRed>
       </div>
-    </WrapperScroll>
+    </>
   );
 };
 
-function ButtonWithIcon({ children, Icon, ...props }) {
+function ButtonWithIcon({ children, Icon, ...props }: any) {
   return (
     <>
       <button
@@ -36,7 +31,7 @@ function ButtonWithIcon({ children, Icon, ...props }) {
     </>
   );
 }
-function ButtonWithIconRed({ children, Icon, ...props }) {
+function ButtonWithIconRed({ children, Icon, ...props }: any) {
   return (
     <>
       <button

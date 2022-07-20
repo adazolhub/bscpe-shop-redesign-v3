@@ -8,20 +8,16 @@ import {
   UserIcon,
 } from "@heroicons/react/outline";
 import { formatRelative, fromUnixTime } from "date-fns";
-import React from "react";
-import {
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
-import { UserAuth } from "../../lib/Auth";
-import { ToggleState } from "../../lib/ToggleState";
-import { scrollDisableOnOverlay } from "../../utils/disableScrollOnOverlay";
+import { Outlet, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../utils/lib/Auth";
+import { ToggleState } from "../../utils/lib/ToggleState";
+import { scrollDisableOnOverlay } from "../../utils/hooks/useScrollDisable";
+import { States, StaticState } from "../../types";
 
 const Settings = () => {
-
-  const { currentUser, logout } = UserAuth();
-  let { settingToggle, settingToggleHandler } = ToggleState();
-  scrollDisableOnOverlay(settingToggle);
+  const { currentUser, logout }: any = UserAuth();
+  let { toggleState, toggleStateHandler } = ToggleState() as StaticState;
+  scrollDisableOnOverlay(toggleState["settings"]);
   const navigate = useNavigate();
   const handleLogout = () => {
     logout();
@@ -35,7 +31,7 @@ const Settings = () => {
           Icon={ShoppingBagIcon}
           onClick={() => {
             navigate("cart");
-            settingToggleHandler();
+            toggleStateHandler("settings");
           }}
         >
           My shopping cart
@@ -44,7 +40,7 @@ const Settings = () => {
           Icon={UserIcon}
           onClick={() => {
             navigate("account-details");
-            settingToggleHandler();
+            toggleStateHandler("settings");
           }}
         >
           Account detail
@@ -53,7 +49,7 @@ const Settings = () => {
           Icon={CreditCardIcon}
           onClick={() => {
             navigate("payment-information");
-            settingToggleHandler();
+            toggleStateHandler("settings");
           }}
         >
           Payment information
@@ -62,7 +58,7 @@ const Settings = () => {
           Icon={MapIcon}
           onClick={() => {
             navigate("shipping-address");
-            settingToggleHandler();
+            toggleStateHandler("settings");
           }}
         >
           Shipping address
@@ -71,7 +67,7 @@ const Settings = () => {
           Icon={ShieldExclamationIcon}
           onClick={() => {
             navigate("account-ownership-and-control");
-            settingToggleHandler();
+            toggleStateHandler("settings");
           }}
         >
           Account ownership and control
@@ -97,7 +93,7 @@ const Settings = () => {
   );
 };
 
-function ButtonWithIcon({ children, Icon, ...props }) {
+function ButtonWithIcon({ children, Icon, ...props }: any) {
   return (
     <>
       <button
@@ -120,7 +116,7 @@ function ButtonWithIcon({ children, Icon, ...props }) {
 
 function Info() {
   const navigate = useNavigate();
-  let { settingToggleHandler } = ToggleState();
+  let { toggleStateHandler } = ToggleState() as StaticState;
   return (
     <>
       <div className="flex items-start gap-2 px-2 py-3 text-gray-300 rounded-md shadow-lg cursor-pointer bg-gradient-to-br from-gray-700/95 to-neutral-900">
@@ -132,7 +128,7 @@ function Info() {
             className="text-[1.08em] font-medium my-1 "
             onClick={() => {
               navigate("about");
-              settingToggleHandler();
+              toggleStateHandler("settings");
             }}
           >
             BSCPE STORE V2 <span>(re-design)</span>
@@ -160,8 +156,8 @@ function Info() {
           <span
             className="font-medium text-[1.05em] text-gray-300/80 inline-flex items-center border border-gray-500 px-2 py-1 rounded-md mt-3"
             onClick={() => {
-              navigate("about");
-              settingToggleHandler();
+              navigate("/about");
+              // toggleStateHandler("settings");
             }}
           >
             Read more <ChevronRightIcon className="h-3" />

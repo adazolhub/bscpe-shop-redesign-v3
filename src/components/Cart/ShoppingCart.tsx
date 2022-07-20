@@ -8,7 +8,12 @@ import { colorFormater, sizeFormater } from "../Checkout/Checkout";
 import ModalSide from "../UI/Modal/Side/ModalSide";
 
 const ShoppingCart = () => {
-  let { products: list, total, removeFromCart, totalQuantity } = ShopState();
+  let {
+    products: list,
+    total,
+    removeFromCart,
+    totalQuantity,
+  }: any = ShopState();
 
   //TODOS: Need to fix types of the Toggle State (temporarily set to 'any')
 
@@ -28,7 +33,7 @@ const ShoppingCart = () => {
         <div className="container relative p-2 mx-auto  max-h-[calc(100vh-4em)] overflow-hidden overflow-y-scroll">
           <ul className="flex flex-col gap-2 pb-4 min-h-[calc(100vh-18em)] max-h-[calc(100vh-16em)]">
             {list.length > 0 ? (
-              list?.map((data, index) => (
+              list?.map((data: any, index: number) => (
                 <li
                   key={index}
                   //   onClick={() => handleToggle(data)}

@@ -7,6 +7,7 @@ import {
   useResolvedPath,
 } from "react-router-dom";
 import ShoppingCart from "./components/Cart/ShoppingCart";
+import ModalNotification from "./components/Notification/ModalNotification";
 import NotificationPanel from "./components/Notification/NotificationPanel";
 import ModalFull from "./components/UI/Modal/Full/ModalFull";
 import ModalIos from "./components/UI/Modal/Ios/ModalIos";
@@ -44,7 +45,7 @@ const Home = ({ toggleState, setToggleStateHandler }: Modal) => {
       />
 
       {/** Notification Overlay*/}
-      <NotificationPanel />
+      <ModalNotification />
 
       {/** Cart Overlay*/}
       <ShoppingCart />

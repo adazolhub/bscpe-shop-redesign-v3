@@ -95,7 +95,7 @@
 }
 
 .modal_standard nav {
-  @apply relative right-0 mx-4 mt-4 h-7;
+  @apply relative right-0 w-full mx-4 mt-4 h-7;
 }
 
 .modal_standard nav button {
@@ -106,5 +106,5 @@
 }
 
 .modal_standard_content {
-  @apply m-4;
+  @apply p-4;
 }

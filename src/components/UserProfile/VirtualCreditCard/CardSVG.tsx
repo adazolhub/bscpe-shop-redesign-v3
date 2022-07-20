@@ -1,5 +1,3 @@
-import React from "react";
-
 function CardSVG({ ...props }) {
   return (
     <svg

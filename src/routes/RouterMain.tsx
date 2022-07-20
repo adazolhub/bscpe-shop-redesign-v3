@@ -11,6 +11,10 @@ import { Route, Routes } from "react-router-dom";
 import HomeSection from "../components/Core/HomeSection";
 import Login from "../components/Signin/Login";
 import SignUp from "../components/Signup/SignUp";
+import ProductMain from "../components/Product/ProductMain";
+import SubSettings from "../components/UserProfile/SubSettings";
+import Settings from "../components/UserProfile/Settings";
+import Profile from "../components/UserProfile/Profile";
 
 function RouterMain() {
   return (
@@ -30,44 +34,44 @@ export const routes: any = [
   {
     path: "account",
     element: <PrivateRoute />,
-    // children: [
-    //   {
-    //     path: "",
-    //     element: <UserProfile />,
-    //     children: [
-    //       {
-    //         path: "",
-    //         element: <Settings />,
-    //         children: [
-    //           { path: "", element: <SubSettings /> },
-    //           { path: "notification", element: <SubSettings /> },
-    //           { path: "cart", element: <SubSettings /> },
-    //           { path: "account-details", element: <SubSettings /> },
-    //           { path: "payment-information", element: <SubSettings /> },
-    //           { path: "shipping-address", element: <SubSettings /> },
-    //           {
-    //             path: "account-ownership-and-control",
-    //             element: <SubSettings />,
-    //           },
-    //           { path: "about", element: <SubSettings /> },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    //   // {
-    //   //   path: "dashboard",
-    //   //   element: <Dashboard />,
-    //   //   children: [
-    //   //     {
-    //   //       path: "",
-    //   //       element: <ProductDash />,
-    //   //       children: [{ path: ":id", element: <ProductItem /> }],
-    //   //     },
-    //   //     { path: "orders", element: <p>Orders</p> },
-    //   //     { path: "history", element: <p>history</p> },
-    //   //   ],
-    //   // },
-    // ],
+    children: [
+      {
+        path: "",
+        element: <Profile />,
+        children: [
+          {
+            path: "",
+            element: <Settings />,
+            children: [
+              { path: "", element: <SubSettings /> },
+              { path: "notification", element: <SubSettings /> },
+              { path: "cart", element: <SubSettings /> },
+              { path: "account-details", element: <SubSettings /> },
+              { path: "payment-information", element: <SubSettings /> },
+              { path: "shipping-address", element: <SubSettings /> },
+              {
+                path: "account-ownership-and-control",
+                element: <SubSettings />,
+              },
+              { path: "about", element: <SubSettings /> },
+            ],
+          },
+        ],
+      },
+      //   // {
+      //   //   path: "dashboard",
+      //   //   element: <Dashboard />,
+      //   //   children: [
+      //   //     {
+      //   //       path: "",
+      //   //       element: <ProductDash />,
+      //   //       children: [{ path: ":id", element: <ProductItem /> }],
+      //   //     },
+      //   //     { path: "orders", element: <p>Orders</p> },
+      //   //     { path: "history", element: <p>history</p> },
+      //   //   ],
+      //   // },
+    ],
   },
   {
     path: "cart",
@@ -79,7 +83,7 @@ export const routes: any = [
   },
   {
     path: "product/:id",
-    element: <>{/* <ProductMain /> */}</>,
+    element: <>{<ProductMain />}</>,
   },
 
   // {

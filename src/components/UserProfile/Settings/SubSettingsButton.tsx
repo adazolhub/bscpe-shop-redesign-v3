@@ -4,6 +4,11 @@ function SubSettingsButton({
   editable = false,
   modifier,
   ...props
+}: {
+  value?: string;
+  name?: string;
+  editable?: boolean;
+  modifier?: JSX.Element | JSX.Element[] | string;
 }) {
   return (
     <div className="flex items-center justify-between gap-12 py-2 text-xs">

@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { UserAuth } from "../../../lib/Auth";
-import WrapperScroll from "../../Overlay/WrapperScroll";
+import { UserAuth } from "../../../utils/lib/Auth";
 import SubContainer from "./SubContainer";
 import SubSettingsButton from "./SubSettingsButton";
-import {
-  ExclamationCircleIcon,
-  PencilAltIcon,
-} from "@heroicons/react/outline";
+import { ExclamationCircleIcon, PencilAltIcon } from "@heroicons/react/outline";
 
-import Modal from "../../Overlay/Modal";
 import VirtualCard from "../VirtualCreditCard/VirtualCard";
-import AccountState from "../../../lib/AccountState";
+import AccountState from "../../../utils/lib/AccountState";
+import ModalStandard from "../../UI/Modal/Standard/ModalStandard";
+import ModalFull from "../../UI/Modal/Full/ModalFull";
 
 const PaymentInformation = () => {
   let { payment: cardDetails } = AccountState();
@@ -23,12 +20,12 @@ const PaymentInformation = () => {
 
   return (
     <>
-      <WrapperScroll>
+      <>
         <Advisory />
         <div className="gap-4 ">
           <div className="flex w-full h-full gap-4 px-12 overflow-x-scroll snap-mandatory snap-x horizontal-snap ">
             {cardDetails?.cardType &&
-              cardDetails?.cardType.map((card, index) => (
+              cardDetails?.cardType.map((card: any, index: number) => (
                 <VirtualCard
                   key={card}
                   type={card || "VISA"}
@@ -50,7 +47,7 @@ const PaymentInformation = () => {
           details={cardDetails}
           onClick={() => toggleEditHandler()}
         />
-      </WrapperScroll>
+      </>
       <Form
         toggle={toggleEdit}
         toggleHandler={toggleEditHandler}
@@ -60,9 +57,9 @@ const PaymentInformation = () => {
   );
 };
 
-function Form({ toggle, toggleHandler, cardDetails }) {
-  let { currentUser } = UserAuth();
-  let { updatePaymentInfo } = AccountState();
+function Form({ toggle, toggleHandler, cardDetails }: any) {
+  let { currentUser }: any = UserAuth();
+  let { updatePaymentInfo }: any = AccountState();
 
   let [tempInfo, setTempInfo] = useState({
     cardNumber: "",
@@ -71,7 +68,7 @@ function Form({ toggle, toggleHandler, cardDetails }) {
     defaultCard: "",
   });
 
-  const modifyCard = (e) => {
+  const modifyCard = (e: any) => {
     e.preventDefault();
     updatePaymentInfo(
       currentUser,
@@ -80,16 +77,21 @@ function Form({ toggle, toggleHandler, cardDetails }) {
       tempInfo?.bank
     ).then(() => {
       toggleHandler();
-      setTempInfo({});
+      setTempInfo({
+        cardNumber: "",
+        cardHolder: "",
+        bank: "",
+        defaultCard: "",
+      });
     });
   };
 
-  let handleChange = (input) => (e) => {
+  let handleChange = (input: any) => (e: any) => {
     setTempInfo((prev) => (prev = { ...prev, [input]: e.target.value }));
   };
 
   return (
-    <Modal modalToggle={toggle} modalToggleHandler={toggleHandler}>
+    <ModalFull state={toggle} toggleStateHandler={toggleHandler}>
       <p className="mb-4 text-xs text-gray-400">Configure virtual card</p>
 
       <form className="flex flex-col gap-2">
@@ -101,7 +103,7 @@ function Form({ toggle, toggleHandler, cardDetails }) {
           labelText="Card Number"
           placeholder={cardDetails?.cardNumber || "1234 5678 0000 0000"}
           defaultValue={tempInfo?.cardNumber}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("cardNumber")(e);
           }}
         />
@@ -112,7 +114,7 @@ function Form({ toggle, toggleHandler, cardDetails }) {
           labelText="Card Holder Name"
           placeholder={cardDetails?.cardHolder || "Juan Dela Cruz"}
           defaultValue={tempInfo?.cardHolder}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("cardHolder")(e);
           }}
         />
@@ -123,7 +125,7 @@ function Form({ toggle, toggleHandler, cardDetails }) {
           labelText="Bank"
           placeholder={cardDetails?.bank || "Bank of the Philippine Island"}
           defaultValue={tempInfo?.bank}
-          onChange={(e) => {
+          onChange={(e: any) => {
             handleChange("bank")(e);
           }}
         />
@@ -150,11 +152,11 @@ function Form({ toggle, toggleHandler, cardDetails }) {
           </button>
         </div>
       </form>
-    </Modal>
+    </ModalFull>
   );
 }
 
-function CardDetails({ details, ...props }) {
+function CardDetails({ details, ...props }: any) {
   return (
     <SubContainer
       title={"Card Details"}
@@ -195,7 +197,7 @@ function Input({
   className,
   setter,
   ...props
-}) {
+}: any) {
   return (
     <>
       {label ? (

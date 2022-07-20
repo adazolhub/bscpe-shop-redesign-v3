@@ -30,6 +30,7 @@ export const ToggleStateProvider = ({ children }: any) => {
     header_notify: true,
     side_bar: false,
     hamburger_mobile: false,
+    settings: false
   });
 
   /**
@@ -59,6 +60,7 @@ export const ToggleStateProvider = ({ children }: any) => {
       | "modal_standard"
       | "side_bar"
       | "hamburger_mobile"
+      | "settings"
   ) =>
     setToggleState(
       (prev) => (prev = { ...prev, [modal_type]: !prev[modal_type] })

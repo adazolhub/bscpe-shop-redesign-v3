@@ -1,13 +1,12 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import User from "./User";
-import {
-  BellIcon
-} from "@heroicons/react/outline";
-import { ToggleState } from "../../lib/ToggleState";
-import ScrollToTop from "../../utils/ScrollToTop";
+import { BellIcon } from "@heroicons/react/outline";
+import { ToggleState } from "../../utils/lib/ToggleState";
+import ScrollToTop from "../../utils/hooks/useScrollToTop";
+import { StaticState } from "../../types";
 
 const Profile = () => {
-  let { settingToggleHandler } = ToggleState();
+  let { toggleStateHandler } = ToggleState() as StaticState;
   let navigate = useNavigate();
   return (
     <div className="flex flex-col w-full max-w-screen-sm gap-4 px-4 py-4 mx-auto text-gray-600 lg:max-w-screen-lg bg-slate-100">
@@ -19,7 +18,7 @@ const Profile = () => {
             className="w-5 h-5 text-gray-400"
             onClick={() => {
               navigate("notification");
-              settingToggleHandler();
+              toggleStateHandler("notification");
             }}
           />
         </button>

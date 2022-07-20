@@ -1,7 +1,7 @@
-import { UserAuth } from "../../lib/Auth";
+import { UserAuth } from "../../utils/lib/Auth";
 
 const User = () => {
-  const { currentUser } = UserAuth();
+  const { currentUser }: any = UserAuth();
 
   return (
     <>

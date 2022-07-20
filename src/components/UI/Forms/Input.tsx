@@ -20,16 +20,32 @@ function Input({
   required?: boolean;
 }) {
   return (
-    <input
-      type={type}
-      className={["text-field placeholder:text-gray-300 ", className].join(" ")}
-      name={name}
-      placeholder={placeholder}
-      {...props}
-      onChange={(event) => {
-        setter(event.target.value);
-      }}
-    />
+    <>
+      {setter ? (
+        <input
+          type={type}
+          className={["text-field placeholder:text-gray-300 ", className].join(
+            " "
+          )}
+          name={name}
+          placeholder={placeholder}
+          {...props}
+          onChange={(event) => {
+            setter(event.target.value);
+          }}
+        />
+      ) : (
+        <input
+          type={type}
+          className={["text-field placeholder:text-gray-300 ", className].join(
+            " "
+          )}
+          name={name}
+          placeholder={placeholder}
+          {...props}
+        />
+      )}
+    </>
   );
 }
 

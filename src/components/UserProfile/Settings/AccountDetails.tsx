@@ -1,21 +1,21 @@
 import { BadgeCheckIcon, CameraIcon } from "@heroicons/react/outline";
 import React from "react";
-import { UserAuth } from "../../../lib/Auth";
-import WrapperScroll from "../../Overlay/WrapperScroll";
+import { UserAuth } from "../../../utils/lib/Auth";
+
 import SubSettingsButton from "./SubSettingsButton";
 import SubContainer from "./SubContainer";
 
 const AccountDetails = () => {
   return (
-    <WrapperScroll>
+    <>
       <AccountProfile />
       <AccountInformation />
-    </WrapperScroll>
+    </>
   );
 };
 
 function AccountProfile() {
-  let { currentUser } = UserAuth();
+  let { currentUser }: any = UserAuth();
   return (
     <div className="text-sm mb-14 profile">
       <div className="relative ">
@@ -51,7 +51,7 @@ function AccountProfile() {
 }
 
 function AccountInformation() {
-  let { currentUser } = UserAuth();
+  let { currentUser }: any = UserAuth();
   return (
     <SubContainer title={"Account Information"}>
       <SubSettingsButton
