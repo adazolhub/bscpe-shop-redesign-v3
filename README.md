@@ -8,31 +8,66 @@ This is a redesign from our previous school project during college. Selected thi
 
 ### Tools/Packages used on re-designing:
 
-> 🍃 React Boilerplate (Front-end)
+> 🍃 React Boilerplate (Front-end) > ***Typescript***
 
 > 🍃 Tailwaindcss (CSS styling)
 
-> 🍃 React-Router-Dom (Browser Routing)
+> 🍃 ~~React-Router-Dom (Browser Routing)~~
 
-> 🍃 Date-fns (Date formater)
+> 🍃 ~~Date-fns (Date formater)~~
 
-> 🍃 Framer-Motion (Animation)
+> 🍃 ~~Framer-Motion (Animation)~~
 
-> 🍃 Firebase (Back-end)
+> 🍃 ~~Firebase (Back-end)~~
 
-> 🍃 suspend-react (React Suspense)
+> 🍃 ~~suspend-react (React Suspense)~~
 
 > 🍃 heroicons (Tailwindcss SVG Icons)
 
-> 🍃 react-easy-crop (Image cropper)
+> 🍃 ~~react-easy-crop (Image cropper)~~
 
 > 🍃 more ...
 
 ### Duration
 
-    June 20 2022 - Date Started
+ <details>
+ <summary>June 20 2022 (Project started)</summary>
+    <br>
+    • <b>Date Started<b>
+    <br>
+    • First git commit
+</details>
 
-    July 4, 2022 - Deployed beta version of the web app with firebase hosting [Link](https://bscpe-store-v2.web.app)
+<hr>
+
+<details>
+ <summary>July 4, 2022 (Previous patch)</summary>
+    <br>
+    • Deployed beta version of the web app with firebase hosting [Link](https://bscpe-store-v2.web.app)
+</details>
+
+<hr>
+<details open>
+ <summary >July 17, 2022 (Current patch)</summary>
+    <br>
+    • Refactor some codes to an reusable components.
+     <br>
+    • Merged with Typescript
+
+ <br>
+</details>
+<hr>
+<details >
+ <summary >In progress</summary>
+ <br>
+ In progress
+</details>
+<hr>
+
+<br>
+<br>
+<br>
+
 
 ### Author
 

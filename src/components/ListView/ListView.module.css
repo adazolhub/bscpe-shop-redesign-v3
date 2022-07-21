@@ -1,0 +1,27 @@
+.modal_mobile_content {
+  @apply p-4 rounded-t-lg shadow-md bg-white/90 backdrop-blur;
+}
+
+.modal_mobile_content nav {
+  @apply inline-flex justify-between w-full;
+}
+
+.modal_mobile_cart {
+  @apply inline-flex items-center justify-center w-full gap-4 px-4 py-4 text-white bg-black rounded-md;
+}
+
+.modal_mobile_subtitle {
+  @apply text-xs;
+}
+
+.modal_mobile_cart {
+  @apply inline-flex items-center justify-center w-full gap-4 px-4 py-4 text-white bg-black rounded-md;
+}
+
+.modal_mobile_subtitle {
+  @apply text-xs;
+}
+
+.modal_mobile_detail {
+  @apply flex flex-col gap-2;
+}
