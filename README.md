@@ -8,7 +8,7 @@ This is a redesign from our previous school project during college. Selected thi
 
 ### Tools/Packages used on re-designing:
 
-> 🍃 React Boilerplate (Front-end) > ***Typescript***
+> 🍃 React Boilerplate (Front-end) > **_Typescript_**
 
 > 🍃 Tailwaindcss (CSS styling)
 
@@ -48,13 +48,20 @@ This is a redesign from our previous school project during college. Selected thi
 
 <hr>
 <details open>
- <summary >July 17, 2022 (Current patch)</summary>
+ <summary >July 17, 2022 (Previous patch)</summary>
     <br>
     • Refactor some codes to an reusable components.
      <br>
-    • Merged with Typescript
+    • Converting javascript with Typescript for strict typing
 
  <br>
+</details>
+<hr>
+<details >
+ <summary >July 21, 2022 (Current patch)</summary>
+ <br>
+   • Merged converted Typescript to main 
+   • Creating fork version for test implementation
 </details>
 <hr>
 <details >
@@ -67,7 +74,6 @@ This is a redesign from our previous school project during college. Selected thi
 <br>
 <br>
 <br>
-
 
 ### Author
 
