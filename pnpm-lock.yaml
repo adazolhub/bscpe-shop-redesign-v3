@@ -25,12 +25,18 @@ specifiers:
 
 dependencies:
   '@heroicons/react': 1.0.6_react@18.2.0
+<<<<<<< HEAD
   '@juggle/resize-observer': 3.3.1
   '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.6
   '@types/jest': 27.5.2
   '@types/node': 16.11.45
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
+=======
+  '@testing-library/jest-dom': 5.16.4
+  '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
+  '@testing-library/user-event': 13.5.0_gwcpuyfvwbszhlmedmugzivgzu
+>>>>>>> f42daf000c95b3f746016a1dfd040ea6d2a8849e
   date-fns: 2.28.0
   firebase: 9.9.0
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
@@ -38,7 +44,10 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_l4duqkh7x67d4fmf6jocdn7i5q
+<<<<<<< HEAD
   react-spring: 9.5.0_xgcsvkcvfxpvfgo2px6xzrg7gm
+=======
+>>>>>>> f42daf000c95b3f746016a1dfd040ea6d2a8849e
   react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
   suspend-react: 0.0.8_react@18.2.0
   typescript: 4.7.4
@@ -3237,6 +3246,62 @@ packages:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
       tailwindcss: 3.1.6
+<<<<<<< HEAD
+=======
+    dev: true
+
+  /@testing-library/dom/8.16.0:
+    resolution: {integrity: sha512-uxF4zmnLHHDlmW4l+0WDjcgLVwCvH+OVLpD8Dfp+Bjfz85prwxWGbwXgJdLtkgjD0qfOzkJF9SmA6YZPsMYX4w==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@babel/code-frame': 7.18.6
+      '@babel/runtime': 7.18.6
+      '@types/aria-query': 4.2.2
+      aria-query: 5.0.0
+      chalk: 4.1.2
+      dom-accessibility-api: 0.5.14
+      lz-string: 1.4.4
+      pretty-format: 27.5.1
+    dev: false
+
+  /@testing-library/jest-dom/5.16.4:
+    resolution: {integrity: sha512-Gy+IoFutbMQcky0k+bqqumXZ1cTGswLsFqmNLzNdSKkU9KGV2u9oXhukCbbJ9/LRPKiqwxEE8VpV/+YZlfkPUA==}
+    engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
+    dependencies:
+      '@babel/runtime': 7.18.6
+      '@types/testing-library__jest-dom': 5.14.5
+      aria-query: 5.0.0
+      chalk: 3.0.0
+      css: 3.0.0
+      css.escape: 1.5.1
+      dom-accessibility-api: 0.5.14
+      lodash: 4.17.21
+      redent: 3.0.0
+    dev: false
+
+  /@testing-library/react/13.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.18.6
+      '@testing-library/dom': 8.16.0
+      '@types/react-dom': 18.0.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@testing-library/user-event/13.5.0_gwcpuyfvwbszhlmedmugzivgzu:
+    resolution: {integrity: sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
+    dependencies:
+      '@babel/runtime': 7.18.6
+      '@testing-library/dom': 8.16.0
+>>>>>>> f42daf000c95b3f746016a1dfd040ea6d2a8849e
     dev: false
 
   /@tootallnate/once/1.1.2:
@@ -6458,11 +6523,14 @@ packages:
         optional: true
     dev: false
 
+<<<<<<< HEAD
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
     engines: {node: '>=0.10.0'}
     dev: false
 
+=======
+>>>>>>> f42daf000c95b3f746016a1dfd040ea6d2a8849e
   /fork-ts-checker-webpack-plugin/6.5.2_vzvrbkqxq2uhuknms22gvb2xwq:
     resolution: {integrity: sha512-m5cUmF30xkZ7h4tWUgTAcEaKmUW7tfyUyTqNNOz7OxWJ0v1VWKTcOvH8FWHUwSjlW/356Ijc9vi3XfcPstpQKA==}
     engines: {node: '>=10', yarn: '>=1.0.0'}
@@ -12232,6 +12300,7 @@ packages:
     hasBin: true
     dev: false
 
+<<<<<<< HEAD
   /uglify-es/3.3.9:
     resolution: {integrity: sha512-r+MU0rfv4L/0eeW3xZrd16t4NZfK8Ld4SWVglYBb7ez5uXFWHuVRs6xCTrf1yirs9a4j4Y27nn7SRfO6v67XsQ==}
     engines: {node: '>=0.8.0'}
@@ -12242,6 +12311,8 @@ packages:
       source-map: 0.6.1
     dev: false
 
+=======
+>>>>>>> f42daf000c95b3f746016a1dfd040ea6d2a8849e
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
     dependencies:
